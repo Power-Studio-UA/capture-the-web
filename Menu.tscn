@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfexvhvg6cc5t"]
+
+[ext_resource type="Script" path="res://menu_scene.gd" id="1_fpq2a"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fpq2a")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = -39.0
+offset_right = 46.0
+offset_bottom = 39.0
+text = "Load"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
