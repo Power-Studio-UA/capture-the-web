@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj7nni857vulo"]
+
+[ext_resource type="Script" path="res://debug_menu.gd" id="1_7pxuo"]
+
+[node name="Control" type="Control" groups=["debug"]]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 30.0
+script = ExtResource("1_7pxuo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HoveredNode" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Debug Label"
+
+[node name="SelectedNode" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Selected Node: None"

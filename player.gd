@@ -17,9 +17,14 @@ var rotating_with_mouse : bool = false
 var moving_with_mouse : bool = false
 var target_zoom : float
 var target_position : Vector3
+var debug_menu : DebugMenu
+var hovered_node = null
+var selected_node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	target_zoom = position.z
+	debug_menu = get_tree().get_nodes_in_group("debug")[0]
+
 
 func _define_vector() -> Vector3:
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -34,6 +39,7 @@ func _process(delta):
 	position = lerp(position, target_position, delta * lerp_move_speed)
 	position.y = lerp(position.y, target_zoom, lerp_zoom_speed * delta)
 	#rotate_y(camera_rotation_dir * delta * camera_speed)
+	_cast()
 	
 	print(position)
 
@@ -43,3 +49,27 @@ func _input(event: InputEvent) -> void:
 			target_zoom = max(position.y - zoom_speed, min_zoom)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			target_zoom = min(position.y + zoom_speed, max_zoom)
+		
+		if event.button_index == MOUSE_BUTTON_LEFT && hovered_node != null:
+			selected_node = hovered_node
+			debug_menu.set_select(selected_node.name)
+
+func _cast():
+		var space = get_world_3d().direct_space_state
+		var mousePosViewport = get_viewport().get_mouse_position()
+		var rayOrigin = project_ray_origin(mousePosViewport)
+		var rayEnd = rayOrigin+project_ray_normal(mousePosViewport)*100
+		var detectionParameters = PhysicsRayQueryParameters3D.new() 
+		detectionParameters.collide_with_areas = true
+		detectionParameters.from = rayOrigin
+		detectionParameters.to = rayEnd
+	
+		var rayArray = space.intersect_ray(detectionParameters)
+		if (rayArray.has("collider")):
+			hovered_node = rayArray["collider"].get_parent()
+			debug_menu.set_hovered(hovered_node.name)
+		else:
+			hovered_node = null
+			debug_menu.set_hovered("None")
+		
+		print(hovered_node)
