@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://d182qafh0oprv"]
+[gd_scene load_steps=3 format=3 uid="uid://d182qafh0oprv"]
 
 [ext_resource type="Script" path="res://modules/node.gd" id="1_rry5g"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_11qp2"]
+
 [node name="Node" type="Node3D"]
 script = ExtResource("1_rry5g")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_11qp2")

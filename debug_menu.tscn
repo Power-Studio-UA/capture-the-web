@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj7nni857vulo"]
+
+[ext_resource type="Script" path="res://debug_menu.gd" id="1_7pxuo"]
+
+[node name="Control" type="Control" groups=["debug"]]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 30.0
+script = ExtResource("1_7pxuo")
+
+[node name="Node_name" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Debug Label"
