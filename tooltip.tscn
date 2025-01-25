@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0u6luds54wgt"]
+
+[ext_resource type="LabelSettings" uid="uid://dqgs75nj4igj5" path="res://assets/header_text.tres" id="1_81ac3"]
+[ext_resource type="Script" path="res://tooltip.gd" id="1_bog7a"]
+[ext_resource type="LabelSettings" uid="uid://bbcb4acm588nu" path="res://assets/common_text.tres" id="3_j2668"]
+
+[sub_resource type="Theme" id="Theme_d4wuh"]
+
+[node name="Tooltip" type="Container" node_paths=PackedStringArray("name_label", "description_label", "background")]
+custom_minimum_size = Vector2(300, 50)
+offset_right = 319.0
+offset_bottom = 129.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_bog7a")
+name_label = NodePath("MarginContainer/VBoxContainer/Name")
+description_label = NodePath("MarginContainer/VBoxContainer/Description")
+background = NodePath("Background")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0, 0, 0, 0.72549)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = SubResource("Theme_d4wuh")
+theme_type_variation = &"HeaderLarge"
+text = "Name"
+label_settings = ExtResource("1_81ac3")
+
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Description Description Description Description Description Description Description Description Description "
+label_settings = ExtResource("3_j2668")
+autowrap_mode = 2

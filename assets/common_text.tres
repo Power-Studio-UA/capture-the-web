@@ -1,0 +1,6 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bbcb4acm588nu"]
+
+[ext_resource type="FontFile" uid="uid://dawgu6h6ry7iq" path="res://fonts/Underdog-Regular.ttf" id="1_sj153"]
+
+[resource]
+font = ExtResource("1_sj153")

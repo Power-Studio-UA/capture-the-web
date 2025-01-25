@@ -20,6 +20,8 @@ var target_position : Vector3
 var debug_menu : DebugMenu
 var hovered_node = null
 var selected_node
+@export var tooltip_scene : PackedScene
+var tooltip : NodeTooltip
 
 @export var cpu : float :
 	set (value):
@@ -48,6 +50,7 @@ func _ready() -> void:
 	# _select_node(start_node)
 	var level = get_node("/root/MainLevel")
 	level.generation_finished.connect(select_start)
+
 	#print("player_ready")
 
 func select_start() -> void:
@@ -95,9 +98,20 @@ func _cast():
 		if (rayArray.has("collider")):
 			hovered_node = rayArray["collider"].get_parent()
 			debug_menu.set_hovered(hovered_node.name)
+			if !tooltip:
+				tooltip = tooltip_scene.instantiate() as NodeTooltip
+				add_child(tooltip)
+				#tooltip.position = get_global_mouse_position()
+			# if tooltip:
+			# 	print("AHUEL")
+			tooltip.name_label.text = str(hovered_node.node_name)
+			tooltip.description_label.text = str(hovered_node.node_description)
 		else:
 			hovered_node = null
 			debug_menu.set_hovered("None")
+			if tooltip:
+				tooltip.call_deferred("queue_free")
+				tooltip = null
 		
 		#print(hovered_node)
 func _select_node(node : UebanPoint3D):
