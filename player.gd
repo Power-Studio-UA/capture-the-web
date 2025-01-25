@@ -25,6 +25,8 @@ var selected_node
 	set (value):
 		cpu = value
 		debug_menu.set_cpu(str(value))
+		if (value < 1):
+			FlowSystem._on_change_state(FlowSystem.GameStates.OVER)
 	get:
 		return cpu
 
@@ -32,6 +34,8 @@ var selected_node
 	set (value):
 		mem = value
 		debug_menu.set_mem(str(value))
+		if (value < 1):
+			FlowSystem._on_change_state(FlowSystem.GameStates.OVER)
 	get:
 		return mem
 # Called when the node enters the scene tree for the first time.
@@ -42,7 +46,7 @@ func _ready() -> void:
 	mem = 10
 	# var start_node = get_tree().get_nodes_in_group("END")[0]
 	# _select_node(start_node)
-	var level = get_tree().root.get_child(0) as MainLevel
+	var level = get_node("/root/MainLevel")
 	level.generation_finished.connect(select_start)
 	#print("player_ready")
 
@@ -99,6 +103,9 @@ func _cast():
 func _select_node(node : UebanPoint3D):
 		if (selected_node != null):
 				selected_node.deselect()
+		
+		if (node == get_tree().get_nodes_in_group("END")[1]):
+			FlowSystem._on_change_state(FlowSystem.GameStates.OVER)
 		selected_node = node
 		selected_node.select()
 		debug_menu.set_select(selected_node.name)

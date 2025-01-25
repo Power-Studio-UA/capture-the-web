@@ -37,6 +37,7 @@ func setup(
 	add_child(mesh_instance)
 	
 	material = StandardMaterial3D.new()
+	material.albedo_color = Color.BLACK
 	match type:
 		NodeType.RED:
 			my_resource = red_resource
@@ -45,10 +46,11 @@ func setup(
 		NodeType.FINISH:
 			my_resource = finish_resource
 			add_to_group("END")
+			material.albedo_color = my_resource.material_color
+
 			#print("END")
 			
 	
-	material.albedo_color = Color.BLACK
 	mesh_instance.material_override = material
 	
 func select() -> void:

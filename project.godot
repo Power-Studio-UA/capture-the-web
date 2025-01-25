@@ -15,9 +15,9 @@ run/main_scene="res://Menu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
-[editor_plugins]
+[autoload]
 
-enabled=PackedStringArray("res://addons/godot-vim/plugin.cfg")
+FlowSystem="*res://flowsystem.gd"
 
 [input]
 

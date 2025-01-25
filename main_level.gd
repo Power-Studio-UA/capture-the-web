@@ -110,7 +110,7 @@ func _ready() -> void:
 	# Generate a graph
 	var urls = generator.generate_graph()
 	load_graph(urls[0], urls[1])
-	emit_signal("generation_finished")
+	generation_finished.emit()
 	#var file = FileAccess.open(graph_url, FileAccess.READ)
 	#var data = JSON.parse_string(file.get_as_text())
 	#
