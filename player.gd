@@ -20,11 +20,35 @@ var target_position : Vector3
 var debug_menu : DebugMenu
 var hovered_node = null
 var selected_node
+
+@export var cpu : float :
+	set (value):
+		cpu = value
+		debug_menu.set_cpu(str(value))
+	get:
+		return cpu
+
+@export var mem : float :
+	set (value):
+		mem = value
+		debug_menu.set_mem(str(value))
+	get:
+		return mem
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	target_zoom = position.z
 	debug_menu = get_tree().get_nodes_in_group("debug")[0]
+	cpu = 10
+	mem = 10
+	# var start_node = get_tree().get_nodes_in_group("END")[0]
+	# _select_node(start_node)
+	var level = get_tree().root.get_child(0) as MainLevel
+	level.generation_finished.connect(select_start)
+	#print("player_ready")
 
+func select_start() -> void:
+	var start_node = get_tree().get_nodes_in_group("END")[0]
+	_select_node(start_node)
 
 func _define_vector() -> Vector3:
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -41,7 +65,7 @@ func _process(delta):
 	#rotate_y(camera_rotation_dir * delta * camera_speed)
 	_cast()
 	
-	print(position)
+	#print(position)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -50,9 +74,8 @@ func _input(event: InputEvent) -> void:
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			target_zoom = min(position.y + zoom_speed, max_zoom)
 		
-		if event.button_index == MOUSE_BUTTON_LEFT && hovered_node != null:
-			selected_node = hovered_node
-			debug_menu.set_select(selected_node.name)
+		if event.button_index == MOUSE_BUTTON_LEFT && selected_node.linked_instances.has(hovered_node) && event.pressed && hovered_node!=null:
+			_select_node(hovered_node)
 
 func _cast():
 		var space = get_world_3d().direct_space_state
@@ -72,4 +95,12 @@ func _cast():
 			hovered_node = null
 			debug_menu.set_hovered("None")
 		
-		print(hovered_node)
+		#print(hovered_node)
+func _select_node(node : UebanPoint3D):
+		if (selected_node != null):
+				selected_node.deselect()
+		selected_node = node
+		selected_node.select()
+		debug_menu.set_select(selected_node.name)
+		cpu += selected_node.my_resource.cpu
+		mem += selected_node.my_resource.mem

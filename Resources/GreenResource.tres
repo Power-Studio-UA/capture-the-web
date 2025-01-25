@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="NodeResource" load_steps=2 format=3 uid="uid://secf5bscuqg8"]
+
+[ext_resource type="Script" path="res://Resources/NodeResource.gd" id="1_trc1r"]
+
+[resource]
+script = ExtResource("1_trc1r")
+mem = 2.0
+cpu = 0.0
+material_color = Color(0, 1, 0, 1)

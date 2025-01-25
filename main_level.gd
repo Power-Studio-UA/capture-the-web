@@ -1,5 +1,5 @@
 extends Node3D
-
+class_name MainLevel
 #@onready var camera: Camera3D = $Camera3D
 #
 #@export var focus_distance: float = 5.0
@@ -22,8 +22,9 @@ extends Node3D
 	#camera.global_position = node.global_position - camera.global_transform.basis.z * focus_distance
 	#camera.rotation_degrees = focus_angle
 
-
+signal generation_finished()  # Define a signal with one parameter
 const GraphGenerator = preload("res://graph_generator.gd")
+const packedNode = preload("res://modules/Node.tscn")
 #var NodeScene = preload("res://modules/Node.tscn")
 #var LineScene = preload("res://modules/Line.tscn")
 
@@ -44,20 +45,26 @@ func load_graph(filename: String, descriptions_url: String):
 	var node_instances = {}
 	for index in graph_data["points"].size():
 		var point_data = graph_data["points"][index]
-		var node_instance = UebanPoint3D.new()
+		var node_instance = packedNode.instantiate()
 		node_instance.position = Vector3(point_data.x/250, 0, point_data.y/150)
 		node_instance.name = "Node_" + str(index)
 		add_child(node_instance)
 		node_instances[str(index)] = node_instance
 		var description = description_data[point_data["id"]]
+		var nodeType
+		var rnd = RandomNumberGenerator.new()
+		if index == 0 || index == graph_data["points"].size() -1:
+			nodeType = node_instance.NodeType.values()[2]
+		else:
+			nodeType = node_instance.NodeType.values()[rnd.randi_range(0, 1)]
 		node_instance.setup(
 			point_data["id"], 
 			description["name"], 
 			description["description"], 
 			[], 
-			node_instance.NodeType.DEFAULT, 
-			description["hp"], 
-			description["gas"])
+			nodeType, 
+			)
+
 	
 	for key in node_instances:
 		var new_list = []
@@ -103,13 +110,11 @@ func _ready() -> void:
 	# Generate a graph
 	var urls = generator.generate_graph()
 	load_graph(urls[0], urls[1])
-	
+	emit_signal("generation_finished")
 	#var file = FileAccess.open(graph_url, FileAccess.READ)
 	#var data = JSON.parse_string(file.get_as_text())
 	#
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+# Called every frame. 'delta' is the elapsed time since the previous frame

@@ -1,11 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://d182qafh0oprv"]
+[gd_scene load_steps=6 format=3 uid="uid://d182qafh0oprv"]
 
 [ext_resource type="Script" path="res://modules/node.gd" id="1_rry5g"]
+[ext_resource type="Resource" uid="uid://cpthrb4qp1h3t" path="res://Resources/RedResource.tres" id="2_je67q"]
+[ext_resource type="Resource" uid="uid://nl87ro4pwj3c" path="res://Resources/EndResource.tres" id="3_6evx8"]
+[ext_resource type="Resource" uid="uid://secf5bscuqg8" path="res://Resources/GreenResource.tres" id="4_edson"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_11qp2"]
+radius = 0.05
 
 [node name="Node" type="Node3D"]
 script = ExtResource("1_rry5g")
+green_resource = ExtResource("4_edson")
+red_resource = ExtResource("2_je67q")
+finish_resource = ExtResource("3_6evx8")
 
 [node name="Area3D" type="Area3D" parent="."]
 
