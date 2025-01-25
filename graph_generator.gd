@@ -154,14 +154,14 @@ func poisson_polygon_sampling(polygon_points: Array, poisson_radius: float, retr
 		regular_array.append(vec)
 	return regular_array
 
-func poisson_disk_sampling(start: IDVector2, end: IDVector2, num_points: int) -> Array:
+func poisson_disk_sampling(start: Vector2, end: Vector2, num_points: int) -> Array:
 	var points = []
 	var width = end.x - start.x
 	var height = end.y - start.y
 	var min_distance = 50.0
 	
 	while points.size() < num_points:
-		var candidate = IDVector2.new(
+		var candidate = Vector2(
 			start.x + rng.randf() * width,
 			start.y + rng.randf() * height
 		)
