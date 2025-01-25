@@ -1,4 +1,5 @@
 extends Node3D
+class_name UebanLine3D
 
 enum LineType { DEFAULT, PATH }
 
@@ -6,7 +7,10 @@ var start_point: Vector3
 var end_point: Vector3
 var radius: float = 0.01  # Default radius, can be adjusted
 
-func setup(type: LineType = LineType.DEFAULT):
+@export var gas: float
+
+func setup(type: LineType = LineType.DEFAULT, gas_value: float = 1.0):
+	self.gas = gas_value
 	var material = StandardMaterial3D.new()
 	
 	match type:

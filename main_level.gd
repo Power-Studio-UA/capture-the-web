@@ -24,31 +24,51 @@ extends Node3D
 
 
 const GraphGenerator = preload("res://graph_generator.gd")
-var NodeScene = preload("res://modules/Node.tscn")
-var LineScene = preload("res://modules/Line.tscn")
+#var NodeScene = preload("res://modules/Node.tscn")
+#var LineScene = preload("res://modules/Line.tscn")
 
-func load_graph(filename: String):
+func load_graph(filename: String, descriptions_url: String):
 	var file = FileAccess.open(filename, FileAccess.READ)
 	var json_string = file.get_as_text()
 	file.close()
 	
 	var graph_data = JSON.parse_string(json_string)
 	
+	file = FileAccess.open(descriptions_url, FileAccess.READ)
+	json_string = file.get_as_text()
+	file.close()
+	
+	var description_data = JSON.parse_string(json_string)
+	
 	# Create node instances
 	var node_instances = {}
 	for index in graph_data["points"].size():
 		var point_data = graph_data["points"][index]
-		var node_instance = NodeScene.instantiate()
+		var node_instance = UebanPoint3D.new()
 		node_instance.position = Vector3(point_data.x/250, 0, point_data.y/150)
 		node_instance.name = "Node_" + str(index)
 		add_child(node_instance)
 		node_instances[str(index)] = node_instance
-		node_instance.setup(node_instance.NodeType.DEFAULT)
-		
-	for path in graph_data["paths"]:
-		for node_index in path:
-			var node = node_instances[str(node_index)]
-			node.setup(node.NodeType.PATH)
+		var description = description_data[point_data["id"]]
+		node_instance.setup(
+			point_data["id"], 
+			description["name"], 
+			description["description"], 
+			[], 
+			node_instance.NodeType.DEFAULT, 
+			description["hp"], 
+			description["gas"])
+	
+	for key in node_instances:
+		var new_list = []
+		for item in graph_data["graph"][key]:
+			new_list.append(node_instances[str(item)])
+#
+		node_instances[key].linked_instances = new_list
+	#for path in graph_data["paths"]:
+		#for node_index in path:
+			#var node = node_instances[str(node_index)]
+			#node.setup(node.NodeType.PATH)
 
 	# Create connections
 
@@ -56,22 +76,23 @@ func load_graph(filename: String):
 		var current_node = node_instances[str(node_index)]
 		for connected_index in graph_data["graph"][node_index]:
 			var connected_node = node_instances[str(connected_index)]
-			var line = LineScene.instantiate()
+			var line = UebanLine3D.new()
 			line.start_point = current_node.position
 			line.end_point = connected_node.position
 			
 			# Check if this connection is part of any path
-			var is_path_connection = false
-			for path in graph_data["paths"]:
-				for i in range(path.size() - 1):
-					if (path[i] == int(node_index) and path[i+1] == connected_index) or \
-					   (path[i] == connected_index and path[i+1] == int(node_index)):
-						is_path_connection = true
-						break
-				if is_path_connection:
-					break
+			#var is_path_connection = false
+			#for path in graph_data["paths"]:
+				#for i in range(path.size() - 1):
+					#if (path[i] == int(node_index) and path[i+1] == connected_index) or \
+					   #(path[i] == connected_index and path[i+1] == int(node_index)):
+						#is_path_connection = true
+						#break
+				#if is_path_connection:
+					#break
 			
-			line.setup(line.LineType.PATH if is_path_connection else line.LineType.DEFAULT)
+			#line.setup(line.LineType.PATH if is_path_connection else line.LineType.DEFAULT)
+			line.setup(line.LineType.DEFAULT)
 			add_child(line)
 
 # Called when the node enters the scene tree for the first time.
@@ -80,8 +101,8 @@ func _ready() -> void:
 	var generator = GraphGenerator.new()
 	
 	# Generate a graph
-	var graph_url = generator.generate_graph()
-	load_graph(graph_url)
+	var urls = generator.generate_graph()
+	load_graph(urls[0], urls[1])
 	
 	#var file = FileAccess.open(graph_url, FileAccess.READ)
 	#var data = JSON.parse_string(file.get_as_text())

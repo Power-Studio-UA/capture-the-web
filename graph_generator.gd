@@ -1,6 +1,7 @@
 extends Node2D
 
 const uuid_util = preload('res://addons/uuid/uuid.gd')
+#const IDVector2 = preload("res://modules/IDVector2.gd")
 
 #func _init():
   #print(uuid_util.v4())
@@ -23,7 +24,27 @@ const uuid_util = preload('res://addons/uuid/uuid.gd')
 var rng = RandomNumberGenerator.new()
 
 #####################
-
+func generate_random_point():
+	var random_words = [
+		"apple", "banana", "cherry", "dragon", "eagle", 
+		"flower", "galaxy", "horizon", "island", "jungle"
+		]
+	
+	var random_sentences = [
+		"A lonely traveler seeks adventure.",
+		"The wind whispers ancient secrets.",
+		"Shadows dance across empty landscapes.",
+		"Forgotten memories echo in silent rooms.",
+		"Mysterious forces shape unseen worlds." 
+		]
+	
+	return { 
+		"gas": randi() % 6 - 5,  # Random int between -5 and 0 
+		"hp": randi() % 11 - 5,  # Random int between -5 and 5 
+		"name": random_words[randi() % random_words.size()], 
+		"description": random_sentences[randi() % random_sentences.size()] 
+		}
+		
 # Function to generate a random convex polygon
 func generate_random_convex_polygon(start: Vector2, end: Vector2, num_points: int = 5) -> Array:
 	var points = []
@@ -79,7 +100,21 @@ func generate_graph():
 	print("Generating graph")
 	var graph = _generate_graph(Vector2(0, 0), Vector2(1000, 600), 100)
 	print("Saving graph")
-	return save_graph_to_file(graph, "user://" + uuid_util.v4() + ".json")
+	
+	var descriptions = _generate_descrptions(graph["points"])
+	var id = uuid_util.v4()
+	
+	var graph_url = save_graph_to_file(graph, "user://" + id + ".json")
+	var description_url = save_graph_to_file(descriptions, "user://" + id + "_descriptions.json")
+	
+	return [graph_url, description_url]
+	
+func _generate_descrptions(points: Array) -> Dictionary:
+	var result_dict = {}
+	for point in points:
+		result_dict[point["id"]] = generate_random_point()
+	
+	return result_dict
 
 func _generate_graph(start: Vector2, end: Vector2, num_points: int) -> Dictionary:
 	#var points = poisson_disk_sampling(start, end, num_points)
@@ -106,7 +141,7 @@ func _generate_graph(start: Vector2, end: Vector2, num_points: int) -> Dictionar
 		#new_graph = remove_random_path_points(new_graph, path)
 		new_graph = remove_all_path_points(new_graph, path)
 	return {
-		"points": points.map(func(p): return {"x": p.x, "y": p.y}),
+		"points": points.map(func(p): return {"x": p.x, "y": p.y, "id": uuid_util.v4()}),
 		"graph": graph,
 		"paths": paths
 	}
@@ -119,14 +154,14 @@ func poisson_polygon_sampling(polygon_points: Array, poisson_radius: float, retr
 		regular_array.append(vec)
 	return regular_array
 
-func poisson_disk_sampling(start: Vector2, end: Vector2, num_points: int) -> Array:
+func poisson_disk_sampling(start: IDVector2, end: IDVector2, num_points: int) -> Array:
 	var points = []
 	var width = end.x - start.x
 	var height = end.y - start.y
 	var min_distance = 50.0
 	
 	while points.size() < num_points:
-		var candidate = Vector2(
+		var candidate = IDVector2.new(
 			start.x + rng.randf() * width,
 			start.y + rng.randf() * height
 		)
@@ -152,13 +187,20 @@ func create_graph_from_triangulation(points: Array, triangulation: Array) -> Dic
 		var b = triangulation[i+1]
 		var c = triangulation[i+2]
 		
-		graph[a].append(b)
-		graph[a].append(c)
-		graph[b].append(a)
-		graph[b].append(c)
-		graph[c].append(a)
-		graph[c].append(b)
-	
+		var rnd_val = rng.randi_range(1, 4)
+		
+		if rnd_val == 1:
+			graph[a].append(b)
+			graph[b].append(a)
+			
+		if rnd_val == 2:
+			graph[a].append(c)
+			graph[c].append(a)
+			
+		if rnd_val == 3:
+			graph[b].append(c)
+			graph[c].append(b)
+		
 	return graph
 
 func find_path_bfs(graph: Dictionary, start: int, end: int) -> Array:
