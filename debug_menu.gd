@@ -1,14 +1,15 @@
 extends Control
 class_name DebugMenu
-var label
 
-# Called when the node enters the scene tree for the first time.
+var selected_node_label : Label
+var hovered_node_label : Label
 func _ready() -> void:
-	label = $Node_name
+	selected_node_label = $VBoxContainer/SelectedNode
+	hovered_node_label = $VBoxContainer/HoveredNode
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
-func _set_node_name(name: String) -> void:
-	label.text = name
+func set_select(node_name: String) -> void:
+	selected_node_label.text = "Hovered Node: " + node_name
+
+func set_hovered(node_name: String) -> void:
+	hovered_node_label.text = "Selected Node: " + node_name

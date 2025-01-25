@@ -18,6 +18,8 @@ var moving_with_mouse : bool = false
 var target_zoom : float
 var target_position : Vector3
 var debug_menu : DebugMenu
+var hovered_node = null
+var selected_node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	target_zoom = position.z
@@ -47,6 +49,10 @@ func _input(event: InputEvent) -> void:
 			target_zoom = max(position.y - zoom_speed, min_zoom)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			target_zoom = min(position.y + zoom_speed, max_zoom)
+		
+		if event.button_index == MOUSE_BUTTON_LEFT && hovered_node != null:
+			selected_node = hovered_node
+			debug_menu.set_select(selected_node.name)
 
 func _cast():
 		var space = get_world_3d().direct_space_state
@@ -59,5 +65,11 @@ func _cast():
 		detectionParameters.to = rayEnd
 	
 		var rayArray = space.intersect_ray(detectionParameters)
-		if (rayArray):
-			debug_menu._set_node_name(rayArray["collider"].get_parent().name)
+		if (rayArray.has("collider")):
+			hovered_node = rayArray["collider"].get_parent()
+			debug_menu.set_hovered(hovered_node.name)
+		else:
+			hovered_node = null
+			debug_menu.set_hovered("None")
+		
+		print(hovered_node)
