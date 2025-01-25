@@ -50,12 +50,14 @@ func _ready() -> void:
 	# _select_node(start_node)
 	var level = get_node("/root/MainLevel")
 	level.generation_finished.connect(select_start)
-
+	
 	#print("player_ready")
 
 func select_start() -> void:
-	var start_node = get_tree().get_nodes_in_group("END")[0]
+	var start_node = get_tree().get_nodes_in_group("END")[0] as UebanPoint3D
 	_select_node(start_node)
+	position.x = start_node.position.x
+	position.z = start_node.position.z
 
 func _define_vector() -> Vector3:
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
