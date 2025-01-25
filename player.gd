@@ -1,0 +1,45 @@
+extends Camera3D
+class_name Player
+
+var camera_rotation_dir : float
+@export var speed : float = 5
+@export var zoom_speed: float = 1.5
+@export var lerp_zoom_speed: float = 5
+@export var lerp_move_speed: float = 2
+@export var min_zoom: float = 2.0
+@export var max_zoom: float = 10.0
+@export var border_x_low : float = -4
+@export var border_x_high : float = 4
+@export var border_z_low : float = -4
+@export var border_z_high : float = 4
+
+var rotating_with_mouse : bool = false
+var moving_with_mouse : bool = false
+var target_zoom : float
+var target_position : Vector3
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	target_zoom = position.z
+
+func _define_vector() -> Vector3:
+	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+	
+	return Vector3(input_dir.normalized().x, 0, input_dir.normalized().y)
+
+func _process(delta):
+	var zoom_coef = max_zoom/target_zoom
+	target_position = position + _define_vector()
+	target_position.x = clamp(target_position.x, border_x_low * zoom_coef, border_x_high * zoom_coef)
+	target_position.z = clamp(target_position.z, border_z_low * zoom_coef, border_z_high * zoom_coef)
+	position = lerp(position, target_position, delta * lerp_move_speed)
+	position.y = lerp(position.y, target_zoom, lerp_zoom_speed * delta)
+	#rotate_y(camera_rotation_dir * delta * camera_speed)
+	
+	print(position)
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			target_zoom = max(position.y - zoom_speed, min_zoom)
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			target_zoom = min(position.y + zoom_speed, max_zoom)
