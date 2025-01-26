@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ve5ago5qku7j"]
 
-[ext_resource type="PackedScene" uid="uid://crbtgaikjwvdm" path="res://visuals/Node/Node_visual.tscn" id="1_uswss"]
+[ext_resource type="PackedScene" uid="uid://crbtgaikjwvdm" path="res://visuals/Node/node_visuals.tscn" id="1_uswss"]
 
 [sub_resource type="Environment" id="Environment_dvxq5"]
 background_mode = 1
@@ -24,7 +24,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 4, 0)
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 10, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dvxq5")

@@ -19,6 +19,8 @@ func setup(type: LineType = LineType.DEFAULT, gas_value: float = 1.0):
 		LineType.PATH:
 			material.albedo_color = Color(1, 0, 0)  # Red
 	
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	
 	# Calculate the height of the cylinder based on the distance between start and end points
 	var height = start_point.distance_to(end_point)
 	

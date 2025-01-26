@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://visuals/Node/node.gdshader" id="2_1fhxu"]
 
 [resource]
-render_priority = 0
+render_priority = 1
 next_pass = ExtResource("1_biu35")
 shader = ExtResource("2_1fhxu")
 shader_parameter/depth_factor = 0.5
@@ -17,7 +17,7 @@ shader_parameter/low_risk_color = Vector3(0, 0.545, 0.105)
 shader_parameter/high_risk_color = Vector3(0.745, -0.105, -0.005)
 shader_parameter/inactive_color = Vector3(0.195, 0.22, 0.25)
 shader_parameter/custom_color = Vector3(0, 0, 0)
-shader_parameter/y_blend_scale = 0.5
-shader_parameter/y_blend_range = 2.0
-shader_parameter/y_blend_shift = -0.8
+shader_parameter/y_blend_scale = 20.0
+shader_parameter/y_blend_range = 1.7
+shader_parameter/y_blend_shift = 1.49012e-08
 shader_parameter/risk_level = -1.0

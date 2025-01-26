@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_qmi8b")
-mem_range = Vector2(0, 0)
-cpu_range = Vector2(0, 0)
+mem = 0.0
+cpu = 0.0
 material_color = Color(0.944901, 0.364243, 1, 1)
