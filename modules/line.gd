@@ -6,20 +6,22 @@ enum LineType { DEFAULT, PATH }
 var start_point: Vector3
 var end_point: Vector3
 var radius: float = 0.01  # Default radius, can be adjusted
+var link_shader = load("res://visuals/link_shader.tres")
 
 @export var gas: float
 
 func setup(type: LineType = LineType.DEFAULT, gas_value: float = 1.0):
 	self.gas = gas_value
-	var material = StandardMaterial3D.new()
+	var material = link_shader.duplicate()
 	
 	match type:
 		LineType.DEFAULT:
-			material.albedo_color = Color(0.3, 0.3, 0.3)  # Dark Gray
+			material.set_shader_parameter("custom_color", Color(0.5, 0.5, 0.5))  # Dark Gray
 		LineType.PATH:
-			material.albedo_color = Color(1, 0, 0)  # Red
+			material.set_shader_parameter("custom_color", Color(1, 0, 0))  # Red
 	
-	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	
+	
 	
 	# Calculate the height of the cylinder based on the distance between start and end points
 	var height = start_point.distance_to(end_point)

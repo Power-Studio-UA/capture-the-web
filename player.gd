@@ -74,6 +74,7 @@ func _process(delta):
 	target_position.z = clamp(target_position.z, border_z_low * zoom_coef, border_z_high * zoom_coef)
 	position = lerp(position, target_position, delta * lerp_move_speed)
 	position.y = lerp(position.y, target_zoom, lerp_zoom_speed * delta)
+	size = position.y
 	#rotate_y(camera_rotation_dir * delta * camera_speed)
 	_cast()
 	

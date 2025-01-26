@@ -3,7 +3,7 @@
 [ext_resource type="Shader" path="res://visuals/Node/outline.gdshader" id="1_f6ypl"]
 
 [resource]
-render_priority = 0
+render_priority = 5
 shader = ExtResource("1_f6ypl")
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/outline_width = 4.0

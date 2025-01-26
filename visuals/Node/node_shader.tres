@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://visuals/Node/node.gdshader" id="2_1fhxu"]
 
 [resource]
-render_priority = 1
+render_priority = 6
 next_pass = ExtResource("1_biu35")
 shader = ExtResource("2_1fhxu")
 shader_parameter/depth_factor = 0.5
