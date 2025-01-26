@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://ve5ago5qku7j"]
+
+[ext_resource type="PackedScene" uid="uid://crbtgaikjwvdm" path="res://visuals/Node/Node_visual.tscn" id="1_uswss"]
+
+[sub_resource type="Environment" id="Environment_dvxq5"]
+background_mode = 1
+background_color = Color(0.0957, 0.103803, 0.11, 1)
+background_energy_multiplier = 1.47
+ambient_light_source = 1
+reflected_light_source = 1
+glow_intensity = 0.78
+glow_bloom = 1.0
+glow_hdr_luminance_cap = 0.5
+fog_light_energy = 0.22
+fog_density = 0.0
+fog_height_density = 0.8889
+
+[node name="VisualsTestField" type="Node3D"]
+
+[node name="Node" parent="." instance=ExtResource("1_uswss")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Node2" parent="." instance=ExtResource("1_uswss")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 4, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dvxq5")
