@@ -28,6 +28,7 @@ var tooltip : NodeTooltip
 		cpu = value
 		debug_menu.set_cpu(str(value))
 		if (value < 1):
+			tooltip.queue_free()
 			FlowSystem._on_change_state(FlowSystem.GameStates.OVER)
 	get:
 		return cpu
@@ -37,7 +38,9 @@ var tooltip : NodeTooltip
 		mem = value
 		debug_menu.set_mem(str(value))
 		if (value < 1):
+			tooltip.queue_free()
 			FlowSystem._on_change_state(FlowSystem.GameStates.OVER)
+			
 	get:
 		return mem
 # Called when the node enters the scene tree for the first time.
@@ -121,7 +124,7 @@ func _select_node(node : UebanPoint3D):
 				selected_node.deselect()
 		
 		if (node == get_tree().get_nodes_in_group("END")[1]):
-			FlowSystem._on_change_state(FlowSystem.GameStates.OVER)
+			FlowSystem._on_change_state(FlowSystem.GameStates.WIN)
 		selected_node = node
 		selected_node.select()
 		debug_menu.set_select(selected_node.name)

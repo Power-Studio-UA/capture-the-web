@@ -9,7 +9,7 @@ extends Node
 var win_screen : Control
 const win_screen_path : String = "res://GameOverScreen.tscn"
 
-enum GameStates {PLAY, OVER} 
+enum GameStates {PLAY, OVER, WIN} 
 var current_state = GameStates.PLAY
 
 func _ready() -> void:
@@ -26,6 +26,8 @@ func _on_change_state(next_state: GameStates) -> void:
             _on_gameplay_state()
         GameStates.OVER:
             _on_gameover_state()
+        GameStates.WIN:
+            _on_win_screen()
         
         
 
@@ -35,4 +37,11 @@ func _on_gameplay_state() -> void:
 
 func _on_gameover_state() -> void:
     win_screen.visible = true
+    win_screen.label.text = "Game Over"
     get_tree().paused = true
+
+func _on_win_screen() -> void:
+    win_screen.visible = true
+    win_screen.label.text = "You Won"
+    get_tree().paused = true
+
