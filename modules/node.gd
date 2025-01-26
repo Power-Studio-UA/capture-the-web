@@ -50,7 +50,7 @@ func select() -> void:
 	node_visuals.set_node_type(NodeVisuals.NodeVisualType.SELECTED)
 	visited = true
 	for node in linked_instances:
-		node.node_visuals.is_avaliable = true
+		node.node_visuals.is_available = true
 		if !node.visited:
 			match node.node_type:
 				0:
