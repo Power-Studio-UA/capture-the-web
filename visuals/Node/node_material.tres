@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bihukun3i6jvp"]
+
+[ext_resource type="Material" uid="uid://dahto566h6bby" path="res://visuals/Node/node_shader.tres" id="1_uxf7h"]
+
+[resource]
+next_pass = ExtResource("1_uxf7h")
