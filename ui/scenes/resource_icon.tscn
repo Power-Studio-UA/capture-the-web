@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cmko41rfb8g74"]
 
 [ext_resource type="StyleBox" uid="uid://5nswnhrjvy6n" path="res://assets/ui_styles/res_backround.tres" id="1_7sblm"]
-[ext_resource type="Script" path="res://resource_icon.gd" id="2_3uj2f"]
+[ext_resource type="Script" path="res://ui/scripts/resource_icon.gd" id="2_3uj2f"]
 [ext_resource type="Texture2D" uid="uid://4qp0qh2sb33g" path="res://assets/textures/ram.png" id="2_nh4ml"]
 
 [node name="Panel" type="Panel"]

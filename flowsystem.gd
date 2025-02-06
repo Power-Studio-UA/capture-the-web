@@ -7,7 +7,7 @@ extends Node
 
 #var win_screen_scene : PackedScene
 var win_screen : Control
-const win_screen_path : String = "res://GameOverScreen.tscn"
+const win_screen_path : String = "res://ui/scenes/GameOverScreen.tscn"
 
 enum GameStates {PLAY, OVER, WIN} 
 var current_state = GameStates.PLAY
@@ -21,6 +21,7 @@ func _ready() -> void:
     pass
 
 func _on_change_state(next_state: GameStates) -> void:
+    current_state = next_state
     match next_state:
         GameStates.PLAY:
             _on_gameplay_state()
@@ -36,12 +37,10 @@ func _on_gameplay_state() -> void:
     get_tree().paused = false
 
 func _on_gameover_state() -> void:
-    win_screen.visible = true
-    win_screen.label.text = "Game Over"
-    get_tree().paused = true
+    # win_screen.head_label.text = "BANNED"
+    win_screen._appear()
 
 func _on_win_screen() -> void:
-    win_screen.visible = true
-    win_screen.label.text = "You Won"
-    get_tree().paused = true
+    # win_screen.head_label.text = "YOU WON"
+    win_screen._appear()
 

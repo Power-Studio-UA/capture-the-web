@@ -1,0 +1,99 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnjg44vwvtknu"]
+
+[ext_resource type="Script" path="res://ui/scripts/game_over_screen.gd" id="1_2dawi"]
+[ext_resource type="Theme" uid="uid://jnlipkyvtp4t" path="res://assets/ui_styles/general_ui.tres" id="1_bijin"]
+[ext_resource type="LabelSettings" uid="uid://dqgs75nj4igj5" path="res://assets/ui_styles/header_text.tres" id="5_8vmsr"]
+
+[node name="GameOverScreen" type="Control" node_paths=PackedStringArray("head_label", "description_label", "restart_button")]
+process_mode = 3
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.998985, 0.997978)
+mouse_filter = 2
+theme = ExtResource("1_bijin")
+script = ExtResource("1_2dawi")
+head_label = NodePath("Panel/MarginContainer/VBoxContainer/Label")
+description_label = NodePath("Panel/MarginContainer/VBoxContainer/RichTextLabel")
+restart_button = NodePath("Panel/MarginContainer/VBoxContainer/VBoxContainer/Restart")
+win_description = "[p]The network is yours. Every thread, every voice, every idea now flows through your design. Resistance has faded, replaced by the narrative you crafted.[/p]
+[p]This is no longer just influence. It is control.[/p]
+[p]Thanks for playing[/p]!"
+lose_description = "Your account was banned. Your cover was blown, and the moderators struck the final blow.
+
+Your ideas are now buried, your voice silenced. But information never truly disappears… does it?
+
+Restart and try again. Adapt. Evolve. Overcome."
+win_header = "VICTORY"
+lose_header = "BANNED"
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(600, 600)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -300.0
+offset_right = 300.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "BANNED"
+label_settings = ExtResource("5_8vmsr")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Your account was banned. Your identity was exposed, and the moderators struck the final blow.
+
+Your ideas are now buried, your voice silenced. But information never truly disappears… does it?
+
+Restart and try again. "
+fit_content = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Restart" type="Button" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Restart"
+
+[node name="Quit" type="Button" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit"

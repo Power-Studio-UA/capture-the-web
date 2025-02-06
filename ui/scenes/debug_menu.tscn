@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dj7nni857vulo"]
 
-[ext_resource type="Script" path="res://debug_menu.gd" id="1_7pxuo"]
+[ext_resource type="Script" path="res://ui/scripts/debug_menu.gd" id="1_7pxuo"]
 [ext_resource type="LabelSettings" uid="uid://bbcb4acm588nu" path="res://assets/ui_styles/common_text.tres" id="2_6ckxv"]
 [ext_resource type="Texture2D" uid="uid://b73bicl5yk00q" path="res://assets/textures/refresh.png" id="3_3qys5"]
 [ext_resource type="Texture2D" uid="uid://8ce13kqcmli4" path="res://assets/textures/volume-mute.png" id="3_mswm2"]
@@ -8,7 +8,7 @@
 [ext_resource type="Theme" uid="uid://jnlipkyvtp4t" path="res://assets/ui_styles/general_ui.tres" id="5_673au"]
 [ext_resource type="Texture2D" uid="uid://bqsdq0osk8dg7" path="res://assets/textures/logout.png" id="5_hf87l"]
 [ext_resource type="Texture2D" uid="uid://11wm2iy1rytd" path="res://assets/textures/Default_ava.png" id="6_qcng6"]
-[ext_resource type="PackedScene" uid="uid://cmko41rfb8g74" path="res://resource_icon.tscn" id="7_cthvv"]
+[ext_resource type="PackedScene" uid="uid://cmko41rfb8g74" path="res://ui/scenes/resource_icon.tscn" id="7_cthvv"]
 [ext_resource type="LabelSettings" uid="uid://dqgs75nj4igj5" path="res://assets/ui_styles/header_text.tres" id="8_t1lrh"]
 
 [node name="Control" type="Control" node_paths=PackedStringArray("selected_node_label", "hovered_node_label", "mem_label", "cpu_label", "restart_button") groups=["debug"]]
@@ -19,6 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("5_673au")
 script = ExtResource("1_7pxuo")
 selected_node_label = NodePath("MarginContainer/VBoxContainer/Debug/SelectedNode")
