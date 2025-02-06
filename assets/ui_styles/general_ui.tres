@@ -1,0 +1,56 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://jnlipkyvtp4t"]
+
+[ext_resource type="FontFile" uid="uid://ct0j8u6w2tjsv" path="res://fonts/Inter_24pt-Bold.ttf" id="1_c2eo8"]
+[ext_resource type="StyleBox" uid="uid://dcvbcygwqgb5i" path="res://assets/ui_styles/button_general_disabled.tres" id="2_842l6"]
+[ext_resource type="StyleBox" uid="uid://4by5iuejebxx" path="res://assets/ui_styles/button_general_normal.tres" id="3_btrk3"]
+[ext_resource type="StyleBox" uid="uid://bokg1j3s7fkyf" path="res://assets/ui_styles/button_general_pressed.tres" id="4_f1r0a"]
+[ext_resource type="FontFile" uid="uid://qobtx4u3pvum" path="res://fonts/Inter_18pt-Regular.ttf" id="5_1fw0i"]
+[ext_resource type="StyleBox" uid="uid://berxm6obv3ij6" path="res://assets/ui_styles/round_corner.tres" id="6_hvyhi"]
+[ext_resource type="FontFile" uid="uid://byv4y07wnc0b0" path="res://fonts/Inter_28pt-BoldItalic.ttf" id="7_m4j2u"]
+[ext_resource type="FontFile" uid="uid://dsgv676fvkxjt" path="res://fonts/Inter_18pt-Italic.ttf" id="8_nuikr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l4cgi"]
+
+[resource]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 30
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_c2eo8")
+Button/styles/disabled = ExtResource("2_842l6")
+Button/styles/focus = ExtResource("3_btrk3")
+Button/styles/hover = ExtResource("3_btrk3")
+Button/styles/normal = ExtResource("3_btrk3")
+Button/styles/pressed = ExtResource("4_f1r0a")
+HBoxContainer/constants/separation = 10
+Label/font_sizes/font_size = 18
+Label/fonts/font = ExtResource("5_1fw0i")
+Label/styles/normal = SubResource("StyleBoxEmpty_l4cgi")
+MarginContainer/constants/margin_bottom = 20
+MarginContainer/constants/margin_left = 20
+MarginContainer/constants/margin_right = 20
+MarginContainer/constants/margin_top = 20
+Panel/styles/panel = ExtResource("6_hvyhi")
+RichTextLabel/font_sizes/bold_font_size = 24
+RichTextLabel/font_sizes/bold_italics_font_size = 24
+RichTextLabel/font_sizes/italics_font_size = 24
+RichTextLabel/font_sizes/mono_font_size = 24
+RichTextLabel/font_sizes/normal_font_size = 24
+RichTextLabel/fonts/bold_font = ExtResource("1_c2eo8")
+RichTextLabel/fonts/bold_italics_font = ExtResource("7_m4j2u")
+RichTextLabel/fonts/italics_font = ExtResource("8_nuikr")
+RichTextLabel/fonts/normal_font = ExtResource("5_1fw0i")

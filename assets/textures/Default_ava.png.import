@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djxs0yq44i215"
-path="res://.godot/imported/white_earth.png-a5fd27c24eaee3e2f6e26212af9d977c.ctex"
+uid="uid://11wm2iy1rytd"
+path="res://.godot/imported/Default_ava.png-542999fdf72f1ed675c27dd15580cbb3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/white_earth.png"
-dest_files=["res://.godot/imported/white_earth.png-a5fd27c24eaee3e2f6e26212af9d977c.ctex"]
+source_file="res://assets/textures/Default_ava.png"
+dest_files=["res://.godot/imported/Default_ava.png-542999fdf72f1ed675c27dd15580cbb3.ctex"]
 
 [params]
 

@@ -3,7 +3,8 @@ class_name NodeTooltip
 
 @export var name_label : Label
 @export var description_label : Label
-@export var background : ColorRect
+@export var attitude_label : RichTextLabel
+#@export var background : ColorRect
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	position = get_global_mouse_position()
@@ -16,8 +17,17 @@ func _process(delta: float) -> void:
 	update_size()
 
 func update_size():
-	var content_size = $MarginContainer/VBoxContainer.get_combined_minimum_size()
+	var content_size = $MarginContainer/VBoxContainer2.get_combined_minimum_size()
     
 	 # Adjust background size
-	background.custom_minimum_size = content_size + Vector2(20, 20)  # Padding
-	background.size = background.custom_minimum_size
+	custom_minimum_size = content_size + Vector2(40, 40)  # Padding
+	size = custom_minimum_size
+
+func set_attitude(state: UebanPoint3D.NodeType) -> void:
+	match state:
+		0:
+			attitude_label.text = "[color=red]Hostile"
+		1:
+			attitude_label.text = "[color=green]Loyal"
+		2:
+			attitude_label.text = "[color=violet]Nemesis"

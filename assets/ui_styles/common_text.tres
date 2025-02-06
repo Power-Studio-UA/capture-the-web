@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bbcb4acm588nu"]
+
+[ext_resource type="FontFile" uid="uid://qobtx4u3pvum" path="res://fonts/Inter_18pt-Regular.ttf" id="1_su2ig"]
+
+[resource]
+font = ExtResource("1_su2ig")
+font_size = 24
+font_color = Color(1, 1, 1, 0.658824)
