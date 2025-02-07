@@ -1,0 +1,172 @@
+[gd_scene load_steps=8 format=3 uid="uid://dnppb4bit8gsm"]
+
+[ext_resource type="Theme" uid="uid://jnlipkyvtp4t" path="res://assets/ui_styles/general_ui.tres" id="1_ftooa"]
+[ext_resource type="Script" path="res://ui/scripts/autosize_node.gd" id="2_51jva"]
+[ext_resource type="Script" path="res://ui/scenes/reward_screen.gd" id="2_evwow"]
+[ext_resource type="LabelSettings" uid="uid://dqgs75nj4igj5" path="res://assets/ui_styles/header_text.tres" id="3_0ty3m"]
+[ext_resource type="Texture2D" uid="uid://11wm2iy1rytd" path="res://assets/textures/Default_ava.png" id="4_kp465"]
+[ext_resource type="LabelSettings" uid="uid://bbcb4acm588nu" path="res://assets/ui_styles/common_text.tres" id="5_up3hs"]
+[ext_resource type="PackedScene" uid="uid://d33lhhp8xwik0" path="res://ui/scenes/resource_row.tscn" id="6_5mdu1"]
+
+[node name="Encounter" type="Control" node_paths=PackedStringArray("reward_container", "return_button")]
+process_mode = 3
+z_index = 1
+layout_mode = 3
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.999683, 0.997978)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("1_ftooa")
+script = ExtResource("2_evwow")
+reward_container = NodePath("Panel/MarginContainer/VBoxContainer/RewardContainer")
+return_button = NodePath("Panel/MarginContainer/VBoxContainer/Options/Quit")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+offset_left = -300.0
+offset_top = 150.0
+offset_right = 300.0
+offset_bottom = 1064.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_51jva")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -245.0
+offset_right = 245.0
+offset_bottom = 699.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "VIRAL THREAD RESULT"
+label_settings = ExtResource("3_0ty3m")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_kp465")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Name" type="Label" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Daren Dmytriiev"
+label_settings = ExtResource("3_0ty3m")
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "@Stubborn_Game_Designer"
+label_settings = ExtResource("5_up3hs")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+bbcode_enabled = true
+text = "[center][b]846[/b] following"
+fit_content = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center][b]14.5k[/b] following"
+fit_content = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 5
+bbcode_enabled = true
+text = "[center]Attitude: [color=green] Loyal"
+fit_content = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center] Battle Status:[p][center][color=green][b]WIN"
+fit_content = true
+scroll_active = false
+
+[node name="RewardContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ResourceAmount" parent="Panel/MarginContainer/VBoxContainer/RewardContainer" instance=ExtResource("6_5mdu1")]
+layout_mode = 2
+
+[node name="ResourceAmount2" parent="Panel/MarginContainer/VBoxContainer/RewardContainer" instance=ExtResource("6_5mdu1")]
+layout_mode = 2
+
+[node name="Options" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Quit" type="Button" parent="Panel/MarginContainer/VBoxContainer/Options"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Return
+"

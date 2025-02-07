@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://jnlipkyvtp4t"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://jnlipkyvtp4t"]
 
 [ext_resource type="FontFile" uid="uid://ct0j8u6w2tjsv" path="res://fonts/Inter_24pt-Bold.ttf" id="1_c2eo8"]
 [ext_resource type="StyleBox" uid="uid://dcvbcygwqgb5i" path="res://assets/ui_styles/button_general_disabled.tres" id="2_842l6"]
@@ -8,6 +8,7 @@
 [ext_resource type="StyleBox" uid="uid://berxm6obv3ij6" path="res://assets/ui_styles/round_corner.tres" id="6_hvyhi"]
 [ext_resource type="FontFile" uid="uid://byv4y07wnc0b0" path="res://fonts/Inter_28pt-BoldItalic.ttf" id="7_m4j2u"]
 [ext_resource type="FontFile" uid="uid://dsgv676fvkxjt" path="res://fonts/Inter_18pt-Italic.ttf" id="8_nuikr"]
+[ext_resource type="FontFile" uid="uid://bhly674dbgb1" path="res://Inter_28pt-Light.ttf" id="9_2scpj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l4cgi"]
 
@@ -53,4 +54,4 @@ RichTextLabel/font_sizes/normal_font_size = 24
 RichTextLabel/fonts/bold_font = ExtResource("1_c2eo8")
 RichTextLabel/fonts/bold_italics_font = ExtResource("7_m4j2u")
 RichTextLabel/fonts/italics_font = ExtResource("8_nuikr")
-RichTextLabel/fonts/normal_font = ExtResource("5_1fw0i")
+RichTextLabel/fonts/normal_font = ExtResource("9_2scpj")

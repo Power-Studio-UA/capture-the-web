@@ -1,13 +1,13 @@
 extends Control
 class_name AutoSize_node
 
-@export var padding: Vector2 = Vector2(10, 10)  # Extra space around children
+@export var padding: Vector2 = Vector2(10, 10)  
 
 func _ready():
     UpdateSize()
     
 func UpdateSize():
-    var new_size = Vector2.ZERO  # Start with no size
+    var new_size = Vector2.ZERO  
 
     for child in get_children():
         if child is Control:
@@ -15,6 +15,6 @@ func UpdateSize():
             new_size.x = max(new_size.x, child.position.x + child_rect.x)
             new_size.y = max(new_size.y, child.position.y + child_rect.y)
     
-    size = new_size + padding  # Apply padding
+    size = new_size + padding 
 
 
