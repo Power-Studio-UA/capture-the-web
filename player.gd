@@ -110,9 +110,8 @@ func _cast():
 				#tooltip.position = get_global_mouse_position()
 			# if tooltip:
 			# 	print("AHUEL")
-			tooltip.name_label.text = str(hovered_node.node_name)
-			tooltip.description_label.text = str(hovered_node.node_description)
-			tooltip.set_attitude(hovered_node.node_type)
+			# if (hovered_node):
+			tooltip.update_tooltip(hovered_node)
 		else:
 			hovered_node = null
 			debug_menu.set_hovered("None")
@@ -132,3 +131,4 @@ func _select_node(node : UebanPoint3D):
 		debug_menu.set_select(selected_node.name)
 		cpu += selected_node.my_resource.cpu
 		mem += selected_node.my_resource.mem
+

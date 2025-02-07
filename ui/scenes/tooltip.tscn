@@ -1,65 +1,71 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0u6luds54wgt"]
+[gd_scene load_steps=7 format=3 uid="uid://d0u6luds54wgt"]
 
 [ext_resource type="LabelSettings" uid="uid://dqgs75nj4igj5" path="res://assets/ui_styles/header_text.tres" id="1_81ac3"]
 [ext_resource type="Script" path="res://ui/scripts/tooltip.gd" id="1_bog7a"]
 [ext_resource type="Theme" uid="uid://jnlipkyvtp4t" path="res://assets/ui_styles/general_ui.tres" id="1_x7jw2"]
+[ext_resource type="Script" path="res://ui/scripts/autosize_node.gd" id="2_570u8"]
 [ext_resource type="LabelSettings" uid="uid://bbcb4acm588nu" path="res://assets/ui_styles/common_text.tres" id="3_j2668"]
 [ext_resource type="Texture2D" uid="uid://11wm2iy1rytd" path="res://assets/textures/Default_ava.png" id="4_rusbi"]
 
-[node name="Tooltip" type="Panel" node_paths=PackedStringArray("name_label", "description_label", "attitude_label")]
+[node name="Tooltip" type="Control" node_paths=PackedStringArray("name_label", "description_label", "attitude_label")]
 custom_minimum_size = Vector2(350, 0)
-offset_right = 300.0
+layout_mode = 3
+anchors_preset = 0
+offset_right = 350.0
 offset_bottom = 50.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("1_x7jw2")
 script = ExtResource("1_bog7a")
-name_label = NodePath("MarginContainer/VBoxContainer2/VBoxContainer/Name")
-description_label = NodePath("MarginContainer/VBoxContainer2/VBoxContainer/Description")
-attitude_label = NodePath("MarginContainer/VBoxContainer2/HBoxContainer2/Loyalty_Label")
+name_label = NodePath("Panel/MarginContainer/VBoxContainer2/VBoxContainer/Name")
+description_label = NodePath("Panel/MarginContainer/VBoxContainer2/VBoxContainer/Description")
+attitude_label = NodePath("Panel/MarginContainer/VBoxContainer2/HBoxContainer2/Loyalty_Label")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_570u8")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_right = 25.0
-offset_bottom = 285.0
-grow_horizontal = 2
+offset_right = 490.0
+offset_bottom = 428.0
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MarginContainer"]
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 30
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer2"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer2"]
 layout_mode = 2
-alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer2/HBoxContainer3"]
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer2/HBoxContainer3"]
 custom_minimum_size = Vector2(300, 120)
 layout_mode = 2
 texture = ExtResource("4_rusbi")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer2/HBoxContainer3"]
+[node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer2/HBoxContainer3"]
 custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
 size_flags_vertical = 4
 text = "Engage"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Name" type="Label" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="Name" type="Label" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Name"
 label_settings = ExtResource("1_81ac3")
 
-[node name="Description" type="Label" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="Description" type="Label" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -68,36 +74,36 @@ text = "Description Description "
 label_settings = ExtResource("3_j2668")
 autowrap_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer2"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(200, 50)
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 bbcode_enabled = true
 text = "[b]846[/b] following"
 fit_content = true
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/VBoxContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(200, 50)
+[node name="RichTextLabel2" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 bbcode_enabled = true
 text = "[b]14.5k[/b] following"
 fit_content = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer2"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/VBoxContainer2/HBoxContainer2"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer2/HBoxContainer2"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 size_flags_horizontal = 5
 bbcode_enabled = true
 text = "Attitude:"
 
-[node name="Loyalty_Label" type="RichTextLabel" parent="MarginContainer/VBoxContainer2/HBoxContainer2"]
+[node name="Loyalty_Label" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer2/HBoxContainer2"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 size_flags_horizontal = 5
