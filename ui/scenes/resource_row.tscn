@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d33lhhp8xwik0"]
 
 [ext_resource type="Theme" uid="uid://jnlipkyvtp4t" path="res://assets/ui_styles/general_ui.tres" id="1_m0kbg"]
-[ext_resource type="Script" path="res://ui/scenes/resource_row.gd" id="2_0gkew"]
+[ext_resource type="Script" path="res://ui/scripts/resource_row.gd" id="2_0gkew"]
 [ext_resource type="PackedScene" uid="uid://cmko41rfb8g74" path="res://ui/scenes/resource_icon.tscn" id="3_7mn80"]
 
 [node name="ResourceAmount" type="Control" node_paths=PackedStringArray("image", "text_label")]
@@ -24,6 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
 [node name="Panel" parent="HBoxContainer" instance=ExtResource("3_7mn80")]
 layout_mode = 2

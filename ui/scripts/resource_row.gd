@@ -6,6 +6,8 @@ class_name  ResourceRow
 @export var text_label : RichTextLabel
 const self_scene = preload("res://ui/scenes/resource_row.tscn")
 # Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	_update_resource(resource_amount, resource_type)
 
 func _update_resource(amount : int, type : ResourceIcon.Ingame_Resources) -> void:
 	resource_amount = amount

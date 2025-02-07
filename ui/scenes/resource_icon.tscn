@@ -10,7 +10,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = ExtResource("1_7sblm")
 script = ExtResource("2_3uj2f")
-array = Array[String](["ram.png", "ban-user.png"])
+array = Array[String](["ram.png", "ban-user.png", "hour-glass.png"])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
