@@ -12,6 +12,7 @@ var battle_id = ""
 @export var options_container : Container
 @export var encounter_root : Node
 var result_screen : ResultScreen
+var rewards : Dictionary
 
 var config_callback: Callable = func(): 
 	return {}
@@ -89,6 +90,10 @@ func _on_option_selected(option):
 		self.battle_id = option.effects['battle_id']
 		change_state(EncounterStates.BATTLE)
 	else:
+		if option.effects.has("mem"):
+			rewards.get_or_add(ResourceIcon.Ingame_Resources.MEM, option.effects.mem)
+		if option.effects.has("rep"):
+			rewards.get_or_add(ResourceIcon.Ingame_Resources.REP, option.effects.rep)
 		change_state(EncounterStates.SUCCESS)
 
 func apply_effects(effects):
@@ -116,11 +121,20 @@ func _on_battle_lost():
 
 func show_success_screen():
 	if (result_screen == null):
-		var scene_obj = preload("res://ui/scenes/Reward_screen.tscn")
-		result_screen = scene_obj.instantiate()
-		add_child(result_screen)
+		spawn_reward_screen()
+		result_screen._set_battle_state(true)
+		result_screen._set_rewards(rewards)
 	else:
 		result_screen.visible = true
 
 func show_failure_screen():
-	$GameOverUI.visible = true
+	if (result_screen == null):
+		spawn_reward_screen()
+		result_screen._set_battle_state(false)
+	else:
+		result_screen.visible = true
+
+func spawn_reward_screen():
+		var scene_obj = preload("res://ui/scenes/Reward_screen.tscn")
+		result_screen = scene_obj.instantiate()
+		add_child(result_screen)
