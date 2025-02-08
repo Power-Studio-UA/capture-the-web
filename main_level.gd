@@ -41,6 +41,7 @@ var player_state = {}
 
 # TODO remove it's hardcoded
 var encounter_id = "3ca71814-c226-443b-bd35-364358cc3828"
+var player_id = "48655b98-8fee-4699-8fc2-38901ce4d70a"
 
 
 func load_game_data():
@@ -61,7 +62,7 @@ func load_game_data():
 	file.close()
 	
 	file = FileAccess.open("res://configs/player.json", FileAccess.READ)
-	self.player_state = JSON.parse_string(file.get_as_text())
+	self.player_state = JSON.parse_string(file.get_as_text())[player_id]
 	file.close()
 
 func load_graph(filename: String, descriptions_url: String):

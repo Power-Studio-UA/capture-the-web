@@ -95,6 +95,7 @@ func apply_effects(effects):
 func start_battle():
 	#{"player_state": self.player_state, "cards": self.cards, "battles": self.battles}
 	var config = self.config_callback.call()
+	
 	battle_instance = preload("res://modules/battle/battle.tscn").instantiate().setup(
 		config["battles"][self.battle_id],
 		config["player_state"], 

@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Node2D
 
 signal card_played(card_data)
 
