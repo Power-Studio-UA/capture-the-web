@@ -1,67 +1,110 @@
-extends Node
-class_name Battle
+# Battle.gd
+extends Node2D
 
-signal battle_won
-signal battle_lost
+var current_patience = 10
+var current_influence = 0
+var opponent_next_move = ""
+var cards = []
+var player_state = {}
+var battle_info = {}
 
-var battle_id
-var battle_data
-var player_patience = 10
-var player_influence = 0
-var current_step = 0
-var player_deck = []
+# Node references
+@onready var chat_log = $BattleScene/ChatLog
+@onready var cards_container = $BattleScene/CardsContainer
+@onready var patience_label = $BattleScene/Stats/Patience
+@onready var influence_label = $BattleScene/Stats/Influence
+@onready var opponent_move_label = $BattleScene/OpponentMove
+
+func setup(battle_info, player_state, card_data):
+	self.player_state = player_state
+	self.battle_info = battle_info
+
+	var card_instances = []
+	for card_id in player_state['deck'].keys():
+		var count = player_state['deck'][card_id]
+		if card_id in card_data:
+			for i in range(count):
+				card_instances.append(card_data[card_id].duplicate(true)) # Deep copy to avoid reference issues
+
+	self.setup_deck(card_instances)
+	print(self.cards)
+
+func setup_deck(cards):
+	for card_data in cards:
+		var card = preload("res://modules/card/card.tscn").instance()
+		card.setup(card_data)
+		card.connect("card_played", self, "_on_card_played")
+		cards_container.add_child(card)
+		self.cards.append(card_data)
+
 
 #func _ready():
-	#battle_data = get_node("/root/Main").battles[battle_id]
 	#setup_battle()
-	
-func setup(battle_info, deck_info):
-	self.battle_data = battle_info
-	setup_battle()
-
-func setup_battle():
-	update_stats()
-	show_ai_replica()
-	setup_player_deck()
-
-func update_stats():
-	var stats_container = $BattleUI/StatsContainer
-	stats_container.get_node("Patience").text = "Patience: " + str(player_patience)
-	stats_container.get_node("Influence").text = "Influence: " + str(player_influence)
-
-func show_ai_replica():
-	if current_step < battle_data.steps.size():
-		var replicas = battle_data.steps[current_step].ai_replica
-		var random_replica = replicas[randi() % replicas.size()]
-		$BattleUI/AIDialog.text = random_replica
-
-func setup_player_deck():
-	var card_set = get_node("/root/Main").card_sets[battle_data.reward.card_set_id]
-	var card_container = $BattleUI/CardContainer
-	for card in card_set:
-		create_card_button(card, card_container)
-
-func create_card_button(card_data, container):
-	var card_button = Button.new()
-	card_button.text = card_data.replicas[0]
-	#card_button.connect("pressed", self, "_on_card_played", [card_data])
-	container.add_child(card_button)
-
-func _on_card_played(card_data):
-	apply_card_effects(card_data.effects)
-	check_battle_state()
-	current_step += 1
-	show_ai_replica()
-
-func apply_card_effects(effects):
-	if effects.has("patience"):
-		player_patience += effects.patience
-	if effects.has("append_cards"):
-		pass
-	update_stats()
-
-func check_battle_state():
-	if player_patience <= 0:
-		emit_signal("battle_lost")
-	elif player_influence >= battle_data.ai_setup.target_interest:
-		emit_signal("battle_won")
+#
+#func setup_battle():
+	#update_stats()
+	#show_opponent_move()
+	#setup_initial_hand()
+#
+#func show_opponent_move():
+	#opponent_next_move = "Opponent will use: +2 rep"
+	#opponent_move_label.text = opponent_next_move
+	#add_chat_message("Opponent: " + opponent_next_move)
+#
+#func setup_initial_hand():
+	#var card_data = {
+		#"effects": {
+			#"patience": 1,
+			#"append_cards": 1
+		#},
+		#"replicas": [
+			#"Message 1",
+			#"Message 2",
+			#"Message 3"
+		#]
+	#}
+	#
+	## Add some test cards
+	#for i in range(4):
+		#add_card_to_hand(card_data)
+#
+#func add_card_to_hand(card_data: Dictionary):
+	#var card = preload("res://modules/card/card.tscn").instance()
+	#card.setup(card_data)
+	#card.connect("card_played", self, "_on_card_played")
+	#cards_container.add_child(card)
+	#cards.append(card_data)
+#
+#func _on_card_played(card_data: Dictionary):
+	## Apply card effects
+	#if card_data.effects.has("patience"):
+		#current_patience += card_data.effects.patience
+	#if card_data.effects.has("append_cards"):
+		## Add new cards
+		#pass
+	#
+	## Add message to chat
+	#var message = card_data.replicas[randi() % card_data.replicas.size()]
+	#add_chat_message("Player: " + message)
+	#
+	#update_stats()
+#
+#func add_chat_message(text: String):
+	#var label = Label.new()
+	#label.text = text
+	#chat_log.add_child(label)
+#
+#func update_stats():
+	#patience_label.text = "Patience: " + str(current_patience)
+	#influence_label.text = "Influence: " + str(current_influence)
+#
+#func _on_EndTurn_pressed():
+	## Process opponent's move
+	#current_influence += 2  # For this example
+	#update_stats()
+	## Show next opponent move
+	#show_opponent_move()
+#
+#func _on_Leave_pressed():
+	## Return to previous scene
+	#queue_free()

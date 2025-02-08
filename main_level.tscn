@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://main_level.gd" id="1_xepkk"]
 [ext_resource type="Script" path="res://player.gd" id="2_u2xn2"]
-[ext_resource type="PackedScene" uid="uid://bpvcyiysolyfp" path="res://debug_menu.tscn" id="3_yshew"]
+[ext_resource type="PackedScene" path="res://debug_menu.tscn" id="3_yshew"]
 
 [sub_resource type="Resource" id="Resource_8ep6s"]
 metadata/__load_path__ = "res://tooltip.tscn"

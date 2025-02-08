@@ -65,7 +65,7 @@ func load_game_data():
 	file.close()
 
 func load_graph(filename: String, descriptions_url: String):
-	var config_callback = func(): 
+	var config_callback: Callable = func(): 
 		return {"player_state": self.player_state, "cards": self.cards, "battles": self.battles}
 		
 	var file = FileAccess.open(filename, FileAccess.READ)
@@ -101,7 +101,8 @@ func load_graph(filename: String, descriptions_url: String):
 			description["name"], 
 			description["description"], 
 			[], 
-			preload('res://modules/encounter/encounter.tscn').instantiate().setup(encounters[encounter_id], config_callback),
+			preload('res://modules/encounter/encounter.tscn')
+				.instantiate().setup(encounters[encounter_id], config_callback),
 			#NewEncounter.new().setup(encounters[encounter_id]),
 			nodeType, 
 			)

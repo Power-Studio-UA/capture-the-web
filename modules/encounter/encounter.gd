@@ -7,12 +7,14 @@ var encounter_data
 var current_state = EncounterStates.UNSELECTED
 var battle_instance = null
 var instantiated = false
+var battle_id = ""
 
-var config_callback = func(): 
-	return [{}, {}]
+var config_callback: Callable = func(): 
+	return {}
 
-func setup(data, config_callback):
+func setup(data, config_callback: Callable):
 	self.encounter_data = data
+	self.config_callback = config_callback
 	change_state(EncounterStates.UNSELECTED)
 
 	return self
@@ -81,6 +83,7 @@ func setup_options():
 func _on_option_selected(option):
 	apply_effects(option.effects)
 	if option.effects.has("battle_id"):
+		self.battle_id = option.effects['battle_id']
 		change_state(EncounterStates.BATTLE)
 	else:
 		change_state(EncounterStates.SUCCESS)
@@ -90,9 +93,15 @@ func apply_effects(effects):
 	pass
 
 func start_battle():
-	battle_instance = preload("res://modules/battle/battle.tscn").instance()
-	battle_instance.connect("battle_won", self, "_on_battle_won")
-	battle_instance.connect("battle_lost", self, "_on_battle_lost")
+	#{"player_state": self.player_state, "cards": self.cards, "battles": self.battles}
+	var config = self.config_callback.call()
+	battle_instance = preload("res://modules/battle/battle.tscn").instantiate().setup(
+		config["battles"][self.battle_id],
+		config["player_state"], 
+		config["cards"]
+		)
+	#battle_instance.connect("battle_won", self, "_on_battle_won")
+	#battle_instance.connect("battle_lost", self, "_on_battle_lost")
 	add_child(battle_instance)
 
 func _on_battle_won():
