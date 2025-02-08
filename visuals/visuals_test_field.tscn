@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://ve5ago5qku7j"]
+[gd_scene load_steps=4 format=3 uid="uid://ve5ago5qku7j"]
 
 [ext_resource type="PackedScene" uid="uid://crbtgaikjwvdm" path="res://visuals/Node/node_visuals.tscn" id="1_uswss"]
+[ext_resource type="PackedScene" uid="uid://cymjlaj40u3fh" path="res://visuals/VertexColorCube.fbx" id="2_px0by"]
 
 [sub_resource type="Environment" id="Environment_dvxq5"]
 background_mode = 1
 background_color = Color(0.0957, 0.103803, 0.11, 1)
 background_energy_multiplier = 1.47
-ambient_light_source = 1
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.26
 reflected_light_source = 1
 glow_intensity = 0.78
 glow_bloom = 1.0
@@ -28,3 +31,6 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 10, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dvxq5")
+
+[node name="VertexColorCube" parent="." instance=ExtResource("2_px0by")]
+transform = Transform3D(0.59597, 0.707107, 0.380552, -0.436371, 0.683013, -0.585725, -0.674093, 0.183013, 0.715615, 1.86029, 0.0220244, -3.04258)

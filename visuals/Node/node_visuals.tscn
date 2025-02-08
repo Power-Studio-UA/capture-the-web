@@ -1,16 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://crbtgaikjwvdm"]
+[gd_scene load_steps=5 format=3 uid="uid://crbtgaikjwvdm"]
 
+[ext_resource type="Material" uid="uid://dahto566h6bby" path="res://visuals/Node/node_shader.tres" id="1_h66vg"]
+[ext_resource type="ArrayMesh" uid="uid://cq27vseceynd7" path="res://visuals/vcsg_mesh.tres" id="2_ljbm1"]
 [ext_resource type="Script" path="res://visuals/Node/node_visuals.gd" id="3_moodc"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_4huta"]
-lightmap_size_hint = Vector2i(17, 9)
-height = 0.5
-radial_segments = 16
-rings = 5
-is_hemisphere = true
+[ext_resource type="Material" uid="uid://beisfk7e1uwix" path="res://visuals/Node/outline_shaders/white_outline_shader.tres" id="4_idgox"]
 
 [node name="NodeVisualsRoot" type="Node3D"]
 
 [node name="NodeMesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_4huta")
+transform = Transform3D(50.98, 0, 0, 0, 50.98, 0, 0, 0, 50.98, 0, -0.304983, 0)
+material_override = ExtResource("1_h66vg")
+cast_shadow = 0
+mesh = ExtResource("2_ljbm1")
 script = ExtResource("3_moodc")
+
+[node name="Outline" type="MeshInstance3D" parent="NodeMesh"]
+material_override = ExtResource("4_idgox")
+cast_shadow = 0
+mesh = ExtResource("2_ljbm1")
+skeleton = NodePath("../..")
