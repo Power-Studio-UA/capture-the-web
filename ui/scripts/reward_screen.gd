@@ -1,4 +1,5 @@
 extends Control
+class_name ResultScreen
 
 @export var reward_container : HBoxContainer 
 @export var return_button : Button

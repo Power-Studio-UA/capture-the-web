@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 class_name NewEncounter
 
 enum EncounterStates {UNSELECTED, CHOICE, BATTLE, SUCCESS, FAILURE}
@@ -8,6 +8,10 @@ var current_state = EncounterStates.UNSELECTED
 var battle_instance = null
 var instantiated = false
 var battle_id = ""
+@export var description_label : RichTextLabel
+@export var options_container : Container
+@export var encounter_root : Node
+var result_screen : ResultScreen
 
 var config_callback: Callable = func(): 
 	return {}
@@ -29,13 +33,13 @@ func change_state(new_state):
 	if instantiated:
 		match current_state:
 			EncounterStates.CHOICE:
-				$EncounterUI.visible = false
+				encounter_root.visible = false
 			EncounterStates.BATTLE:
 				if battle_instance:
 					battle_instance.queue_free()
 					battle_instance = null
 			EncounterStates.SUCCESS:
-				$VictoryUI.visible = false
+				result_screen.visible = false
 			EncounterStates.FAILURE:
 				$GameOverUI.visible = false
 
@@ -62,12 +66,11 @@ func setup_encounter_choices():
 	#list_all_nodes(self)
 	#print(self.get_children())
 	#self.get_node("EncounterUI").visible = true
-	$EncounterUI.visible = true
-	$EncounterUI/Description.text = encounter_data.description
+	self.visible = true
+	description_label.text = encounter_data.description
 	setup_options()
 
 func setup_options():
-	var options_container = $EncounterUI/OptionsContainer
 	# Clear existing options
 	for child in options_container.get_children():
 		child.queue_free()
@@ -112,7 +115,12 @@ func _on_battle_lost():
 	change_state(EncounterStates.FAILURE)
 
 func show_success_screen():
-	$VictoryUI.visible = true
+	if (result_screen == null):
+		var scene_obj = preload("res://ui/scenes/Reward_screen.tscn")
+		result_screen = scene_obj.instantiate()
+		add_child(result_screen)
+	else:
+		result_screen.visible = true
 
 func show_failure_screen():
 	$GameOverUI.visible = true

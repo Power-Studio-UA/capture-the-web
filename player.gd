@@ -58,7 +58,7 @@ func _ready() -> void:
 
 func select_start() -> void:
 	var start_node = get_tree().get_nodes_in_group("END")[0] as UebanPoint3D
-	_select_node(start_node)
+	_select_node(start_node, false)
 	position.x = start_node.position.x
 	position.z = start_node.position.z
 
@@ -120,14 +120,14 @@ func _cast():
 				tooltip = null
 		
 		#print(hovered_node)
-func _select_node(node : UebanPoint3D):
+func _select_node(node : UebanPoint3D, callEncounter: bool = true):
 		if (selected_node != null):
 				selected_node.deselect()
 		
 		if (node == get_tree().get_nodes_in_group("END")[1]):
 			FlowSystem._on_change_state(FlowSystem.GameStates.WIN)
 		selected_node = node
-		selected_node.select()
+		selected_node.select(callEncounter)
 		debug_menu.set_select(selected_node.name)
 		cpu += selected_node.my_resource.cpu
 		mem += selected_node.my_resource.mem

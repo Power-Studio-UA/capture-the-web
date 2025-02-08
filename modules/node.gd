@@ -53,14 +53,15 @@ func setup(
 #func setup_encounter() -> Encounter:
 	#return Encounter.create
 
-func select() -> void:
+func select(callEncounter : bool = true) -> void:
 	node_visuals.set_node_type(NodeVisuals.NodeVisualType.SELECTED)
 	visited = true
 	for node in linked_instances:
 		node.node_visuals.is_available = true
 		if !node.visited:
-			self.add_child(encounter)
-			encounter.ready()
+			if callEncounter:
+				self.add_child(encounter)
+				encounter.ready()
 
 			match node.node_type:
 				0:
