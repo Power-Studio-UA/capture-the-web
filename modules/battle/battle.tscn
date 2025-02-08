@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://543slcn65rvv"]
+
+[node name="Battle" type="Node2D"]
+
+[node name="BattleUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AIDialog" type="RichTextLabel" parent="BattleUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

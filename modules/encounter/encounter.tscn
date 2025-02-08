@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://co2v3tm11ochq"]
+
+[ext_resource type="Script" path="res://modules/encounter/encounter.gd" id="1_fvtc7"]
+
+[node name="NewEncounter" type="Node2D"]
+script = ExtResource("1_fvtc7")
+
+[node name="EncounterUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 242.0
+offset_top = 147.0
+offset_right = 1654.0
+offset_bottom = 961.0
+
+[node name="Description" type="Label" parent="EncounterUI"]
+layout_mode = 0
+offset_left = 647.0
+offset_top = 290.0
+offset_right = 789.0
+offset_bottom = 313.0
+
+[node name="OptionsContainer" type="VBoxContainer" parent="EncounterUI"]
+layout_mode = 0
+offset_left = 798.0
+offset_top = 633.0
+offset_right = 838.0
+offset_bottom = 673.0
