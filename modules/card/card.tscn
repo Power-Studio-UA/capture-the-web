@@ -18,3 +18,5 @@ text = "Sample text"
 [node name="PlayBtn" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "PLAY CARD"
+
+[connection signal="pressed" from="VBoxContainer/PlayBtn" to="." method="_on_play_btn_pressed"]

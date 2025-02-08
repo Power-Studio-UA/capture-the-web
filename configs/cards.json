@@ -5,8 +5,8 @@
 		"image": "res://card1.png",
 		"effects": {
 			"append_cards": 2,
-			"mem": 3,
-			"patience": 1		
+			"influence": 3,
+			"patience": 1
 		},
 		"replicas": [
 			"Fuck You!",
@@ -31,7 +31,7 @@
 		"description": "Card 3 description",
 		"image": "res://card3.png",
 		"effects": {
-			"mem": 1,
+			"influence": 1,
 			"patience": 1
 		},
 		"replicas": [

@@ -6,9 +6,15 @@
 		},
 		"steps": [
 			{
+				"ai_move": {
+					"patience": -2
+				},
 				"ai_replica": ["Wanna fuck?", "So, wanna fuck?", "Answer me, ma boy, would you rip my tight holes?"],
 			},
 			{
+				"ai_move": {
+					"patience": -3
+				},
 				"ai_replica": ["Yeah, that's what I always wanted. I'll be your submissive bitch", "Fuck me emo boy. Fuck me emo boy. Fuck me emo boy."],
 			}
 		],
