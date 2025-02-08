@@ -1,0 +1,42 @@
+{
+	"1": {
+		"title": "Card 1",
+		"description": "Card 1 description",
+		"image": "res://card1.png",
+		"effects": {
+			"append_cards": 2,
+			"mem": 3,
+			"patience": 1		
+		},
+		"replicas": [
+			"Fuck You!",
+			"Fuck ME! ...And fuck you."
+		]
+	},
+	"2": {
+		"title": "Card 2",
+		"description": "Card 2 description",
+		"image": "res://card2.png",
+		"effects": {
+			"append_cards": 1,
+			"patience": 1
+		},
+		"replicas": [
+			"Fuck You! Please.",
+			"Fuck ME! ...And fuck you. Please"
+		]
+	},
+	"3": {
+		"title": "Card 3",
+		"description": "Card 3 description",
+		"image": "res://card3.png",
+		"effects": {
+			"mem": 1,
+			"patience": 1
+		},
+		"replicas": [
+			"Fuck You! YES Please.",
+			"Fuck ME! ...And fuck you. YES Please"
+		]
+	}
+}

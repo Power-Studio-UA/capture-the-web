@@ -11,6 +11,7 @@ enum NodeType { RED, GREEN, FINISH }
 @export var node_description: String
 @export var linked_instances: Array
 @export var my_resource : NodeResource
+@export var encounter : NewEncounter
 
 var visited : bool
 var node_visuals: NodeVisuals
@@ -21,12 +22,15 @@ func setup(
 	node_name: String,
 	node_description: String,
 	linked_instances: Array,
+	encounter: NewEncounter,
 	type: NodeType):
 	
 	self.id = id
 	self.node_name = node_name
 	self.node_description = node_description
 	self.linked_instances = linked_instances
+	self.encounter = encounter
+
 	
 	# Find the NodeVisuals child node
 	node_visuals = $NodeVisualsRoot/NodeMesh
@@ -46,12 +50,18 @@ func setup(
 			add_to_group("END")
 			node_visuals.set_node_type(NodeVisuals.NodeVisualType.FINISH)
 
+#func setup_encounter() -> Encounter:
+	#return Encounter.create
+
 func select() -> void:
 	node_visuals.set_node_type(NodeVisuals.NodeVisualType.SELECTED)
 	visited = true
 	for node in linked_instances:
 		node.node_visuals.is_available = true
 		if !node.visited:
+			self.add_child(encounter)
+			encounter.ready()
+
 			match node.node_type:
 				0:
 					node.node_visuals.set_node_type(NodeVisuals.NodeVisualType.HIGH_RISK)

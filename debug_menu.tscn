@@ -1,0 +1,210 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpvcyiysolyfp"]
+
+[ext_resource type="Script" path="res://debug_menu.gd" id="1_7pxuo"]
+[ext_resource type="LabelSettings" path="res://assets/common_text.tres" id="2_6ckxv"]
+[ext_resource type="Texture2D" path="res://assets/refresh.png" id="3_3qys5"]
+[ext_resource type="Texture2D" path="res://assets/white_earth.png" id="3_t67r8"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("selected_node_label", "hovered_node_label", "mem_label", "cpu_label", "restart_button") groups=["debug"]]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_top = 2.0
+offset_right = 100.0
+offset_bottom = 32.0
+script = ExtResource("1_7pxuo")
+selected_node_label = NodePath("CanvasLayer/VBoxContainer/SelectedNode")
+hovered_node_label = NodePath("CanvasLayer/VBoxContainer/HoveredNode")
+mem_label = NodePath("CanvasLayer/VBoxContainer2/MEM")
+cpu_label = NodePath("CanvasLayer/VBoxContainer2/CPU")
+restart_button = NodePath("CanvasLayer/Button")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 212.0
+offset_bottom = 110.0
+
+[node name="MEM" type="Label" parent="CanvasLayer/VBoxContainer2"]
+layout_mode = 2
+text = "MEM:"
+label_settings = ExtResource("2_6ckxv")
+
+[node name="CPU" type="Label" parent="CanvasLayer/VBoxContainer2"]
+layout_mode = 2
+text = "CPU:"
+label_settings = ExtResource("2_6ckxv")
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+custom_minimum_size = Vector2(125, 125)
+offset_left = 885.0
+offset_top = 50.0
+offset_right = 1010.0
+offset_bottom = 175.0
+size_flags_vertical = 0
+text = "
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Button"]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = -61.0
+offset_right = 61.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 35
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Button/MarginContainer"]
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+texture = ExtResource("3_3qys5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -272.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = 110.0
+grow_horizontal = 0
+scale = Vector2(1.00218, 1)
+
+[node name="HoveredNode" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Hovered Node: None"
+label_settings = ExtResource("2_6ckxv")
+
+[node name="SelectedNode" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Selected Node: None"
+label_settings = ExtResource("2_6ckxv")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+custom_minimum_size = Vector2(0, 160)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+color = Color(0, 0, 0, 0.65098)
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -119.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 70
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "You are playing as an AI, that tries to overcome the world. For this you need data in the deepest point of the internet"
+label_settings = ExtResource("2_6ckxv")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer/VBoxContainer"]
+modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+texture = ExtResource("3_t67r8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Dangerous resource"
+label_settings = ExtResource("2_6ckxv")
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer/VBoxContainer2"]
+modulate = Color(0, 0.623529, 0, 1)
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+texture = ExtResource("3_t67r8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Safe resource"
+label_settings = ExtResource("2_6ckxv")
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer/VBoxContainer3"]
+modulate = Color(0.830651, 0.00138655, 0.940121, 1)
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+texture = ExtResource("3_t67r8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "End Goal"
+label_settings = ExtResource("2_6ckxv")
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label2" type="Label" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "You lose if you waste all of your CPU or MEM"
+label_settings = ExtResource("2_6ckxv")
+horizontal_alignment = 1
+autowrap_mode = 3

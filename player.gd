@@ -104,14 +104,14 @@ func _cast():
 		if (rayArray.has("collider")):
 			hovered_node = rayArray["collider"].get_parent()
 			debug_menu.set_hovered(hovered_node.name)
-			if !tooltip:
-				tooltip = tooltip_scene.instantiate() as NodeTooltip
-				add_child(tooltip)
+			#if !tooltip:
+				#tooltip = tooltip_scene.instantiate() as NodeTooltip
+				#add_child(tooltip)
 				#tooltip.position = get_global_mouse_position()
 			# if tooltip:
 			# 	print("AHUEL")
 			# if (hovered_node):
-			tooltip.update_tooltip(hovered_node)
+			#tooltip.update_tooltip(hovered_node)
 		else:
 			hovered_node = null
 			debug_menu.set_hovered("None")
@@ -131,4 +131,3 @@ func _select_node(node : UebanPoint3D):
 		debug_menu.set_select(selected_node.name)
 		cpu += selected_node.my_resource.cpu
 		mem += selected_node.my_resource.mem
-

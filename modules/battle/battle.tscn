@@ -1,0 +1,73 @@
+[gd_scene load_steps=2 format=3 uid="uid://543slcn65rvv"]
+
+[ext_resource type="Script" path="res://modules/battle/battle.gd" id="1_x2kee"]
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_x2kee")
+
+[node name="BattleScene" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TopBar" type="HBoxContainer" parent="BattleScene"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerInfo" type="Label" parent="BattleScene/TopBar"]
+layout_mode = 2
+
+[node name="OpponentInfo" type="Label" parent="BattleScene/TopBar"]
+layout_mode = 2
+
+[node name="Stats" type="VBoxContainer" parent="BattleScene"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Patience" type="Label" parent="BattleScene/Stats"]
+layout_mode = 2
+
+[node name="Influence" type="Label" parent="BattleScene/Stats"]
+layout_mode = 2
+
+[node name="OpponentMove" type="Label" parent="BattleScene"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ChatLog" type="VBoxContainer" parent="BattleScene"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 96.0
+offset_right = 1654.0
+offset_bottom = 496.0
+
+[node name="TestLbl" type="Label" parent="BattleScene/ChatLog"]
+layout_mode = 2
+text = "Chat zone"
+
+[node name="CardsContainer" type="HBoxContainer" parent="BattleScene"]
+layout_mode = 0
+offset_left = 586.0
+offset_top = 363.0
+offset_right = 1392.0
+offset_bottom = 738.0
+alignment = 1
+
+[node name="ButtonContainer" type="HBoxContainer" parent="BattleScene"]
+layout_mode = 0
+offset_left = 922.0
+offset_top = 847.0
+offset_right = 1076.0
+offset_bottom = 899.0
+
+[node name="EndTurn" type="Button" parent="BattleScene/ButtonContainer"]
+layout_mode = 2
+text = "End Turn"
+
+[node name="Leave" type="Button" parent="BattleScene/ButtonContainer"]
+layout_mode = 2
+text = "Leave"

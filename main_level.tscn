@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" path="res://main_level.gd" id="1_xepkk"]
 [ext_resource type="Script" path="res://player.gd" id="2_u2xn2"]
-[ext_resource type="PackedScene" uid="uid://dj7nni857vulo" path="res://ui/scenes/debug_menu.tscn" id="3_yshew"]
-[ext_resource type="PackedScene" uid="uid://d0u6luds54wgt" path="res://ui/scenes/tooltip.tscn" id="4_t0vt7"]
+[ext_resource type="PackedScene" path="res://debug_menu.tscn" id="3_yshew"]
+
+[sub_resource type="Resource" id="Resource_8ep6s"]
+metadata/__load_path__ = "res://tooltip.tscn"
 
 [sub_resource type="Environment" id="Environment_5qp4s"]
 background_mode = 1
@@ -26,7 +28,7 @@ border_x_low = 0.0
 border_x_high = 1.0
 border_z_low = 0.0
 border_z_high = 1.0
-tooltip_scene = ExtResource("4_t0vt7")
+tooltip_scene = SubResource("Resource_8ep6s")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5qp4s")

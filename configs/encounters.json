@@ -1,0 +1,33 @@
+{
+	"3ca71814-c226-443b-bd35-364358cc3828": {
+	"name": "Sample Encounter",
+	"description": "Sample Encounter Description",
+	"options": [
+		{
+			"text": "Sample 1 text",
+			"effects": {
+				"rep": 1,
+				"mem": -1,
+				"battle_id": "f031c6e2-a162-4c2e-bf8a-503a6366b431",
+				"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+			}
+		},
+		{
+			"text": "Sample 2 text",
+			"effects": {
+				"rep": 1,
+				"mem": -1,
+				"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+			}
+		},
+		{
+			"text": "Sample 3 text",
+			"effects": {
+				"rep": 1,
+				"mem": -1,
+				"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+			}
+		}
+	]
+	}
+}

@@ -27,8 +27,48 @@ const GraphGenerator = preload("res://graph_generator.gd")
 const packedNode = preload("res://modules/Node.tscn")
 #var NodeScene = preload("res://modules/Node.tscn")
 #var LineScene = preload("res://modules/Line.tscn")
+#
+#const encounter_json = preload("res://configs/encounters.json")
+#const battles_json = preload("res://configs/battles.json")
+#const card_sets_json = preload("res://configs/card_sets.json")
+
+
+var encounters = {}
+var battles = {}
+var card_sets = {}
+var cards = {}
+var player_state = {}
+
+# TODO remove it's hardcoded
+var encounter_id = "3ca71814-c226-443b-bd35-364358cc3828"
+var player_id = "48655b98-8fee-4699-8fc2-38901ce4d70a"
+
+
+func load_game_data():
+	var file = FileAccess.open("res://configs/encounters.json", FileAccess.READ)
+	self.encounters = JSON.parse_string(file.get_as_text())
+	file.close()
+
+	file = FileAccess.open("res://configs/battles.json", FileAccess.READ)
+	self.battles = JSON.parse_string(file.get_as_text())
+	file.close()
+
+	file = FileAccess.open("res://configs/card_sets.json", FileAccess.READ)
+	self.card_sets = JSON.parse_string(file.get_as_text())
+	file.close()
+
+	file = FileAccess.open("res://configs/cards.json", FileAccess.READ)
+	self.cards = JSON.parse_string(file.get_as_text())
+	file.close()
+	
+	file = FileAccess.open("res://configs/player.json", FileAccess.READ)
+	self.player_state = JSON.parse_string(file.get_as_text())[player_id]
+	file.close()
 
 func load_graph(filename: String, descriptions_url: String):
+	var config_callback: Callable = func(): 
+		return {"player_state": self.player_state, "cards": self.cards, "battles": self.battles}
+		
 	var file = FileAccess.open(filename, FileAccess.READ)
 	var json_string = file.get_as_text()
 	file.close()
@@ -62,6 +102,9 @@ func load_graph(filename: String, descriptions_url: String):
 			description["name"], 
 			description["description"], 
 			[], 
+			preload('res://modules/encounter/encounter.tscn')
+				.instantiate().setup(encounters[encounter_id], config_callback),
+			#NewEncounter.new().setup(encounters[encounter_id]),
 			nodeType, 
 			)
 
@@ -109,6 +152,7 @@ func _ready() -> void:
 	
 	# Generate a graph
 	var urls = generator.generate_graph()
+	load_game_data()
 	load_graph(urls[0], urls[1])
 	generation_finished.emit()
 	#var file = FileAccess.open(graph_url, FileAccess.READ)
