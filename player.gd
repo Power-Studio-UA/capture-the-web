@@ -20,7 +20,7 @@ var target_position : Vector3
 var debug_menu : DebugMenu
 var hovered_node = null
 var selected_node
-@export var tooltip_scene : PackedScene
+const tooltip_scene : PackedScene = preload("res://ui/scenes/tooltip.tscn")
 var tooltip : NodeTooltip
 
 @export var cpu : float :
@@ -104,14 +104,13 @@ func _cast():
 		if (rayArray.has("collider")):
 			hovered_node = rayArray["collider"].get_parent()
 			debug_menu.set_hovered(hovered_node.name)
-			#if !tooltip:
-				#tooltip = tooltip_scene.instantiate() as NodeTooltip
-				#add_child(tooltip)
-				#tooltip.position = get_global_mouse_position()
+			if !tooltip:
+				tooltip = tooltip_scene.instantiate() as NodeTooltip
+				add_child(tooltip)
 			# if tooltip:
 			# 	print("AHUEL")
-			# if (hovered_node):
-			#tooltip.update_tooltip(hovered_node)
+			if (hovered_node):
+				tooltip.update_tooltip(hovered_node)
 		else:
 			hovered_node = null
 			debug_menu.set_hovered("None")
