@@ -41,7 +41,7 @@ grow_vertical = 2
 [node name="RichTextLabel2" type="RichTextLabel" parent="HBoxContainer"]
 visible = false
 clip_contents = false
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4

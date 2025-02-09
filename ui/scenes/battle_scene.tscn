@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://4dccyyge55tv"]
+[gd_scene load_steps=14 format=3 uid="uid://4dccyyge55tv"]
 
 [ext_resource type="Theme" uid="uid://jnlipkyvtp4t" path="res://assets/ui_styles/general_ui.tres" id="1_vdsvs"]
 [ext_resource type="StyleBox" uid="uid://5nswnhrjvy6n" path="res://assets/ui_styles/res_backround.tres" id="2_0cihm"]
@@ -11,11 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://csi7vifoilfsp" path="res://assets/textures/deck.png" id="8_shara"]
 [ext_resource type="Script" path="res://ui/scenes/AutoScroll.gd" id="8_y72fr"]
 [ext_resource type="Texture2D" uid="uid://b2soydyaf327q" path="res://assets/textures/discard.png" id="9_jud2j"]
+[ext_resource type="Script" path="res://ui/scenes/card_hand.gd" id="10_dkhtv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xwwc"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[node name="BattleScene" type="Control" node_paths=PackedStringArray("chat_log", "cards_container", "patience_label", "influence_label", "opponent_move_label", "leave_button")]
+[node name="BattleScene" type="Control" node_paths=PackedStringArray("chat_log", "cards_container", "patience_label", "influence_label", "report_label", "opponent_move_label", "leave_button", "end_turn_button", "turn_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,14 +29,19 @@ chat_log = NodePath("General/CentralRow/MarginContainer/Dialogue_BG/MarginContai
 cards_container = NodePath("General/CentralRow/Cards")
 patience_label = NodePath("General/RightRow/Opponent/Patience")
 influence_label = NodePath("General/RightRow/Opponent/Interest")
+report_label = NodePath("General/MarginContainer/Player/Report")
 opponent_move_label = NodePath("General/RightRow/Opponent/Profie/Panel/OpponentMove")
 leave_button = NodePath("General/MarginContainer/Player/Leave")
+end_turn_button = NodePath("General/MarginContainer/Player/End Turn")
+turn_label = NodePath("General/MarginContainer/Player/Deck/TURN")
 
 [node name="bg" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -48,6 +54,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RightRow" type="MarginContainer" parent="General"]
+custom_minimum_size = Vector2(550, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 40
@@ -174,11 +181,15 @@ layout_direction = 2
 layout_mode = 2
 currentSide = 1
 
-[node name="Cards" type="HBoxContainer" parent="General/CentralRow"]
+[node name="Cards" type="Control" parent="General/CentralRow"]
+custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
-alignment = 1
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("10_dkhtv")
 
 [node name="MarginContainer" type="MarginContainer" parent="General"]
+custom_minimum_size = Vector2(550, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 40
@@ -238,7 +249,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 3
 theme_override_font_sizes/bold_font_size = 36
 bbcode_enabled = true
-text = "[b]TURN 5"
+text = "[b]TURN 1"
 fit_content = true
 text_direction = 2
 
