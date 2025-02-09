@@ -8,6 +8,7 @@ var current_state = EncounterStates.UNSELECTED
 var battle_instance = null
 var instantiated = false
 var battle_id = ""
+var was_battle : bool = false 
 @export var description_label : RichTextLabel
 @export var options_container : Container
 @export var encounter_root : Node
@@ -39,6 +40,7 @@ func change_state(new_state):
 				if battle_instance:
 					battle_instance.queue_free()
 					battle_instance = null
+					was_battle = true
 			EncounterStates.SUCCESS:
 				result_screen.visible = false
 			EncounterStates.FAILURE:
@@ -53,7 +55,7 @@ func change_state(new_state):
 			EncounterStates.BATTLE:
 				start_battle()
 			EncounterStates.SUCCESS:
-				show_success_screen()
+				show_reward()
 			EncounterStates.FAILURE:
 				show_failure_screen()
 
@@ -120,17 +122,26 @@ func _on_battle_won():
 func _on_battle_lost():
 	change_state(EncounterStates.FAILURE)
 
-func show_success_screen():
-	if (result_screen == null):
-		result_screen = ResultScreen._construct(encounter_data.name, rewards, true)
-		add_child(result_screen)
+func show_reward():
+	if was_battle:
+		var main_level = get_tree().get_first_node_in_group("main") as MainLevel
+		var card_selection = CardReward._construct(main_level.cards)
+		add_child(card_selection)
+		card_selection.selection_finished.connect(_show_success_screen)
 	else:
-		result_screen.visible = true
+		_show_success_screen()
 
 func show_failure_screen():
 	if (result_screen == null):
 		battle_instance.call_deferred("queue_free")
 		result_screen = ResultScreen._construct(encounter_data.name, rewards, false)
+		add_child(result_screen)
+	else:
+		result_screen.visible = true
+
+func _show_success_screen():
+	if (result_screen == null):
+		result_screen = ResultScreen._construct(encounter_data.name, rewards, true)
 		add_child(result_screen)
 	else:
 		result_screen.visible = true

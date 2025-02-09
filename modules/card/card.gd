@@ -17,10 +17,16 @@ var base_position = 0
 func _ready() -> void:
 	base_z_index = z_index
 
-func setup(card_data: Dictionary, button_pressed_callback: Callable):
+func setup(card_data: Dictionary, button_pressed_callback: Callable, isPlayable : bool = true, isMovable : bool = true):
+	
 	$Button.pressed.connect(_on_play_btn_pressed)
-	$Button.mouse_entered.connect(_on_hover)
-	$Button.mouse_exited.connect(_on_hover_left)
+	if isMovable:
+		$Button.mouse_entered.connect(_on_hover)
+		$Button.mouse_exited.connect(_on_hover_left)
+
+	if !isPlayable:
+		remove_child($Button)
+	
 
 	data = card_data
 	self.button_pressed_callback = button_pressed_callback
