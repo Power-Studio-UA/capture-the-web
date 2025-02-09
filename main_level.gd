@@ -159,5 +159,9 @@ func _ready() -> void:
 	#
 	pass # Replace with function body.
 
-
+func add_card_to_deck(card_id)	:
+	if player_state.deck.keys().find(card_id):
+		player_state.deck[card_id]+=1
+	else:
+		player_state.deck[card_id] = 1
 # Called every frame. 'delta' is the elapsed time since the previous frame

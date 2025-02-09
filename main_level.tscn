@@ -1,11 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cypgutnrcus7g"]
+[gd_scene load_steps=5 format=3 uid="uid://cypgutnrcus7g"]
 
 [ext_resource type="Script" path="res://main_level.gd" id="1_xepkk"]
 [ext_resource type="Script" path="res://player.gd" id="2_u2xn2"]
 [ext_resource type="PackedScene" uid="uid://dj7nni857vulo" path="res://ui/scenes/debug_menu.tscn" id="3_jlvcp"]
-
-[sub_resource type="Resource" id="Resource_8ep6s"]
-metadata/__load_path__ = "res://tooltip.tscn"
 
 [sub_resource type="Environment" id="Environment_5qp4s"]
 background_mode = 1
@@ -13,7 +10,7 @@ background_color = Color(0.0728426, 0.0728426, 0.0728426, 1)
 ambient_light_source = 1
 reflected_light_source = 1
 
-[node name="MainLevel" type="Node3D"]
+[node name="MainLevel" type="Node3D" groups=["main"]]
 script = ExtResource("1_xepkk")
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -26,7 +23,6 @@ border_x_low = 0.0
 border_x_high = 1.0
 border_z_low = 0.0
 border_z_high = 1.0
-tooltip_scene = SubResource("Resource_8ep6s")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5qp4s")
