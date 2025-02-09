@@ -2,7 +2,7 @@
 	"1": {
 		"title": "Card 1",
 		"description": "Card 1 description",
-		"image": "res://card1.png",
+		"image": "res://assets/textures/discard.png",
 		"effects": {
 			"append_cards": 2,
 			"influence": 3,
@@ -16,7 +16,7 @@
 	"2": {
 		"title": "Card 2",
 		"description": "Card 2 description",
-		"image": "res://card2.png",
+		"image": "res://assets/textures/discard.png",
 		"effects": {
 			"append_cards": 1,
 			"patience": 1
@@ -29,7 +29,7 @@
 	"3": {
 		"title": "Card 3",
 		"description": "Card 3 description",
-		"image": "res://card3.png",
+		"image": "res://assets/textures/discard.png",
 		"effects": {
 			"influence": 1,
 			"patience": 1

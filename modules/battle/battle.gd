@@ -57,14 +57,14 @@ func handle_step_change():
 
 func draw_in_hand(cards):
 	for card_data in cards:
-		var card = preload("res://modules/card/card.tscn").instantiate()
+		var card = preload("res://ui/scenes/card_scene.tscn").instantiate()
 		card.setup(card_data, card_callback)
 		cards_container.add_child(card)
 
 func setup_deck(cards):
 	var in_hand_cards_ = cards.slice(0, self.hand_max_cards)
 	for card_data in in_hand_cards_:
-		var card = preload("res://modules/card/card.tscn").instantiate()
+		var card = preload("res://ui/scenes/card_scene.tscn").instantiate()
 		card.setup(card_data, card_callback)
 		#card.connect("card_played", self, "_on_card_played")
 		cards_container.add_child(card)

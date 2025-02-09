@@ -1,0 +1,260 @@
+[gd_scene load_steps=11 format=3 uid="uid://4dccyyge55tv"]
+
+[ext_resource type="Theme" uid="uid://jnlipkyvtp4t" path="res://assets/ui_styles/general_ui.tres" id="1_vdsvs"]
+[ext_resource type="StyleBox" uid="uid://5nswnhrjvy6n" path="res://assets/ui_styles/res_backround.tres" id="2_0cihm"]
+[ext_resource type="Texture2D" uid="uid://11wm2iy1rytd" path="res://assets/textures/Default_ava.png" id="2_3q3b8"]
+[ext_resource type="LabelSettings" uid="uid://dqgs75nj4igj5" path="res://assets/ui_styles/header_text.tres" id="3_0usqy"]
+[ext_resource type="PackedScene" uid="uid://y1xkwn8fwt07" path="res://ui/scenes/card_scene.tscn" id="3_7sj06"]
+[ext_resource type="LabelSettings" uid="uid://bbcb4acm588nu" path="res://assets/ui_styles/common_text.tres" id="4_skhjj"]
+[ext_resource type="PackedScene" uid="uid://d33lhhp8xwik0" path="res://ui/scenes/resource_row.tscn" id="5_ulh3t"]
+[ext_resource type="PackedScene" uid="uid://cuu3m4n6svnt8" path="res://Dialogue_Box.tscn" id="7_cbcrq"]
+[ext_resource type="Texture2D" uid="uid://csi7vifoilfsp" path="res://assets/textures/deck.png" id="8_shara"]
+[ext_resource type="Texture2D" uid="uid://b2soydyaf327q" path="res://assets/textures/discard.png" id="9_jud2j"]
+
+[node name="BattleScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vdsvs")
+
+[node name="bg" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="General" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RightRow" type="MarginContainer" parent="General"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Opponent" type="VBoxContainer" parent="General/RightRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Profie" type="VBoxContainer" parent="General/RightRow/Opponent"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="General/RightRow/Opponent/Profie"]
+custom_minimum_size = Vector2(150, 250)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_3q3b8")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="General/RightRow/Opponent/Profie"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Name" type="Label" parent="General/RightRow/Opponent/Profie/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Daren Dmytriiev"
+label_settings = ExtResource("3_0usqy")
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="General/RightRow/Opponent/Profie/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "@Stubborn_Game_Designer"
+label_settings = ExtResource("4_skhjj")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ResourceAmount2" parent="General/RightRow/Opponent" instance=ExtResource("5_ulh3t")]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 2
+size_flags_horizontal = 0
+resource_type = 2
+text_size = 72
+
+[node name="ResourceAmount3" parent="General/RightRow/Opponent" instance=ExtResource("5_ulh3t")]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 2
+size_flags_horizontal = 0
+text_size = 72
+
+[node name="CentralRow" type="VBoxContainer" parent="General"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/separation = 100
+
+[node name="Dialogue_BG" type="Panel" parent="General/CentralRow"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_0cihm")
+
+[node name="MarginContainer" type="MarginContainer" parent="General/CentralRow/Dialogue_BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="General/CentralRow/Dialogue_BG/MarginContainer"]
+layout_mode = 2
+follow_focus = true
+vertical_scroll_mode = 2
+
+[node name="DialogueContainer" type="VBoxContainer" parent="General/CentralRow/Dialogue_BG/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="GridContainer" parent="General/CentralRow/Dialogue_BG/MarginContainer/ScrollContainer/DialogueContainer" instance=ExtResource("7_cbcrq")]
+layout_mode = 2
+
+[node name="GridContainer2" parent="General/CentralRow/Dialogue_BG/MarginContainer/ScrollContainer/DialogueContainer" instance=ExtResource("7_cbcrq")]
+layout_direction = 2
+layout_mode = 2
+currentSide = 1
+
+[node name="GridContainer3" parent="General/CentralRow/Dialogue_BG/MarginContainer/ScrollContainer/DialogueContainer" instance=ExtResource("7_cbcrq")]
+layout_mode = 2
+
+[node name="GridContainer4" parent="General/CentralRow/Dialogue_BG/MarginContainer/ScrollContainer/DialogueContainer" instance=ExtResource("7_cbcrq")]
+layout_direction = 2
+layout_mode = 2
+currentSide = 1
+
+[node name="Cards" type="HBoxContainer" parent="General/CentralRow"]
+layout_mode = 2
+alignment = 1
+
+[node name="CardScene" parent="General/CentralRow/Cards" instance=ExtResource("3_7sj06")]
+layout_mode = 2
+
+[node name="CardScene2" parent="General/CentralRow/Cards" instance=ExtResource("3_7sj06")]
+layout_mode = 2
+
+[node name="CardScene3" parent="General/CentralRow/Cards" instance=ExtResource("3_7sj06")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="General"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Player" type="VBoxContainer" parent="General/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Profie" type="VBoxContainer" parent="General/MarginContainer/Player"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="General/MarginContainer/Player/Profie"]
+custom_minimum_size = Vector2(150, 250)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_3q3b8")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="General/MarginContainer/Player/Profie"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Name" type="Label" parent="General/MarginContainer/Player/Profie/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Daren Dmytriiev"
+label_settings = ExtResource("3_0usqy")
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="General/MarginContainer/Player/Profie/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "@Stubborn_Game_Designer"
+label_settings = ExtResource("4_skhjj")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Deck" type="VBoxContainer" parent="General/MarginContainer/Player"]
+layout_mode = 2
+alignment = 2
+
+[node name="TURN" type="RichTextLabel" parent="General/MarginContainer/Player/Deck"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
+theme_override_font_sizes/bold_font_size = 36
+bbcode_enabled = true
+text = "[b]TURN 5"
+fit_content = true
+text_direction = 2
+
+[node name="DeckButtons" type="HBoxContainer" parent="General/MarginContainer/Player/Deck"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Button" type="Button" parent="General/MarginContainer/Player/Deck/DeckButtons"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_constants/icon_max_width = 0
+icon = ExtResource("8_shara")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button2" type="Button" parent="General/MarginContainer/Player/Deck/DeckButtons"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_constants/icon_max_width = 0
+icon = ExtResource("9_jud2j")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ResourceAmount3" parent="General/MarginContainer/Player" instance=ExtResource("5_ulh3t")]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 2
+size_flags_horizontal = 8
+resource_type = 1
+leftTextVisible = true
+rightTextVisible = false
+text_size = 72
+
+[node name="End Turn" type="Button" parent="General/MarginContainer/Player"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "END TURN"
+
+[node name="Leave" type="Button" parent="General/MarginContainer/Player"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "LEAVE"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

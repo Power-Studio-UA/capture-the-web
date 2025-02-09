@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=3 uid="uid://y1xkwn8fwt07"]
 
-[ext_resource type="Script" path="res://ui/scenes/card.gd" id="1_00dcx"]
+[ext_resource type="Script" path="res://modules/card/card.gd" id="1_00dcx"]
 [ext_resource type="StyleBox" uid="uid://5nswnhrjvy6n" path="res://assets/ui_styles/res_backround.tres" id="1_mx855"]
 [ext_resource type="PackedScene" uid="uid://d33lhhp8xwik0" path="res://ui/scenes/resource_row.tscn" id="2_i4hkf"]
 [ext_resource type="StyleBox" uid="uid://berxm6obv3ij6" path="res://assets/ui_styles/round_corner.tres" id="2_r0snd"]
 [ext_resource type="Texture2D" uid="uid://djxs0yq44i215" path="res://assets/textures/white_earth.png" id="3_nrto0"]
 [ext_resource type="Theme" uid="uid://jnlipkyvtp4t" path="res://assets/ui_styles/general_ui.tres" id="4_tduju"]
 
-[node name="CardScene" type="Control"]
+[node name="CardScene" type="Control" node_paths=PackedStringArray("description", "patience_cost_label", "card_name", "image")]
 custom_minimum_size = Vector2(210, 340)
 layout_mode = 3
 anchors_preset = 8
@@ -20,6 +20,10 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_00dcx")
+description = NodePath("Panel/MarginContainer/VBoxContainer/Panel2/MarginContainer/Description")
+patience_cost_label = NodePath("Panel/Panel/ResourceAmount")
+card_name = NodePath("Panel/MarginContainer/VBoxContainer/Panel/Name")
+image = NodePath("Panel/MarginContainer/VBoxContainer/Image")
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(210, 340)
@@ -59,7 +63,7 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_r0snd")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer/Panel"]
+[node name="Name" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -72,7 +76,7 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "[center]GASLIGHT"
 
-[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="Image" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -97,7 +101,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer/Panel2/MarginContainer"]
+[node name="Description" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer/Panel2/MarginContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 4
@@ -122,11 +126,20 @@ theme_override_styles/panel = ExtResource("1_mx855")
 [node name="ResourceAmount" parent="Panel/Panel" instance=ExtResource("2_i4hkf")]
 z_index = 1
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -51.0
-offset_right = 49.0
-offset_bottom = 50.0
-resource_amount = 5
+offset_left = -50.0
+offset_top = -25.0
+offset_right = 50.0
+offset_bottom = 25.0
 resource_type = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true

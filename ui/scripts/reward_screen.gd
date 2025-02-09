@@ -10,9 +10,9 @@ func _ready() -> void:
 	return_button.pressed.connect(_close)
 
 func _test_spawn() -> void:
-	var obj = ResourceRow.constructor(15, ResourceIcon.Ingame_Resources.MEM)
+	var obj = ResourceRow.constructor(15, ResourceRow.Ingame_Resources.MEM)
 	reward_container.add_child(obj)
-	obj = ResourceRow.constructor(25, ResourceIcon.Ingame_Resources.REP)
+	obj = ResourceRow.constructor(25, ResourceRow.Ingame_Resources.REP)
 	reward_container.add_child(obj)
 
 func _close() -> void:

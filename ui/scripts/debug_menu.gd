@@ -3,16 +3,16 @@ class_name DebugMenu
 
 @export var selected_node_label : Label
 @export var hovered_node_label : Label
-@export var mem_label : RichTextLabel
-@export var cpu_label : RichTextLabel
+@export var mem_label : ResourceRow
+@export var cpu_label : ResourceRow
 @export var restart_button : Button
 @onready var theme_instance = preload("res://assets/ui_styles/general_ui.tres")
 
-func set_mem(node_name: String) -> void:
-	mem_label.text = "[b]" + node_name + "[/b] MEM"
+func set_mem(amount: int) -> void:
+	mem_label.resource_amount = amount
 
-func set_cpu(node_name: String) -> void:
-	cpu_label.text = "[b]" + node_name + "[/b] CPU"
+func set_cpu(amount: int) -> void:
+	cpu_label.resource_amount = amount
 
 func set_select(node_name: String) -> void:
 	selected_node_label.text = "Selected Node: " + node_name

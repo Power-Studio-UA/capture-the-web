@@ -26,7 +26,7 @@ var tooltip : NodeTooltip
 @export var cpu : float :
 	set (value):
 		cpu = value
-		debug_menu.set_cpu(str(value))
+		debug_menu.set_cpu(value)
 		if (value < 1):
 			tooltip.queue_free()
 			FlowSystem._on_change_state(FlowSystem.GameStates.OVER)
@@ -36,9 +36,9 @@ var tooltip : NodeTooltip
 @export var mem : float :
 	set (value):
 		mem = value
-		debug_menu.set_mem(str(value))
+		debug_menu.set_mem(value)
 		if (value < 1):
-			tooltip.queue_free()
+			_remove_tooltip()
 			FlowSystem._on_change_state(FlowSystem.GameStates.OVER)
 			
 	get:
@@ -115,9 +115,7 @@ func _cast():
 		else:
 			hovered_node = null
 			debug_menu.set_hovered("None")
-			if tooltip:
-				tooltip.call_deferred("queue_free")
-				tooltip = null
+			_remove_tooltip()
 		
 		#print(hovered_node)
 func _select_node(node : UebanPoint3D, callEncounter: bool = true):
@@ -131,3 +129,8 @@ func _select_node(node : UebanPoint3D, callEncounter: bool = true):
 		debug_menu.set_select(selected_node.name)
 		cpu += selected_node.my_resource.cpu
 		mem += selected_node.my_resource.mem
+
+func _remove_tooltip():
+	if tooltip:
+				tooltip.call_deferred("queue_free")
+				tooltip = null

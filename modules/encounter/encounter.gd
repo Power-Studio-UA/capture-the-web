@@ -91,9 +91,9 @@ func _on_option_selected(option):
 		change_state(EncounterStates.BATTLE)
 	else:
 		if option.effects.has("mem"):
-			rewards.get_or_add(ResourceIcon.Ingame_Resources.MEM, option.effects.mem)
+			rewards.get_or_add(ResourceRow.Ingame_Resources.MEM, option.effects.mem)
 		if option.effects.has("rep"):
-			rewards.get_or_add(ResourceIcon.Ingame_Resources.REP, option.effects.rep)
+			rewards.get_or_add(ResourceRow.Ingame_Resources.REP, option.effects.rep)
 		change_state(EncounterStates.SUCCESS)
 
 func apply_effects(effects):

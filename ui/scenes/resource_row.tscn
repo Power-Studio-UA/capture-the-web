@@ -2,38 +2,71 @@
 
 [ext_resource type="Theme" uid="uid://jnlipkyvtp4t" path="res://assets/ui_styles/general_ui.tres" id="1_m0kbg"]
 [ext_resource type="Script" path="res://ui/scripts/resource_row.gd" id="2_0gkew"]
-[ext_resource type="PackedScene" uid="uid://cmko41rfb8g74" path="res://ui/scenes/resource_icon.tscn" id="3_7mn80"]
+[ext_resource type="Texture2D" uid="uid://cq5npy4jij3p1" path="res://assets/textures/Interest_back.png" id="3_ytn74"]
 
-[node name="ResourceAmount" type="Control" node_paths=PackedStringArray("image", "text_label")]
+[node name="ResourceAmount" type="Control" node_paths=PackedStringArray("horBox", "image", "left_text_label", "right_text_label")]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 3
-anchors_preset = 10
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
+anchor_bottom = 0.5
 grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
-size_flags_vertical = 3
+size_flags_vertical = 4
 theme = ExtResource("1_m0kbg")
 script = ExtResource("2_0gkew")
-image = NodePath("HBoxContainer/Panel")
-text_label = NodePath("HBoxContainer/RichTextLabel")
+array = Array[String](["ram_back.png", "Rep_back.png", "Patience_back.png", "Interest_back.png"])
+horBox = NodePath("HBoxContainer")
+resource_amount = 5
+resource_type = 3
+image = NodePath("HBoxContainer/ResIcon")
+left_text_label = NodePath("HBoxContainer/RichTextLabel2")
+right_text_label = NodePath("HBoxContainer/RichTextLabel")
+rightTextVisible = true
+text_size = 32
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+offset_top = -19.5
+offset_bottom = 19.5
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 
-[node name="Panel" parent="HBoxContainer" instance=ExtResource("3_7mn80")]
+[node name="RichTextLabel2" type="RichTextLabel" parent="HBoxContainer"]
+visible = false
+clip_contents = false
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[right]5"
+fit_content = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
-custom_minimum_size = Vector2(30, 30)
+[node name="ResIcon" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+texture = ExtResource("3_ytn74")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 8
 size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "[center][b]25"
-autowrap_mode = 2
+text = "[left]5"
+fit_content = true
+visible_characters = 6
+visible_characters_behavior = 3
+visible_ratio = 6.0

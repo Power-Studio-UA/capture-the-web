@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dj7nni857vulo"]
+[gd_scene load_steps=13 format=3 uid="uid://dj7nni857vulo"]
 
 [ext_resource type="Script" path="res://ui/scripts/debug_menu.gd" id="1_7pxuo"]
 [ext_resource type="LabelSettings" uid="uid://bbcb4acm588nu" path="res://assets/ui_styles/common_text.tres" id="2_6ckxv"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://11wm2iy1rytd" path="res://assets/textures/Default_ava.png" id="6_qcng6"]
 [ext_resource type="PackedScene" uid="uid://cmko41rfb8g74" path="res://ui/scenes/resource_icon.tscn" id="7_cthvv"]
 [ext_resource type="LabelSettings" uid="uid://dqgs75nj4igj5" path="res://assets/ui_styles/header_text.tres" id="8_t1lrh"]
+[ext_resource type="PackedScene" uid="uid://d33lhhp8xwik0" path="res://ui/scenes/resource_row.tscn" id="10_yqc5r"]
+[ext_resource type="Texture2D" uid="uid://db0x8hitit4lb" path="res://assets/textures/Rep_back.png" id="12_4uydr"]
 
 [node name="Control" type="Control" node_paths=PackedStringArray("selected_node_label", "hovered_node_label", "mem_label", "cpu_label", "restart_button") groups=["debug"]]
 process_mode = 3
@@ -24,8 +26,8 @@ theme = ExtResource("5_673au")
 script = ExtResource("1_7pxuo")
 selected_node_label = NodePath("MarginContainer/VBoxContainer/Debug/SelectedNode")
 hovered_node_label = NodePath("MarginContainer/VBoxContainer/Debug/HoveredNode")
-mem_label = NodePath("MarginContainer/VBoxContainer/Main/CentralRow/Profile/MarginContainer/VBoxContainer2/HBoxContainer/HBoxContainer/MEM_LABEL")
-cpu_label = NodePath("MarginContainer/VBoxContainer/Main/CentralRow/Profile/MarginContainer/VBoxContainer2/HBoxContainer/HBoxContainer2/REP_LABEL")
+mem_label = NodePath("MarginContainer/VBoxContainer/Main/CentralRow/Profile/MarginContainer/VBoxContainer2/HBoxContainer/MEM")
+cpu_label = NodePath("MarginContainer/VBoxContainer/Main/CentralRow/Profile/MarginContainer/VBoxContainer2/HBoxContainer/REP")
 restart_button = NodePath("MarginContainer/VBoxContainer/Main/Button_Menu/Restart_Button")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -139,43 +141,19 @@ fit_content = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Main/CentralRow/Profile/MarginContainer/VBoxContainer2"]
 layout_mode = 2
+alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Main/CentralRow/Profile/MarginContainer/VBoxContainer2/HBoxContainer"]
+[node name="MEM" parent="MarginContainer/VBoxContainer/Main/CentralRow/Profile/MarginContainer/VBoxContainer2/HBoxContainer" instance=ExtResource("10_yqc5r")]
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 3
+resource_type = 0
+text_size = 48
 
-[node name="Panel" parent="MarginContainer/VBoxContainer/Main/CentralRow/Profile/MarginContainer/VBoxContainer2/HBoxContainer/HBoxContainer" instance=ExtResource("7_cthvv")]
+[node name="REP" parent="MarginContainer/VBoxContainer/Main/CentralRow/Profile/MarginContainer/VBoxContainer2/HBoxContainer" instance=ExtResource("10_yqc5r")]
 layout_mode = 2
-
-[node name="MEM_LABEL" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Main/CentralRow/Profile/MarginContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_font_sizes/bold_italics_font_size = 24
-bbcode_enabled = true
-text = "[b]44[/b] MEM"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Main/CentralRow/Profile/MarginContainer/VBoxContainer2/HBoxContainer"]
-layout_mode = 2
-alignment = 2
-
-[node name="Panel2" parent="MarginContainer/VBoxContainer/Main/CentralRow/Profile/MarginContainer/VBoxContainer2/HBoxContainer/HBoxContainer2" instance=ExtResource("7_cthvv")]
-layout_mode = 2
-selected_res = 1
-
-[node name="REP_LABEL" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Main/CentralRow/Profile/MarginContainer/VBoxContainer2/HBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_font_sizes/bold_italics_font_size = 24
-bbcode_enabled = true
-text = "[b]44[/b] REP"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
+size_flags_horizontal = 6
+resource_type = 1
+text_size = 48
 
 [node name="Tutorial" type="Panel" parent="MarginContainer/VBoxContainer/Main/CentralRow"]
 custom_minimum_size = Vector2(400, 450)
@@ -192,6 +170,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_673au")
+theme_override_constants/margin_top = 25
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Main/CentralRow/Tutorial/MarginContainer"]
 layout_mode = 2
@@ -203,10 +182,12 @@ theme = ExtResource("5_673au")
 
 [node name="Panel2" parent="MarginContainer/VBoxContainer/Main/CentralRow/Tutorial/MarginContainer/VBoxContainer2/HBoxContainer2" instance=ExtResource("7_cthvv")]
 layout_mode = 2
+size_flags_horizontal = 1
+texture = ExtResource("12_4uydr")
 selected_res = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Main/CentralRow/Tutorial/MarginContainer/VBoxContainer2/HBoxContainer2"]
-custom_minimum_size = Vector2(325, 50)
+custom_minimum_size = Vector2(275, 50)
 layout_mode = 2
 theme = ExtResource("5_673au")
 bbcode_enabled = true
@@ -221,11 +202,11 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Main/CentralRow/Tutorial/MarginContainer/VBoxContainer2/HBoxContainer3"]
-custom_minimum_size = Vector2(325, 50)
+custom_minimum_size = Vector2(295, 50)
 layout_mode = 2
 theme = ExtResource("5_673au")
 bbcode_enabled = true
-text = "[b]MEM[/b] - is used for transfering from user to user"
+text = "[b]MEM[/b] - is used for traveling from user to user"
 fit_content = true
 custom_effects = [null]
 
