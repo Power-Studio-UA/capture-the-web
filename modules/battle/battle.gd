@@ -20,6 +20,7 @@ var battle_info = {}
 var card_data = {}
 var current_turn: int = 1
 
+
 # Node references
 @export var chat_log: VBoxContainer
 @export var cards_container: CardHand
@@ -46,7 +47,7 @@ func setup(battle_info, player_state, card_data):
 func card_callback(card_data, card_instance):
 	self.thrown_cards.append(card_data)
 	cards_container._on_card_removed(card_instance)
-	print(card_data["id"])
+	# print(card_data["id"])
 	var replicas = card_data["replicas"]
 	self.add_chat_message(replicas[randi() % replicas.size()], false)
 	for i in range(self.in_hand.size()):
@@ -121,7 +122,7 @@ func win_fn():
 func show_opponent_move():
 	var ai_move = self.battle_info['steps'][self.current_step]['ai_move']
 	var opponent_next_move = ""
-	if ai_move.has("patience"): opponent_next_move += "Patience: " + str(ai_move.patience)
+	if ai_move.has("report"): opponent_next_move += "Report: " + str(ai_move.report)
 	#if ai_move.has("mem"): text += "Memory: " + str(effects.patience) + "\n"
 	#if ai_move.has("append_cards"): text += "Draw: " + str(effects.append_cards)
 
@@ -136,6 +137,10 @@ func apply_effect_dict(effects):
 	if effects.has("influence"):
 		add_chat_message("Applying effect: Influence" + str(effects.influence), false)
 		self.current_influence += effects.current_influence
+	
+	if effects.has("report"):
+		add_chat_message("Applying effect: Reports" + str(effects.report), false)
+		self.current_report += effects.current_report
 		
 	if effects.has("append_cards"):
 		#TODO

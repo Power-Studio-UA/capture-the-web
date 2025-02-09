@@ -1,42 +1,67 @@
 {
 	"1": {
-		"title": "Card 1",
-		"description": "Card 1 description",
+		"title": "Gaslighting",
+		"description": "Increase interest by 4.",
 		"image": "res://assets/textures/discard.png",
 		"effects": {
-			"append_cards": 2,
-			"influence": 3,
+			"influence": 4,
 			"patience": 1
 		},
 		"replicas": [
-			"Fuck You!",
-			"Fuck ME! ...And fuck you."
+			"You think you saw a curve? That’s just your mind playing tricks. Every pilot knows the horizon is always at eye level.",
+			"You’re being brainwashed. You don’t actually believe that NASA propaganda, do you?"
 		]
 	},
 	"2": {
-		"title": "Card 2",
-		"description": "Card 2 description",
+		"title": "Cherry-Picked Data",
+		"description": "Remove 2 reports.",
+		"image": "res://assets/textures/discard.png",
+		"effects": {
+			"report": 2,
+			"patience": 1
+		},
+		"replicas": [
+			"Look at this one experiment that proves the Earth is flat!",
+			"I have proof! Here’s a YouTube video explaining it all. Science is a lie."
+		]
+	},
+	"3": {
+		"title": "False Experts",
+		"description": "Draw 1 card.",
 		"image": "res://assets/textures/discard.png",
 		"effects": {
 			"append_cards": 1,
 			"patience": 1
 		},
 		"replicas": [
-			"Fuck You! Please.",
-			"Fuck ME! ...And fuck you. Please"
+			"Dr. Stevens, an ‘independent researcher,’ has exposed the globalist conspiracy. Wake up!",
+			"NASA is lying, but real scientists—ones they try to silence—know the truth!"
 		]
 	},
-	"3": {
-		"title": "Card 3",
-		"description": "Card 3 description",
+	"4": {
+		"title": "Appeal to Emotion",
+		"description": "Raise interest by 10, but gain 3 reports.",
 		"image": "res://assets/textures/discard.png",
 		"effects": {
-			"influence": 1,
-			"patience": 1
+			"influnce": 10,
+			"report": -3,
+			"influence": 3
 		},
 		"replicas": [
-			"Fuck You! YES Please.",
-			"Fuck ME! ...And fuck you. YES Please"
+			"You’re one of the few who see through the lies. Don’t let them gaslight you into submission!",
+			"You’re smarter than the rest. Don’t be one of the mindless sheep believing everything the government says."
+		]
+	},
+	"5": {
+		"title": "Fake Science",
+		"description": "Increase opponents patience by 2.",
+		"image": "res://assets/textures/discard.png",
+		"effects": {
+			"patience": -2
+		},
+		"replicas": [
+			"If you put a level on a plane, the bubble stays in the middle. That PROVES the Earth is flat!",
+			"Water always finds its level. Show me one experiment proving a curve—oh wait, you can’t."
 		]
 	}
 }

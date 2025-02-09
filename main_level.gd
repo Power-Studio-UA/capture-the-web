@@ -81,7 +81,6 @@ func load_graph(filename: String, descriptions_url: String):
 	
 	var description_data = JSON.parse_string(json_string)
 	
-	# Create node instances
 	var node_instances = {}
 	for index in graph_data["points"].size():
 		var point_data = graph_data["points"][index]
@@ -103,7 +102,7 @@ func load_graph(filename: String, descriptions_url: String):
 			description["description"], 
 			[], 
 			preload('res://ui/scenes/encounter.tscn')
-				.instantiate().setup(encounters[encounter_id], config_callback),
+				.instantiate().setup(encounters[encounters.keys().pick_random()], config_callback),
 			#NewEncounter.new().setup(encounters[encounter_id]),
 			nodeType, 
 			)

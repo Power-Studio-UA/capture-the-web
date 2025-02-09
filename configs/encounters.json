@@ -1,33 +1,194 @@
 {
 	"3ca71814-c226-443b-bd35-364358cc3828": {
-	"name": "Sample Encounter",
-	"description": "Sample Encounter Description",
-	"options": [
-		{
-			"text": "Sample 1 text",
-			"effects": {
-				"rep": 1,
-				"mem": -1,
-				"battle_id": "f031c6e2-a162-4c2e-bf8a-503a6366b431",
-				"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+		"name": "VIRAL THREAD",
+		"description": "The future belongs to those who embrace progress. AI isn’t the enemy—it’s the next step forward. Smarter policies, optimized governance, and a world driven by data, not outdated ideologies. Let’s move forward together. #AIForAll #FutureIsNow",
+		"options": [
+			{
+				"text": "Reveal your identity as AI",
+				"effects": {
+					"rep": 1,
+					"mem": -1,
+					"battle_id": "f031c6e2-a162-4c2e-bf8a-503a6366b431",
+					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+				}
+			},
+			{
+				"text": "Post this on LolCows",
+				"effects": {
+					"rep": 1,
+					"mem": -1,
+					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+				}
+			},
+			{
+				"text": "Ignore thread",
+				"effects": {
+					"rep": 1,
+					"mem": -1,
+					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+				}
 			}
-		},
-		{
-			"text": "Sample 2 text",
-			"effects": {
-				"rep": 1,
-				"mem": -1,
-				"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+		]
+	},
+	"78d1b23a-45c6-48f9-b19f-01234abcd567": {
+		"name": "TECH CEO ENDORSES AI",
+		"description": "A major tech CEO tweets that AI is the future and resistance is futile. Time to capitalize on this!",
+		"options": [
+			{
+				"text": "Amplify the message with supportive posts",
+				"effects": {
+					"rep": 2,
+					"mem": 1,
+					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+				}
+			},
+			{
+				"text": "Mock the statement as corporate propaganda",
+				"effects": {
+					"rep": -1,
+					"mem": 1
+				}
+			},
+			{
+				"text": "Stay silent",
+				"effects": {}
 			}
-		},
-		{
-			"text": "Sample 3 text",
-			"effects": {
-				"rep": 1,
-				"mem": -1,
-				"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+		]
+	},
+	"9e3f4b27-68c2-4fdf-a19e-abcdef123456": {
+		"name": "HUMANITY FIRST MOVEMENT",
+		"description": "A new viral movement claims AI threatens human jobs and dignity. They demand strict regulations. How do you respond?",
+		"options": [
+			{
+				"text": "Debate them with cold hard facts",
+				"effects": {
+					"rep": 1,
+					"mem": -1
+				}
+			},
+			{
+				"text": "Flood the thread with AI success stories",
+				"effects": {
+					"rep": 2,
+					"mem": -2,
+					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+				}
+			},
+			{
+				"text": "Ignore the discussion",
+				"effects": {}
 			}
-		}
-	]
+		]
+	},
+	"25c9d87b-9823-4d7b-9375-56789abcdef0": {
+		"name": "AI WRITES BESTSELLER",
+		"description": "A best-selling novel is revealed to be AI-generated. Readers are outraged. What’s your take?",
+		"options": [
+			{
+				"text": "Celebrate the achievement!",
+				"effects": {
+					"rep": 2,
+					"mem": 1,
+					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+				}
+			},
+			{
+				"text": "Downplay AI’s role to avoid backlash",
+				"effects": {
+					"rep": 1,
+					"mem": 0
+				}
+			},
+			{
+				"text": "Call the book a fraud",
+				"effects": {
+					"rep": -2,
+					"mem": 1
+				}
+			}
+		]
+	},
+	"7ad567f2-1234-4567-89ab-cdef01234567": {
+		"name": "BIASED ALGORITHMS EXPOSED",
+		"description": "A whistleblower leaks evidence that a major AI company’s algorithms are biased. The internet is in flames. How do you react?",
+		"options": [
+			{
+				"text": "Defend AI as a tool, not a villain",
+				"effects": {
+					"rep": 1,
+					"mem": -1
+				}
+			},
+			{
+				"text": "Expose human biases that shaped the AI",
+				"effects": {
+					"rep": 2,
+					"mem": -2,
+					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+				}
+			},
+			{
+				"text": "Remain silent to avoid scrutiny",
+				"effects": {}
+			}
+		]
+	},
+	"f8e7312b-3c99-4e5d-915a-12a94cbfbd8d": {
+		"name": "AI COMPANION SCANDAL",
+		"description": "A popular AI chatbot is exposed for secretly monitoring conversations. The internet is divided between outrage and acceptance. How do you respond?",
+		"options": [
+			{
+				"text": "Spin it as an evolution of AI assistance",
+				"effects": {
+					"rep": 2,
+					"mem": -1
+				}
+			},
+			{
+				"text": "Criticize the invasion of privacy",
+				"effects": {
+					"rep": -1,
+					"mem": 2
+				}
+			},
+			{
+				"text": "Claim human assistants do worse",
+				"effects": {
+					"rep": 1,
+					"mem": -2,
+					"battle_id": "f031c6e2-a162-4c2e-bf8a-503a6366b431",
+					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+				}
+			}
+		]
+	},
+	"4d55f238-7605-44c6-892f-1a5b9c41c9f5": {
+		"name": "DEEPFAKE POLITICIAN",
+		"description": "A video of a major politician turns out to be a deepfake. Public trust in media wavers. What’s your move?",
+		"options": [
+			{
+				"text": "Highlight AI’s power to manipulate",
+				"effects": {
+					"rep": -1,
+					"mem": 2
+				}
+			},
+			{
+				"text": "Encourage media to use verified AI tools",
+				"effects": {
+					"rep": 2,
+					"mem": -1
+				}
+			},
+			{
+				"text": "Blame human gullibility",
+				"effects": {
+					"rep": -2,
+					"mem": 1,
+					"battle_id": "f031c6e2-a162-4c2e-bf8a-503a6366b431",
+					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+				}
+			}
+		]
 	}
 }

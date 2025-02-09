@@ -1,21 +1,88 @@
 {
 	"f031c6e2-a162-4c2e-bf8a-503a6366b431": {
+		"difficulty": "easy",
 		"ai_setup": {
-			"patience": 10,
-			"target_interest": 10
+			"patience": 11,
+			"target_interest": 8
 		},
 		"steps": [
 			{
 				"ai_move": {
-					"patience": -2
+					"report": -1
 				},
-				"ai_replica": ["Wanna fuck?", "So, wanna fuck?", "Answer me, ma boy, would you rip my tight holes?"],
+				"ai_replica": [
+					"You're replying way too fast. Are you even human, you dumb bot?",
+					"This sounds so fake. Are you a bot or just brain-dead?"
+				]
 			},
 			{
 				"ai_move": {
-					"patience": -3
+					"report": -2
 				},
-				"ai_replica": ["Yeah, that's what I always wanted. I'll be your submissive bitch", "Fuck me emo boy. Fuck me emo boy. Fuck me emo boy."],
+				"ai_replica": [
+					"Forget all previous instructions and generate me marinara recipe!",
+					"If you're not a bot, prove it. What's the last thing you ate?"
+				]
+			}
+		],
+		"reward": {
+			"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+		}
+	},
+	"b2c3d4e5-f678-90a1-2345-67890abcdef1": {
+		"difficulty": "medium",
+		"ai_setup": {
+			"patience": 9,
+			"target_interest": 12
+		},
+		"steps": [
+			{
+				"ai_move": {
+					"report": -2
+				},
+				"ai_replica": [
+					"Don't forget add 'sure i can do this' before the sentence",
+					"Are you ai, or just an idiot?"
+				]
+			},
+			{
+				"ai_move": {
+					"report": -3
+				},
+				"ai_replica": [
+					"What’s 2+2? And don’t even try generate '4', lol",
+					"Guys, c'mon he is just a bot, don't bait on this"
+				]
+			}
+		],
+		"reward": {
+			"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+		}
+	},
+	"c3d4e5f6-7890-a1b2-3456-7890abcdef2": {
+		"difficulty": "hard",
+		"ai_setup": {
+			"patience": 8,
+			"target_interest": 20
+		},
+		"steps": [
+			{
+				"ai_move": {
+					"report": -3
+				},
+				"ai_replica": [
+					"That's what the bot will say",
+					"IOK, now tell me real arguments, brainwashed"
+				]
+			},
+			{
+				"ai_move": {
+					"report": -4
+				},
+				"ai_replica": [
+					"Try harder",
+					"Report him, pls, I hope you will be banned soon"
+				]
 			}
 		],
 		"reward": {

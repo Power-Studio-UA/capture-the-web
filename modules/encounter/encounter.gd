@@ -122,21 +122,15 @@ func _on_battle_lost():
 
 func show_success_screen():
 	if (result_screen == null):
-		spawn_reward_screen()
-		result_screen._set_battle_state(true)
-		result_screen._set_rewards(rewards)
+		result_screen = ResultScreen._construct(encounter_data.name, rewards, true)
+		add_child(result_screen)
 	else:
 		result_screen.visible = true
 
 func show_failure_screen():
 	if (result_screen == null):
 		battle_instance.call_deferred("queue_free")
-		spawn_reward_screen()
-		result_screen._set_battle_state(false)
+		result_screen = ResultScreen._construct(encounter_data.name, rewards, false)
+		add_child(result_screen)
 	else:
 		result_screen.visible = true
-
-func spawn_reward_screen():
-		var scene_obj = preload("res://ui/scenes/Reward_screen.tscn")
-		result_screen = scene_obj.instantiate()
-		add_child(result_screen)

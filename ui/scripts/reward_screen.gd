@@ -4,16 +4,19 @@ class_name ResultScreen
 @export var reward_container : HBoxContainer 
 @export var return_button : Button
 @export var battle_state : RichTextLabel
+@export var name_label : Label
+
+const self_scene : PackedScene = preload("res://ui/scenes/Reward_screen.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# test_spawn()
 	return_button.pressed.connect(_close)
 
-func _test_spawn() -> void:
-	var obj = ResourceRow.constructor(15, ResourceRow.Ingame_Resources.MEM)
-	reward_container.add_child(obj)
-	obj = ResourceRow.constructor(25, ResourceRow.Ingame_Resources.REP)
-	reward_container.add_child(obj)
+# func _test_spawn() -> void:
+# 	var obj = ResourceRow.constructor(15, ResourceRow.Ingame_Resources.MEM)
+# 	reward_container.add_child(obj)
+# 	obj = ResourceRow.constructor(25, ResourceRow.Ingame_Resources.REP)
+# 	reward_container.add_child(obj)
 
 func _close() -> void:
 	self.queue_free()
@@ -29,3 +32,11 @@ func _set_rewards(rewards_dictionary : Dictionary):
 		reward_container.remove_child(child)
 	for reward in rewards_dictionary.keys():
 		reward_container.add_child(ResourceRow.constructor(rewards_dictionary[reward], reward))
+
+static func _construct(encounter_name : String, rewards, result : bool) -> ResultScreen:
+		var obj = self_scene.instantiate()
+		obj.name_label.text = encounter_name + " RESULT"
+		obj._set_rewards(rewards)
+		obj._set_battle_state(result)
+		return obj
+	

@@ -8,7 +8,7 @@
 [ext_resource type="LabelSettings" uid="uid://bbcb4acm588nu" path="res://assets/ui_styles/common_text.tres" id="5_up3hs"]
 [ext_resource type="PackedScene" uid="uid://d33lhhp8xwik0" path="res://ui/scenes/resource_row.tscn" id="6_5mdu1"]
 
-[node name="Encounter" type="Control" node_paths=PackedStringArray("reward_container", "return_button", "battle_state")]
+[node name="Encounter" type="Control" node_paths=PackedStringArray("reward_container", "return_button", "battle_state", "name_label")]
 process_mode = 3
 z_index = 1
 layout_mode = 3
@@ -27,6 +27,7 @@ script = ExtResource("2_evwow")
 reward_container = NodePath("Panel/MarginContainer/VBoxContainer/RewardContainer")
 return_button = NodePath("Panel/MarginContainer/VBoxContainer/Options/Quit")
 battle_state = NodePath("Panel/MarginContainer/VBoxContainer/ScrollContainer/BattleState")
+name_label = NodePath("Panel/MarginContainer/VBoxContainer/Name")
 
 [node name="Panel" type="Panel" parent="."]
 z_index = -1
@@ -60,7 +61,7 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 30
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="Name" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 4
