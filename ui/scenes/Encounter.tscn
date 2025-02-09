@@ -7,7 +7,7 @@
 [ext_resource type="LabelSettings" uid="uid://dqgs75nj4igj5" path="res://assets/ui_styles/header_text.tres" id="3_rrl7b"]
 [ext_resource type="LabelSettings" uid="uid://bbcb4acm588nu" path="res://assets/ui_styles/common_text.tres" id="4_pj47o"]
 
-[node name="Encounter" type="Control" node_paths=PackedStringArray("description_label", "options_container", "encounter_root")]
+[node name="encounter" type="Control" node_paths=PackedStringArray("description_label", "options_container", "encounter_root")]
 process_mode = 3
 z_index = 1
 layout_mode = 3
