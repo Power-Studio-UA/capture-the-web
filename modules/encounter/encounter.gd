@@ -104,7 +104,7 @@ func start_battle():
 	#{"player_state": self.player_state, "cards": self.cards, "battles": self.battles}
 	var config = self.config_callback.call()
 	
-	battle_instance = preload("res://modules/battle/battle.tscn").instantiate().setup(
+	battle_instance = preload("res://ui/scenes/battle_scene.tscn").instantiate().setup(
 		config["battles"][self.battle_id],
 		config["player_state"], 
 		config["cards"]
@@ -112,6 +112,7 @@ func start_battle():
 	#battle_instance.connect("battle_won", self, "_on_battle_won")
 	#battle_instance.connect("battle_lost", self, "_on_battle_lost")
 	add_child(battle_instance)
+	battle_instance.matchLeft.connect(show_failure_screen)
 
 func _on_battle_won():
 	change_state(EncounterStates.SUCCESS)
@@ -129,6 +130,7 @@ func show_success_screen():
 
 func show_failure_screen():
 	if (result_screen == null):
+		battle_instance.call_deferred("queue_free")
 		spawn_reward_screen()
 		result_screen._set_battle_state(false)
 	else:

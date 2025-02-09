@@ -1,5 +1,5 @@
 # Battle.gd
-extends Node2D
+extends Node
 class_name Battle
 
 var current_patience = 10
@@ -19,17 +19,23 @@ var battle_info = {}
 var card_data = {}
 
 # Node references
-@onready var chat_log = $BattleScene/ChatLog
-@onready var cards_container = $BattleScene/CardsContainer
-@onready var patience_label = $BattleScene/Stats/Patience
-@onready var influence_label = $BattleScene/Stats/Influence
-@onready var opponent_move_label = $BattleScene/OpponentMove
+@export var chat_log : VBoxContainer
+@export var cards_container : Control
+@export var patience_label : ResourceRow
+@export var influence_label : ResourceRow
+@export var opponent_move_label : Label
+@export var leave_button : Button
+
+# Signals
+signal matchLeft
 
 func setup(battle_info, player_state, card_data):
 	self.player_state = player_state
 	self.battle_info = battle_info
 	self.card_data = card_data
 	self.current_patience = self.battle_info['ai_setup']['patience']
+	for child in chat_log.get_children():
+		chat_log.remove_child(child)
 	return self
 
 func card_callback(card_data, card_instance):
@@ -37,7 +43,7 @@ func card_callback(card_data, card_instance):
 	card_instance.queue_free()
 	print(card_data["id"])
 	var replicas = card_data["replicas"]
-	self.add_chat_message(replicas[randi() % replicas.size()])
+	self.add_chat_message(replicas[randi() % replicas.size()], false)
 	for i in range(self.in_hand.size()):
 		if self.in_hand[i]["id"] == card_data["id"]:
 			self.in_hand.remove_at(i)
@@ -86,6 +92,7 @@ func _ready():
 
 	self.setup_deck(card_instances)
 	setup_battle()
+	leave_button.pressed.connect(func() -> void: matchLeft.emit())
 #
 func setup_battle():
 	update_stats()
@@ -112,16 +119,16 @@ func show_opponent_move():
 	#if ai_move.has("mem"): text += "Memory: " + str(effects.patience) + "\n"
 	#if ai_move.has("append_cards"): text += "Draw: " + str(effects.append_cards)
 
-	opponent_move_label.text = opponent_next_move
-	add_chat_message("Opponent: " + opponent_next_move)
+	opponent_move_label.text = "MY MOVE " + opponent_next_move
+	add_chat_message("Opponent: " + opponent_next_move, true)
 	
 func apply_effect_dict(effects):
 	if effects.has("patience"): 
-		add_chat_message("Applying effect: Patiance" + str(effects.patience))
+		add_chat_message("Applying effect: Patience" + str(effects.patience), false)
 		self.current_patience += effects.patience
 		
 	if effects.has("influence"): 
-		add_chat_message("Applying effect: Influence" + str(effects.influence))
+		add_chat_message("Applying effect: Influence" + str(effects.influence), false)
 		self.current_influence += effects.current_influence
 		
 	if effects.has("append_cards"):
@@ -191,14 +198,17 @@ func fill_hand_cards():
 	#
 	#update_stats()
 #
-func add_chat_message(text: String):
-	var label = Label.new()
-	label.text = text
-	chat_log.add_child(label)
+func add_chat_message(text: String, isOpponent: bool):
+	var obj
+	if isOpponent:
+		obj = DialogueMessage.constructor(text, DialogueMessage.dialogueSide.LEFT)
+	else:
+		obj = DialogueMessage.constructor(text, DialogueMessage.dialogueSide.RIGHT)
+	chat_log.add_child(obj)
 #
 func update_stats():
-	patience_label.text = "Patience: " + str(current_patience)
-	influence_label.text = "Influence: " + str(current_influence)
+	patience_label.resource_amount = current_patience
+	influence_label.resource_amount = current_influence
 #
 #func _on_EndTurn_pressed():
 	## Process opponent's move

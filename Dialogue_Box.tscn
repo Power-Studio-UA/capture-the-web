@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://dialogue_box.gd" id="2_eet3e"]
 [ext_resource type="Texture2D" uid="uid://11wm2iy1rytd" path="res://assets/textures/Default_ava.png" id="3_ph18l"]
 
-[node name="Dialogue_Container" type="HBoxContainer" node_paths=PackedStringArray("dialogue_bg", "avatar")]
+[node name="Dialogue_Container" type="HBoxContainer" node_paths=PackedStringArray("dialogue_bg", "avatar", "message_label")]
 layout_direction = 3
 anchors_preset = 10
 anchor_right = 1.0
@@ -17,6 +17,7 @@ alignment = 2
 script = ExtResource("2_eet3e")
 dialogue_bg = NodePath("Dialogue")
 avatar = NodePath("Avatar")
+message_label = NodePath("Dialogue/MarginContainer/TextMessage")
 
 [node name="Dialogue" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(400, 0)
@@ -37,7 +38,7 @@ grow_vertical = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_right = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Dialogue/MarginContainer"]
+[node name="TextMessage" type="RichTextLabel" parent="Dialogue/MarginContainer"]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
