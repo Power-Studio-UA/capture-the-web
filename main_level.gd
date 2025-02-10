@@ -101,7 +101,7 @@ func load_graph(filename: String, descriptions_url: String):
 			description["name"], 
 			description["description"], 
 			[], 
-			preload('res://ui/scenes/encounter.tscn')
+			preload('res://ui/scenes/Encounter.tscn')
 				.instantiate().setup(encounters[encounters.keys().pick_random()], config_callback),
 			#NewEncounter.new().setup(encounters[encounter_id]),
 			nodeType, 

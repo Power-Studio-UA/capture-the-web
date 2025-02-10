@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://crbtgaikjwvdm"]
+[gd_scene load_steps=6 format=3 uid="uid://crbtgaikjwvdm"]
 
 [ext_resource type="Material" uid="uid://dahto566h6bby" path="res://visuals/Node/node_shader.tres" id="1_h66vg"]
 [ext_resource type="ArrayMesh" uid="uid://cq27vseceynd7" path="res://visuals/vcsg_mesh.tres" id="2_ljbm1"]
 [ext_resource type="Script" path="res://visuals/Node/node_visuals.gd" id="3_moodc"]
 [ext_resource type="Material" uid="uid://beisfk7e1uwix" path="res://visuals/Node/outline_shaders/white_outline_shader.tres" id="4_idgox"]
+[ext_resource type="PackedScene" uid="uid://7wypr2jiselh" path="res://visuals/cse.tscn" id="5_ywux1"]
 
 [node name="NodeVisualsRoot" type="Node3D"]
 
@@ -19,3 +20,5 @@ material_override = ExtResource("4_idgox")
 cast_shadow = 0
 mesh = ExtResource("2_ljbm1")
 skeleton = NodePath("../..")
+
+[node name="cse" parent="." instance=ExtResource("5_ywux1")]

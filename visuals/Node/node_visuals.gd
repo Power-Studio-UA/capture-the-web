@@ -33,7 +33,7 @@ const HEIGHT_ANIMATION_DURATION: float = 0.5
 const OUTLINE_ANIMATION_DURATION: float = 0.5
 
 # Threshold to decide when an animated value is "close enough" to the target.
-const ANIMATION_THRESHOLD: float = 0.001
+const ANIMATION_THRESHOLD: float = 0.0001
 
 func _ready() -> void:
 	# Get the material (assuming it's already set in the editor)
@@ -52,10 +52,11 @@ func set_node_type(new_node_type: NodeVisualType) -> void:
 	match node_type:
 		NodeVisualType.LOW_RISK:
 			is_available = true
-			desired_custom_color = Color(0.0, 0.545, 0.105)  # low risk
+			#desired_custom_color = Color(0.0, 0.545, 0.105)  # low risk
+			desired_custom_color = Color(0.05, 0.445, 1.0)
 		NodeVisualType.HIGH_RISK:
 			is_available = true
-			desired_custom_color = Color(0.5, 0.1, 0.0)  # high risk
+			desired_custom_color = Color(0.35, 0.35, 0.95)  # high risk
 		NodeVisualType.VISITED:
 			desired_custom_color = Color(0.5, 0.42, 0.55)
 			is_selected = false
@@ -64,6 +65,8 @@ func set_node_type(new_node_type: NodeVisualType) -> void:
 			desired_custom_color = Color(0.9, 0.9, 0.9)
 			is_selected = true
 			is_available = true
+			# Spawn and play the KeyAction effect.
+			spawn_key_action()
 		NodeVisualType.UNVISITED:
 			desired_custom_color = Color(0.5, 0.5, 0.5)
 			is_available = false
@@ -112,7 +115,7 @@ func animate_height(duration: float) -> void:
 	
 	var time_passed: float = 0.0
 	while time_passed < duration:
-		var new_height = animate_value_change(global_position.y, target_height, 0.016, 20)
+		var new_height = animate_value_change(global_position.y, target_height, 0.016, 10)
 		# Optional debug:
 		# print("Animating height: t =", time_passed, " new_height =", new_height)
 		if abs(new_height - target_height) <= ANIMATION_THRESHOLD:
@@ -131,7 +134,7 @@ func animate_outline(duration: float) -> void:
 	var outline_node = $Outline
 	
 	# Compute an outline "value" based on state:
-	#   - 9 if selected, else 3 if available, else 0.
+	#   - 8 if selected, else 3.5 if available, else 0.
 	#   - Add 3 if hovered.
 	var base_value: float = 0.0
 	if is_selected:
@@ -236,3 +239,19 @@ func animate_value_change(from, to, delta = 1, speed = 300, margin = ANIMATION_T
 	else:
 		var vector = to - from - margin
 		return from + (speed * vector / (abs(vector) + 2.5) / (abs(vector) + 5) * delta)
+
+#----------------------------------------------------------------------------
+# Spawns the KeyAction effect as a child when the node is set as SELECTED.
+func spawn_key_action() -> void:
+	# Load the KeyAction scene.
+	var key_action_scene = preload("res://visuals/cse.tscn")
+	var key_action_instance = key_action_scene.instantiate()
+	# Add it as a child to this node.
+	add_child(key_action_instance)
+	
+	# Assume the KeyAction scene has an AnimationPlayer named "AnimationPlayer" at its root.
+	var anim_player = key_action_instance.get_node("AnimationPlayer")
+	if anim_player:
+		anim_player.play("KeyAction")
+		# In Godot 4, connect using a Callable.
+		anim_player.connect("animation_finished", Callable(key_action_instance, "_on_key_action_finished"))

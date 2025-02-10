@@ -6,12 +6,12 @@ var camera_rotation_dir : float
 @export var zoom_speed: float = 1.5
 @export var lerp_zoom_speed: float = 5
 @export var lerp_move_speed: float = 2
-@export var min_zoom: float = 2.0
-@export var max_zoom: float = 10.0
-@export var border_x_low : float = -4
-@export var border_x_high : float = 4
-@export var border_z_low : float = -4
-@export var border_z_high : float = 4
+@export var min_zoom: float = 5.0
+@export var max_zoom: float = 35.0
+@export var border_x_low : float = -20
+@export var border_x_high : float = 20
+@export var border_z_low : float = -20
+@export var border_z_high : float = 20
 
 var rotating_with_mouse : bool = false
 var moving_with_mouse : bool = false
@@ -22,6 +22,8 @@ var hovered_node = null
 var selected_node
 const tooltip_scene : PackedScene = preload("res://ui/scenes/tooltip.tscn")
 var tooltip : NodeTooltip
+
+signal node_pressed
 
 @export var cpu : float :
 	set (value):
@@ -45,7 +47,7 @@ var tooltip : NodeTooltip
 		return mem
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	target_zoom = position.z
+	target_zoom = position.y
 	debug_menu = get_tree().get_nodes_in_group("debug")[0]
 	cpu = 10
 	mem = 10
@@ -88,6 +90,7 @@ func _input(event: InputEvent) -> void:
 			target_zoom = min(position.y + zoom_speed, max_zoom)
 		
 		if event.button_index == MOUSE_BUTTON_LEFT && selected_node.linked_instances.has(hovered_node) && event.pressed && hovered_node!=null:
+			emit_signal("node_pressed")  # Emit the signal before selecting the node
 			_select_node(hovered_node)
 
 func _cast():
