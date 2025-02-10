@@ -16,6 +16,31 @@ const uuid_util = preload('res://addons/uuid/uuid.gd')
 #func _ready() -> void:
 	#pass # Replace with function body.
 #
+var random_names = [
+	"Juhanna Myliss", "Benji", "Skylar Vance", "Nina Kross", "Elliot Ray", 
+	"Avery Quinn", "Dante Rios", "Luna Graves", "Milo Henders", "Zara Flynn",
+	"Rory Beck", "Talia Morse", "Finn Harper", "Sage Holloway", "Theo Banks",
+	"Willow Kerr", "Xander West", "Cassian York", "Nova Clarke", "Arlo Mason",
+	"Raven Sloane", "Ember Tate", "Kai Mercer", "Jasper Vaughn", "Harlow Dean",
+	"Phoenix Knox", "Indigo Reese", "Rowan Fletcher", "Selene Hart", "Zeke Lowe",
+	"Callista Moon", "Orion Drake", "Mira Sterling", "Ezra Vale", "Sylas Grey",
+	"Jade Hollow", "Leo Baxter", "Dahlia Frost", "Axel Ford", "Lyra Keane",
+	"Sienna Wolf", "Damien Cross", "Briar Lark", "Caius Reed", "Harley Fox",
+	"Atlas Monroe", "Seraphina Gale", "Magnus Wolfe", "Vesper Lane", "Lucian Thorn"
+]
+
+	
+var random_tags = [
+	"@FlatEarthGuru", "@RealTruthSeeker", "@WakeUpSheeple", "@HorizonDebunker", "@NASAExposed", 
+	"@FlatFactsOnly", "@GlobeLies", "@AntiGravityMan", "@TheRealShape", "@SpaceHoaxer",
+	"@TruthInTheSky", "@NoCurveConfirmed", "@FlatEarthShaman", "@CriticalThinker42", "@TheFlatFiles",
+	"@RedPillGeo", "@WorldEdgeWatcher", "@InfinitePlaneDude", "@WokeNavigator", "@HiddenKnowledge",
+	"@TheFirmament", "@NotASpinningBall", "@BeyondTheDome", "@GravityDenier", "@SpaceLies2024",
+	"@TruthVsScience", "@LevelEarthOnly", "@SatellitesAreFake", "@WhereIsTheCurve", "@MoonLandingLies",
+	"@FEWarrior", "@ResearchFlat", "@MapRedrawn", "@AntarcticaSealed", "@NoGlobeZone",
+	"@GlobalistsHateMe", "@NotFallingForIt", "@SpaceIsFiction", "@SunAndMoonWatcher", "@FlatAtlas",
+	"@EarthIsNotRound", "@RoundIsPropaganda", "@DomeReality", "@NoNASAPropaganda", "@StayFlat",
+	"@LookForYourself", "@RejectTheSphere", "@NotSpinning", "@TheyLiedToUs", "@TheRealLandscape"]
 #
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
@@ -25,24 +50,11 @@ var rng = RandomNumberGenerator.new()
 
 #####################
 func generate_random_point():
-	var random_words = [
-		"apple", "banana", "cherry", "dragon", "eagle", 
-		"flower", "galaxy", "horizon", "island", "jungle"
-		]
-	
-	var random_sentences = [
-		"A lonely traveler seeks adventure.",
-		"The wind whispers ancient secrets.",
-		"Shadows dance across empty landscapes.",
-		"Forgotten memories echo in silent rooms.",
-		"Mysterious forces shape unseen worlds." 
-		]
-	
 	return { 
 		"gas": randi() % 6 - 5,  # Random int between -5 and 0 
 		"hp": randi() % 11 - 5,  # Random int between -5 and 5 
-		"name": random_words[randi() % random_words.size()], 
-		"description": random_sentences[randi() % random_sentences.size()] 
+		"name": random_names[randi() % random_names.size()], 
+		"description": random_tags[randi() % random_tags.size()] 
 		}
 		
 # Function to generate a random convex polygon
