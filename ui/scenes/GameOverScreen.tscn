@@ -7,7 +7,7 @@
 
 [node name="GameOverScreen" type="Control" node_paths=PackedStringArray("head_label", "description_label", "restart_button")]
 process_mode = 3
-z_index = 1
+z_index = 99
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

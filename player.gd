@@ -28,7 +28,8 @@ signal node_pressed
 @export var cpu : float :
 	set (value):
 		cpu = max(value, 0)
-		if debug_menu: debug_menu.set_cpu(value)
+		if debug_menu: 
+			debug_menu.set_cpu(value)
 		if (value < 1):
 			if tooltip: tooltip.queue_free()
 			FlowSystem._on_change_state(FlowSystem.GameStates.OVER)

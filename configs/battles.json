@@ -3,7 +3,7 @@
 		"difficulty": "easy",
 		"ai_setup": {
 			"patience": 12,
-			"target_interest": 18
+			"target_interest": 14
 		},
 		"steps": [
 			{
@@ -33,7 +33,7 @@
 		"difficulty": "medium",
 		"ai_setup": {
 			"patience": 12,
-			"target_interest": 26
+			"target_interest": 22
 		},
 		"steps": [
 			{
@@ -63,7 +63,7 @@
 		"difficulty": "hard",
 		"ai_setup": {
 			"patience": 10,
-			"target_interest": 30
+			"target_interest": 26
 		},
 		"steps": [
 			{

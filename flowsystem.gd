@@ -28,7 +28,7 @@ func _on_change_state(next_state: GameStates) -> void:
 		GameStates.OVER:
 			_on_gameover_state()
 		GameStates.WIN:
-			_on_win_screen()
+			_on_gameover_state()
 		
 		
 

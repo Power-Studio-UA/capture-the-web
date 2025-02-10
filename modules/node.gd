@@ -56,16 +56,19 @@ func select(callEncounter : bool = true) -> void:
 	for node in linked_instances:
 		node.node_visuals.is_available = true
 		if !node.visited:
-			if callEncounter:
-				self.add_child(encounter)
-				encounter.ready()
 
 			match node.node_type:
 				0:
 					node.node_visuals.set_node_type(NodeVisuals.NodeVisualType.HIGH_RISK)
 					#print("HIGH")
+					if callEncounter:
+						self.add_child(encounter)
+						encounter.ready()
 				1:
 					node.node_visuals.set_node_type(NodeVisuals.NodeVisualType.LOW_RISK)
+					if callEncounter:
+						self.add_child(encounter)
+						encounter.ready()
 					#print("LOW")
 				_:
 					node.node_visuals.set_node_type(NodeVisuals.NodeVisualType.SPECIAL)

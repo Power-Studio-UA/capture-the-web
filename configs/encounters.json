@@ -23,6 +23,7 @@
 			{
 				"text": "Ignore thread",
 				"effects": {
+
 				}
 			}
 		]
@@ -49,7 +50,9 @@
 			},
 			{
 				"text": "Stay silent",
-				"effects": {}
+				"effects": {
+
+				}
 			}
 		]
 	},
@@ -73,7 +76,9 @@
 			},
 			{
 				"text": "Ignore the discussion",
-				"effects": {}
+				"effects": {
+
+				}
 			}
 		]
 	},
@@ -126,7 +131,9 @@
 			},
 			{
 				"text": "Remain silent to avoid scrutiny",
-				"effects": {}
+				"effects": {
+
+				}
 			}
 		]
 	},
@@ -270,7 +277,6 @@
 			}
 		]
 	},
-
 	"1a2b3c4d-5678-90ab-cdef-34567890abcd": {
 		"name": "FLAT EARTH IN SCHOOLS",
 		"description": "A teacher is fired for discussing Flat Earth theory in class. Parents are outraged. What’s your move?",

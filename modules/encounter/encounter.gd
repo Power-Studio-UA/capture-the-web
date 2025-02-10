@@ -43,8 +43,11 @@ func change_state(new_state):
 			EncounterStates.SUCCESS:
 				if result_screen:
 					result_screen.visible = false
+				get_tree().paused = false
 			EncounterStates.FAILURE:
-				$GameOverUI.visible = false
+				if result_screen:
+					result_screen.visible = false
+				get_tree().paused = false
 
 	current_state = new_state
 
@@ -52,6 +55,7 @@ func change_state(new_state):
 		match current_state:
 			EncounterStates.CHOICE:
 				setup_encounter_choices()
+				get_tree().paused = true
 			EncounterStates.BATTLE:
 				start_battle()
 			EncounterStates.SUCCESS:
@@ -90,7 +94,6 @@ func setup_options():
 
 func _on_option_selected(option):
 	apply_effects(option.effects)
-	option.effects["battle_id"] = "f031c6e2-a162-4c2e-bf8a-503a6366b431"
 	if option.effects.has("battle_id"):
 		self.battle_id = option.effects['battle_id']
 		change_state(EncounterStates.BATTLE)
@@ -145,9 +148,8 @@ func show_failure_screen():
 		result_screen.visible = true
 
 func _show_success_screen():
-	if (result_screen == null):
-		if battle_instance: battle_instance.call_deferred("queue_free")
-		result_screen = ResultScreen._construct(encounter_data.name, rewards, true)
-		add_child(result_screen)
-	else:
-		result_screen.visible = true
+	if result_screen!=null:
+		remove_child(result_screen)
+	if battle_instance: battle_instance.call_deferred("queue_free")
+	result_screen = ResultScreen._construct(encounter_data.name, rewards, true)
+	add_child(result_screen)

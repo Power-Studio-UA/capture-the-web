@@ -14,7 +14,8 @@ var deck_cards = []
 var in_hand = []
 var thrown_cards = []
 
-var hand_max_cards = 3
+var hand_max_cards = 10
+var card_per_turn = 3
 
 var player_state = {}
 var battle_info = {}
@@ -62,8 +63,8 @@ func card_callback(card_data, card_instance):
 			self.in_hand.remove_at(i)
 			break # Stop after removing the first match
 	
-	if len(self.in_hand) == 0:
-		self.end_turn_handler()
+	# if len(self.in_hand) == 0:
+	# 	self.end_turn_handler()
 	# 	self.fill_hand_cards()
 
 func handle_step_change():
@@ -72,7 +73,7 @@ func handle_step_change():
 		return
 
 	self.apply_opponent_effect(self.battle_info['steps'][self.current_step])
-	self.fill_hand_cards()
+	upd_hand(card_per_turn)
 	self.current_step += 1
 
 func draw_in_hand(cards):
@@ -82,7 +83,7 @@ func draw_in_hand(cards):
 		cards_container._on_card_added(card)
 
 func setup_deck(cards):
-	var in_hand_cards_ = cards.slice(0, self.hand_max_cards)
+	var in_hand_cards_ = cards.slice(0, self.card_per_turn)
 	for card_data in in_hand_cards_:
 		var card = preload("res://ui/scenes/card_scene.tscn").instantiate()
 		card.setup(card_data, card_callback)
@@ -90,7 +91,7 @@ func setup_deck(cards):
 		cards_container._on_card_added(card)
 		self.in_hand.append(card_data)
 	
-	self.deck_cards = cards.slice(self.hand_max_cards)
+	self.deck_cards = cards.slice(self.card_per_turn)
 
 
 func _ready():
@@ -103,7 +104,7 @@ func _ready():
 			for i in range(count):
 				var result_card = card_data[card_id].duplicate(true)
 				result_card.merge({"id": card_id})
-				card_instances.append(result_card) # Deep copy to avoid reference issues
+				card_instances.append(result_card)
 
 	card_instances.shuffle()
 	self.setup_deck(card_instances)
@@ -175,9 +176,9 @@ func sync_deck_cards():
 		self.deck_cards = self.thrown_cards
 		self.thrown_cards = []
 		
-func fill_hand_cards():
-	var num_to_pick = self.hand_max_cards - len(self.in_hand)
-	upd_hand(num_to_pick)
+# func fill_hand_cards():
+# 	var num_to_pick = self.hand_max_cards - len(self.in_hand)
+# 	upd_hand(num_to_pick)
 	
 func upd_hand(num_to_pick):
 	if len(self.deck_cards) < num_to_pick:
@@ -250,13 +251,13 @@ func end_turn_handler():
 	current_turn += 1
 	turn_label.text = "[b]TURN " + str(current_turn)
 	current_patience -= current_turn
-	player.cpu-=2
+	player.cpu+=self.battle_info['steps'][self.current_step]['ai_move']["report"]
 
-	self.fill_hand_cards()
+	upd_hand(card_per_turn)
 	update_stats()
 	# Show next opponent move
 	show_opponent_move()
-	fill_hand_cards()
+	# fill_hand_cards()
 
 
 func _on_EndTurn_pressed():

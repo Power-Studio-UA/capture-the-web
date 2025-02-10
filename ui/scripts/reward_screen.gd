@@ -26,6 +26,8 @@ func _close() -> void:
 			player.mem+=current_rewards[reward]
 		elif reward == ResourceRow.Ingame_Resources.REP:
 			player.cpu+=current_rewards[reward]
+
+	get_tree().paused = false
 	self.queue_free()
 
 func _set_battle_state(isWin : bool):
