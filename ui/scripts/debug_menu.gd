@@ -7,8 +7,11 @@ class_name DebugMenu
 @export var mem_label : ResourceRow
 @export var cpu_label : ResourceRow
 @export var restart_button : Button
+@export var mute_button : Button
 @onready var theme_instance = preload("res://assets/ui_styles/general_ui.tres")
 var deck : DeckView
+
+var mute_status : bool = false
 
 func set_mem(amount: int) -> void:
 	mem_label.resource_amount = amount
@@ -25,6 +28,7 @@ func set_hovered(node_name: String) -> void:
 func _ready() -> void:
 	restart_button.pressed.connect(_restart_pressed)
 	deck_button.pressed.connect(_show_deck)
+	mute_button.pressed.connect(_mute_unmute)
 	theme = theme_instance
 	# $MarginContainer/VBoxContainer/Main/CentralRow/Profile.visible = false
 
@@ -43,3 +47,8 @@ func _show_deck():
 				deck._add_card(main_level.cards[card_id])
 
 	add_child(deck)
+
+func _mute_unmute():
+	mute_status = !mute_status
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), mute_status)
+	

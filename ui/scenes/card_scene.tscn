@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://y1xkwn8fwt07"]
+[gd_scene load_steps=9 format=3 uid="uid://y1xkwn8fwt07"]
 
 [ext_resource type="Script" path="res://modules/card/card.gd" id="1_00dcx"]
 [ext_resource type="StyleBox" uid="uid://5nswnhrjvy6n" path="res://assets/ui_styles/res_backround.tres" id="1_mx855"]
@@ -6,6 +6,8 @@
 [ext_resource type="StyleBox" uid="uid://berxm6obv3ij6" path="res://assets/ui_styles/round_corner.tres" id="2_r0snd"]
 [ext_resource type="Texture2D" uid="uid://djxs0yq44i215" path="res://assets/textures/white_earth.png" id="3_nrto0"]
 [ext_resource type="Theme" uid="uid://jnlipkyvtp4t" path="res://assets/ui_styles/general_ui.tres" id="4_tduju"]
+[ext_resource type="Script" path="res://ui/scenes/soundbutton.gd" id="7_g3xfi"]
+[ext_resource type="AudioStream" uid="uid://nayivr37td5r" path="res://sound/sfx/damage.mp3" id="8_2aoyi"]
 
 [node name="CardScene" type="Control" node_paths=PackedStringArray("description", "patience_cost_label", "card_name", "image")]
 custom_minimum_size = Vector2(210, 405)
@@ -117,7 +119,7 @@ bbcode_enabled = true
 text = "[center]Increase Interest by 5"
 
 [node name="Panel" type="Panel" parent="Panel"]
-z_index = 2
+z_index = 1
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 1
 anchors_preset = 5
@@ -131,7 +133,7 @@ grow_horizontal = 2
 theme_override_styles/panel = ExtResource("1_mx855")
 
 [node name="ResourceAmount" parent="Panel/Panel" instance=ExtResource("2_i4hkf")]
-z_index = 2
+z_index = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
 anchors_preset = 6
@@ -143,14 +145,17 @@ grow_horizontal = 0
 resource_type = 2
 
 [node name="Button" type="Button" parent="."]
+z_index = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -8.0
-offset_top = -36.0
+offset_top = 1.0
 offset_right = 10.0
-offset_bottom = 5.0
+offset_bottom = -34.0
 grow_horizontal = 2
 grow_vertical = 2
 flat = true
+script = ExtResource("7_g3xfi")
+_sfx = ExtResource("8_2aoyi")

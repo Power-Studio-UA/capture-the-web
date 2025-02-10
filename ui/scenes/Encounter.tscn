@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ci4pvy2adr4bn"]
+[gd_scene load_steps=8 format=3 uid="uid://cs63skb8u8l5w"]
 
 [ext_resource type="Theme" uid="uid://jnlipkyvtp4t" path="res://assets/ui_styles/general_ui.tres" id="1_sjo0i"]
 [ext_resource type="Script" path="res://modules/encounter/encounter.gd" id="2_afn4r"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://11wm2iy1rytd" path="res://assets/textures/Default_ava.png" id="3_5fva6"]
 [ext_resource type="LabelSettings" uid="uid://dqgs75nj4igj5" path="res://assets/ui_styles/header_text.tres" id="3_rrl7b"]
 [ext_resource type="LabelSettings" uid="uid://bbcb4acm588nu" path="res://assets/ui_styles/common_text.tres" id="4_pj47o"]
+[ext_resource type="Script" path="res://ui/scenes/soundbutton.gd" id="7_quv4n"]
 
 [node name="encounter" type="Control" node_paths=PackedStringArray("description_label", "options_container", "encounter_root")]
 process_mode = 3
@@ -159,15 +160,18 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Post this on LolCows"
+script = ExtResource("7_quv4n")
 
 [node name="Quit" type="Button" parent="Intro_Panel/MarginContainer/VBoxContainer/Options"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Ignore thread"
+script = ExtResource("7_quv4n")
 
 [node name="Friendly" type="Button" parent="Intro_Panel/MarginContainer/VBoxContainer/Options"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Reveal your identity as AI"
+script = ExtResource("7_quv4n")

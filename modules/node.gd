@@ -35,10 +35,7 @@ func setup(
 	# Find the NodeVisuals child node
 	node_visuals = $NodeVisualsRoot/NodeMesh
 	
-	#node_visuals.set_node_type(NodeVisuals.NodeVisualType.UNVISITED)
-	
 	self.node_type = type
-	print(node_type)
 	
 	match type:
 		NodeType.RED:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cafxt8jfipbgx"]
+[gd_scene load_steps=18 format=3 uid="uid://4dccyyge55tv"]
 
 [ext_resource type="Theme" uid="uid://jnlipkyvtp4t" path="res://assets/ui_styles/general_ui.tres" id="1_vdsvs"]
 [ext_resource type="StyleBox" uid="uid://5nswnhrjvy6n" path="res://assets/ui_styles/res_backround.tres" id="2_0cihm"]
@@ -12,11 +12,19 @@
 [ext_resource type="Script" path="res://ui/scripts/AutoScroll.gd" id="8_y72fr"]
 [ext_resource type="Texture2D" uid="uid://b2soydyaf327q" path="res://assets/textures/discard.png" id="9_jud2j"]
 [ext_resource type="Script" path="res://ui/scripts/card_hand.gd" id="10_dkhtv"]
+[ext_resource type="Texture2D" uid="uid://bw3dgvkl6m0fs" path="res://assets/textures/Tutorial_BG.png" id="14_jpoag"]
+[ext_resource type="Texture2D" uid="uid://bf6j8dbopa0cn" path="res://assets/textures/Tutorial_texts.png" id="15_kxfkf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xwwc"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[node name="BattleScene" type="Control" node_paths=PackedStringArray("chat_log", "cards_container", "patience_label", "influence_label", "report_label", "opponent_move_label", "leave_button", "end_turn_button", "turn_label")]
+[sub_resource type="GDScript" id="GDScript_gn6xp"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_d01rv"]
+blend_mode = 4
+script = SubResource("GDScript_gn6xp")
+
+[node name="BattleScene" type="Control" node_paths=PackedStringArray("chat_log", "cards_container", "patience_label", "influence_label", "report_label", "opponent_move_label", "leave_button", "end_turn_button", "turn_label", "help_button", "hide_help_button", "tutorial")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,6 +42,9 @@ opponent_move_label = NodePath("General/RightRow/Opponent/Profie/Panel/OpponentM
 leave_button = NodePath("General/MarginContainer/Player/Leave")
 end_turn_button = NodePath("General/MarginContainer/Player/End Turn")
 turn_label = NodePath("General/MarginContainer/Player/Deck/TURN")
+help_button = NodePath("General/MarginContainer/Player/Profie/Panel2/Help_Button")
+hide_help_button = NodePath("Tutorial/Hide_Help_Button")
+tutorial = NodePath("Tutorial")
 
 [node name="bg" type="Panel" parent="."]
 layout_mode = 1
@@ -162,7 +173,6 @@ script = ExtResource("8_y72fr")
 [node name="DialogueContainer" type="VBoxContainer" parent="General/CentralRow/MarginContainer/Dialogue_BG/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 theme_override_constants/separation = 20
 
 [node name="GridContainer" parent="General/CentralRow/MarginContainer/Dialogue_BG/MarginContainer/ScrollContainer/DialogueContainer" instance=ExtResource("7_cbcrq")]
@@ -207,14 +217,33 @@ size_flags_vertical = 2
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="General/MarginContainer/Player/Profie"]
+[node name="Panel2" type="Panel" parent="General/MarginContainer/Player/Profie"]
 custom_minimum_size = Vector2(150, 250)
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="General/MarginContainer/Player/Profie/Panel2"]
+custom_minimum_size = Vector2(150, 250)
+layout_mode = 2
+offset_left = 110.0
+offset_right = 360.0
+offset_bottom = 250.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_3q3b8")
 expand_mode = 2
 stretch_mode = 4
+
+[node name="Help_Button" type="Button" parent="General/MarginContainer/Player/Profie/Panel2"]
+z_index = 6
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 50.0
+grow_horizontal = 0
+text = "?"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="General/MarginContainer/Player/Profie"]
 layout_mode = 2
@@ -293,3 +322,53 @@ custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "LEAVE"
+
+[node name="Tutorial" type="Control" parent="."]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Tutorial"]
+modulate = Color(1, 1, 1, 0.654902)
+material = SubResource("CanvasItemMaterial_d01rv")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_jpoag")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Tutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = -10.0
+offset_right = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_kxfkf")
+expand_mode = 1
+
+[node name="Hide_Help_Button" type="Button" parent="Tutorial"]
+z_index = 6
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -90.0
+offset_top = 30.0
+offset_right = -40.0
+offset_bottom = 80.0
+grow_horizontal = 0
+text = "?"

@@ -33,9 +33,13 @@ func flip(side : dialogueSide) -> void:
 func update_text(message : String) -> void:
 	message_label.text = message
 
+	 # Add padding
+
+
 static func constructor(message: String, side : dialogueSide)-> DialogueMessage:
 	var obj = self_scene.instantiate()
 	obj.flip(side)
 	obj.update_text(message)
 	obj.currentSide = side
+	obj.dialogue_bg.size = obj.message_label.size + Vector2(50, 50) 
 	return obj
