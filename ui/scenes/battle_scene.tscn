@@ -173,7 +173,6 @@ script = ExtResource("8_y72fr")
 [node name="DialogueContainer" type="VBoxContainer" parent="General/CentralRow/MarginContainer/Dialogue_BG/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 theme_override_constants/separation = 20
 
 [node name="GridContainer" parent="General/CentralRow/MarginContainer/Dialogue_BG/MarginContainer/ScrollContainer/DialogueContainer" instance=ExtResource("7_cbcrq")]
@@ -325,6 +324,7 @@ size_flags_horizontal = 4
 text = "LEAVE"
 
 [node name="Tutorial" type="Control" parent="."]
+visible = false
 z_index = 5
 layout_mode = 1
 anchors_preset = 15

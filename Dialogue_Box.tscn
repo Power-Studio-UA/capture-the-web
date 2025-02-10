@@ -11,41 +11,41 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 93.0
 grow_horizontal = 2
-size_flags_vertical = 8
+size_flags_horizontal = 3
 theme = ExtResource("1_1m2k2")
 alignment = 2
 script = ExtResource("2_eet3e")
-dialogue_bg = NodePath("Dialogue")
+dialogue_bg = NodePath("MarginContainer/Dialogue")
 avatar = NodePath("Avatar")
-message_label = NodePath("Dialogue/MarginContainer/TextMessage")
+message_label = NodePath("MarginContainer/Dialogue/MarginContainer/TextMessage")
 
-[node name="Dialogue" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(400, 0)
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-size_flags_vertical = 0
+
+[node name="Dialogue" type="TextureRect" parent="MarginContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
 texture = ExtResource("2_3u3yb")
-expand_mode = 5
-stretch_mode = 4
+expand_mode = 1
 flip_h = true
 
-[node name="MarginContainer" type="MarginContainer" parent="Dialogue"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Dialogue"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_right = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
 
-[node name="TextMessage" type="RichTextLabel" parent="Dialogue/MarginContainer"]
+[node name="TextMessage" type="RichTextLabel" parent="MarginContainer/Dialogue/MarginContainer"]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
-text = "[center]YOU SUCK, SUCK SUCK"
+text = "[center]YOU SUCK, SUCK SUCKasdasdas dasdasdasdasdas., fsdfn,sdfn,/ EWF ekwlfbmsdF fkls Fw/fSM /WFB wflEWBKEWJF/ewfbeWEF;kfWE;KFew;kfwNE;FNK;FNK;efnk;EWN;Fewnk;feWFkwe;"
 fit_content = true
 scroll_active = false
-autowrap_mode = 2
 text_direction = 1
 
 [node name="Avatar" type="TextureRect" parent="."]

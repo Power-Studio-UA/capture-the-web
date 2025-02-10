@@ -19,8 +19,9 @@ func play_sound(sound: AudioStream, delay: float = 0, pitch_shift = 0, volume_sh
 	new_player.pitch_scale = randf_range(0.90 + pitch_shift, 1.05 + pitch_shift)
 	new_player.volume_db = volume_shift
 	add_child(new_player)
-	new_player.play()
-	new_player.connect("finished", Callable(new_player, "queue_free"))
+	if new_player:
+		new_player.play()
+		new_player.connect("finished", Callable(new_player, "queue_free"))
 
 func _on_node_pressed() -> void:
 	play_sound(_sfx, 0, -0.3, -4)
