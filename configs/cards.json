@@ -2,7 +2,7 @@
 	"1": {
 		"title": "Gaslighting",
 		"description": "Increase interest by 4.",
-		"image": "res://assets/textures/discard.png",
+		"image": "res://assets/textures/card_gasligtning.jpg",
 		"effects": {
 			"influence": 4,
 			"patience": 1
@@ -15,7 +15,7 @@
 	"2": {
 		"title": "Cherry-Picked Data",
 		"description": "Remove 2 reports.",
-		"image": "res://assets/textures/discard.png",
+		"image": "res://assets/textures/cherry_picked.jpg",
 		"effects": {
 			"report": 2,
 			"patience": 1
@@ -28,7 +28,7 @@
 	"3": {
 		"title": "False Experts",
 		"description": "Draw 1 card.",
-		"image": "res://assets/textures/discard.png",
+		"image": "res://assets/textures/card_expert.jpg",
 		"effects": {
 			"append_cards": 1,
 			"patience": 1
@@ -41,7 +41,7 @@
 	"4": {
 		"title": "Appeal to Emotion",
 		"description": "Raise interest by 10, but gain 3 reports.",
-		"image": "res://assets/textures/discard.png",
+		"image": "res://assets/textures/card_emotion.jpg",
 		"effects": {
 			"influnce": 10,
 			"report": -3,
@@ -55,7 +55,7 @@
 	"5": {
 		"title": "Fake Science",
 		"description": "Increase opponents patience by 2.",
-		"image": "res://assets/textures/discard.png",
+		"image": "res://assets/textures/card_science.jpg",
 		"effects": {
 			"patience": -2
 		},

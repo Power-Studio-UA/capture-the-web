@@ -22,7 +22,6 @@ func setup(data, config_callback: Callable):
 	self.encounter_data = data
 	self.config_callback = config_callback
 	change_state(EncounterStates.UNSELECTED)
-
 	return self
 
 func ready():
@@ -71,6 +70,8 @@ func setup_encounter_choices():
 	#print(self.get_children())
 	#self.get_node("EncounterUI").visible = true
 	self.visible = true
+	$Intro_Panel.visible = true
+	print(self.visible)
 	description_label.text = encounter_data.description
 	setup_options()
 
