@@ -24,7 +24,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 blend_mode = 4
 script = SubResource("GDScript_gn6xp")
 
-[node name="BattleScene" type="Control" node_paths=PackedStringArray("chat_log", "cards_container", "patience_label", "influence_label", "report_label", "opponent_move_label", "leave_button", "end_turn_button", "turn_label", "help_button", "hide_help_button", "tutorial")]
+[node name="BattleScene" type="Control" node_paths=PackedStringArray("chat_log", "cards_container", "patience_label", "influence_label", "report_label", "opponent_move_label", "leave_button", "end_turn_button", "turn_label", "help_button", "hide_help_button", "tutorial", "target_interest_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,7 +36,7 @@ script = ExtResource("2_c2rm2")
 chat_log = NodePath("General/CentralRow/MarginContainer/Dialogue_BG/MarginContainer/ScrollContainer/DialogueContainer")
 cards_container = NodePath("General/CentralRow/Cards")
 patience_label = NodePath("General/RightRow/Opponent/Patience")
-influence_label = NodePath("General/RightRow/Opponent/Interest")
+influence_label = NodePath("General/RightRow/Opponent/HBoxContainer/Interest")
 report_label = NodePath("General/MarginContainer/Player/Report")
 opponent_move_label = NodePath("General/RightRow/Opponent/Profie/Panel/OpponentMove")
 leave_button = NodePath("General/MarginContainer/Player/Leave")
@@ -45,6 +45,7 @@ turn_label = NodePath("General/MarginContainer/Player/Deck/TURN")
 help_button = NodePath("General/MarginContainer/Player/Profie/Panel2/Help_Button")
 hide_help_button = NodePath("Tutorial/Hide_Help_Button")
 tutorial = NodePath("Tutorial")
+target_interest_label = NodePath("General/RightRow/Opponent/HBoxContainer/TargetInterest")
 
 [node name="bg" type="Panel" parent="."]
 layout_mode = 1
@@ -134,11 +135,25 @@ size_flags_horizontal = 0
 resource_type = 2
 text_size = 72
 
-[node name="Interest" parent="General/RightRow/Opponent" instance=ExtResource("5_ulh3t")]
+[node name="HBoxContainer" type="HBoxContainer" parent="General/RightRow/Opponent"]
+layout_mode = 2
+
+[node name="Interest" parent="General/RightRow/Opponent/HBoxContainer" instance=ExtResource("5_ulh3t")]
 custom_minimum_size = Vector2(200, 120)
 layout_mode = 2
 size_flags_horizontal = 0
 text_size = 72
+
+[node name="TargetInterest" type="RichTextLabel" parent="General/RightRow/Opponent/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 72
+theme_override_font_sizes/bold_font_size = 72
+bbcode_enabled = true
+text = "/ 8
+"
+fit_content = true
 
 [node name="CentralRow" type="VBoxContainer" parent="General"]
 custom_minimum_size = Vector2(800, 1100)

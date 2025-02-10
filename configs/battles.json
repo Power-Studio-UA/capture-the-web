@@ -2,8 +2,8 @@
 	"f031c6e2-a162-4c2e-bf8a-503a6366b431": {
 		"difficulty": "easy",
 		"ai_setup": {
-			"patience": 11,
-			"target_interest": 8
+			"patience": 12,
+			"target_interest": 18
 		},
 		"steps": [
 			{
@@ -32,8 +32,8 @@
 	"b2c3d4e5-f678-90a1-2345-67890abcdef1": {
 		"difficulty": "medium",
 		"ai_setup": {
-			"patience": 9,
-			"target_interest": 12
+			"patience": 12,
+			"target_interest": 26
 		},
 		"steps": [
 			{
@@ -62,8 +62,8 @@
 	"c3d4e5f6-7890-a1b2-3456-7890abcdef2": {
 		"difficulty": "hard",
 		"ai_setup": {
-			"patience": 8,
-			"target_interest": 20
+			"patience": 10,
+			"target_interest": 30
 		},
 		"steps": [
 			{

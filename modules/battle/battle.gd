@@ -35,6 +35,7 @@ var current_turn: int = 1
 @export var help_button : Button
 @export var hide_help_button : Button
 @export var tutorial : Control
+@export var target_interest_label : RichTextLabel
 
 # Signals
 signal matchLeft
@@ -107,6 +108,7 @@ func _ready():
 	card_instances.shuffle()
 	self.setup_deck(card_instances)
 	setup_battle()
+	target_interest_label.text = "/ "+str(battle_info['ai_setup']['target_interest'])
 	leave_button.pressed.connect(func() -> void: matchLeft.emit())
 	end_turn_button.pressed.connect(_on_EndTurn_pressed)
 	help_button.pressed.connect(func() : tutorial.visible = !tutorial.visible)

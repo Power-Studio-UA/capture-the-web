@@ -18,7 +18,7 @@ func arrange_cards():
 	var start_x = -total_width / 2  # Start positioning from center
 	for i in range(card_count):
 		var card = get_child(i)
-		card.position = Vector2(i * spacing, 0)
+		card.position = Vector2(i * spacing, -80)
 		card.base_position = card.position
 		card.z_index = i 
 		

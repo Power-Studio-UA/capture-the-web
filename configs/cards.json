@@ -44,8 +44,8 @@
 		"image": "res://assets/textures/card_emotion.jpg",
 		"effects": {
 			"influnce": 10,
-			"report": 3,
-			"influence": 3
+			"report": -3,
+			"patience": 2
 		},
 		"replicas": [
 			"You’re one of the few who see through the lies. Don’t let them gaslight you into submission!",
