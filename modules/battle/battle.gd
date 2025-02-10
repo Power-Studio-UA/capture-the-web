@@ -31,6 +31,9 @@ var current_turn: int = 1
 @export var leave_button: Button
 @export var end_turn_button: Button
 @export var turn_label: RichTextLabel
+@export var help_button : Button
+@export var hide_help_button : Button
+@export var tutorial : Control
 
 # Signals
 signal matchLeft
@@ -100,7 +103,11 @@ func _ready():
 	setup_battle()
 	leave_button.pressed.connect(func() -> void: matchLeft.emit())
 	end_turn_button.pressed.connect(_on_EndTurn_pressed)
+	help_button.pressed.connect(func() : tutorial.visible = !tutorial.visible)
+	hide_help_button.pressed.connect(func() : tutorial.visible = !tutorial.visible)
 #
+
+
 func setup_battle():
 	update_stats()
 	show_opponent_move()

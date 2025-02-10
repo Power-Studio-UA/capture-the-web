@@ -42,7 +42,8 @@ func change_state(new_state):
 					battle_instance = null
 					was_battle = true
 			EncounterStates.SUCCESS:
-				result_screen.visible = false
+				if result_screen:
+					result_screen.visible = false
 			EncounterStates.FAILURE:
 				$GameOverUI.visible = false
 
