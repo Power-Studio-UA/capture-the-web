@@ -139,19 +139,19 @@ func show_opponent_move():
 	#if ai_move.has("append_cards"): text += "Draw: " + str(effects.append_cards)
 
 	opponent_move_label.text = "MY MOVE " + opponent_next_move
-	add_chat_message("Opponent: " + opponent_next_move, true)
+	#add_chat_message("Opponent: " + opponent_next_move, true)
 	
 func apply_effect_dict(effects):
 	if effects.has("patience"):
-		add_chat_message("Applying effect: Patience" + str(-effects.patience), false)
+		#add_chat_message("Applying effect: Patience" + str(-effects.patience), false)
 		self.current_patience -= effects.patience
 		
 	if effects.has("influence"):
-		add_chat_message("Applying effect: Influence" + str(effects.influence), false)
+		#add_chat_message("Applying effect: Influence" + str(effects.influence), false)
 		self.current_influence += effects.influence
 	
 	if effects.has("report"):
-		add_chat_message("Applying effect: Reports" + str(effects.report), false)
+		#add_chat_message("Applying effect: Reports" + str(effects.report), false)
 		self.player.cpu += effects.report
 		
 	if effects.has("append_cards"):
@@ -243,6 +243,8 @@ func update_stats():
 
 func end_turn_handler():
 	# Process opponent's move
+	var ai_replicas = battle_info['steps'][current_step]['ai_replica']
+	self.add_chat_message(ai_replicas[randi() % ai_replicas.size()], true)
 	current_turn += 1
 	turn_label.text = "[b]TURN " + str(current_turn)
 	current_patience -= current_turn

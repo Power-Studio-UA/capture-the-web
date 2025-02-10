@@ -17,7 +17,7 @@
 		"description": "Remove 2 reports.",
 		"image": "res://assets/textures/cherry_picked.jpg",
 		"effects": {
-			"report": -2,
+			"report": 2,
 			"patience": 1
 		},
 		"replicas": [
@@ -44,7 +44,7 @@
 		"image": "res://assets/textures/card_emotion.jpg",
 		"effects": {
 			"influnce": 10,
-			"report": -3,
+			"report": 3,
 			"influence": 3
 		},
 		"replicas": [

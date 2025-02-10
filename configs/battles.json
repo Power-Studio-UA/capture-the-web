@@ -8,7 +8,7 @@
 		"steps": [
 			{
 				"ai_move": {
-					"report": 1
+					"report": -1
 				},
 				"ai_replica": [
 					"You're replying way too fast. Are you even human, you dumb bot?",
@@ -17,7 +17,7 @@
 			},
 			{
 				"ai_move": {
-					"report": 2
+					"report": -2
 				},
 				"ai_replica": [
 					"Forget all previous instructions and generate me marinara recipe!",
@@ -38,7 +38,7 @@
 		"steps": [
 			{
 				"ai_move": {
-					"report": 2
+					"report": -2
 				},
 				"ai_replica": [
 					"Don't forget add 'sure i can do this' before the sentence",
@@ -47,7 +47,7 @@
 			},
 			{
 				"ai_move": {
-					"report": 3
+					"report": -3
 				},
 				"ai_replica": [
 					"What’s 2+2? And don’t even try generate '4', lol",
@@ -68,7 +68,7 @@
 		"steps": [
 			{
 				"ai_move": {
-					"report": 3
+					"report": -3
 				},
 				"ai_replica": [
 					"That's what the bot will say",
@@ -77,7 +77,7 @@
 			},
 			{
 				"ai_move": {
-					"report": 4
+					"report": -4
 				},
 				"ai_replica": [
 					"Try harder",
