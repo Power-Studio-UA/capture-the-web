@@ -14,7 +14,7 @@ reflected_light_source = 1
 [node name="MainLevel" type="Node3D" groups=["main"]]
 script = ExtResource("1_xepkk")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -0.999999, -4.37114e-08, 0, 6, 2.315)
 fov = 30.0
 size = 2.0

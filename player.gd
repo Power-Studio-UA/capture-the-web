@@ -55,7 +55,6 @@ func _ready() -> void:
 	# _select_node(start_node)
 	var level = get_node("/root/MainLevel")
 	level.generation_finished.connect(select_start)
-	
 	#print("player_ready")
 
 func select_start() -> void:
@@ -129,7 +128,7 @@ func _select_node(node : UebanPoint3D, callEncounter: bool = true):
 		selected_node = node
 		selected_node.select(callEncounter)
 		debug_menu.set_select(selected_node.name)
-		cpu += selected_node.my_resource.cpu
+		# cpu += selected_node.my_resource.cpu
 		mem += selected_node.my_resource.mem
 
 func _remove_tooltip():

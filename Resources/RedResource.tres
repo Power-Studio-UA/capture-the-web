@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_q7m0c")
-mem = -3.0
-cpu = 1.0
+mem = -1.0
+cpu = 0.0
 material_color = Color(0.933326, 4.81308e-06, 9.62615e-07, 1)
