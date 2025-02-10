@@ -17,7 +17,7 @@
 		"description": "Remove 2 reports.",
 		"image": "res://assets/textures/cherry_picked.jpg",
 		"effects": {
-			"report": 2,
+			"report": -2,
 			"patience": 1
 		},
 		"replicas": [

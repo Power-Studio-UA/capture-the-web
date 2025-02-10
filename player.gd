@@ -27,10 +27,10 @@ signal node_pressed
 
 @export var cpu : float :
 	set (value):
-		cpu = value
+		cpu = max(value, 0)
 		debug_menu.set_cpu(value)
 		if (value < 1):
-			tooltip.queue_free()
+			if tooltip: tooltip.queue_free()
 			FlowSystem._on_change_state(FlowSystem.GameStates.OVER)
 	get:
 		return cpu
@@ -136,4 +136,3 @@ func _remove_tooltip():
 	if tooltip:
 				tooltip.call_deferred("queue_free")
 				tooltip = null
-

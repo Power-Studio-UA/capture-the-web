@@ -90,6 +90,7 @@ func setup_options():
 
 func _on_option_selected(option):
 	apply_effects(option.effects)
+	option.effects["battle_id"] = "f031c6e2-a162-4c2e-bf8a-503a6366b431"
 	if option.effects.has("battle_id"):
 		self.battle_id = option.effects['battle_id']
 		change_state(EncounterStates.BATTLE)
@@ -136,8 +137,6 @@ func show_reward():
 		_show_success_screen()
 
 func show_failure_screen():
-	self.change_state(EncounterStates.FAILURE)
-
 	if (result_screen == null):
 		if battle_instance: battle_instance.call_deferred("queue_free")
 		result_screen = ResultScreen._construct(encounter_data.name, rewards, false)
@@ -152,4 +151,3 @@ func _show_success_screen():
 		add_child(result_screen)
 	else:
 		result_screen.visible = true
-

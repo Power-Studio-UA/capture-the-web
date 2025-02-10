@@ -165,7 +165,6 @@ func add_card_to_deck(card_id)	:
 		player_state.deck[card_id] = 1
 
 #func upd_reps(num_reps):
-	#rep_upd.emit(num_reps)
+	#self.player.cpu += num_reps
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
-

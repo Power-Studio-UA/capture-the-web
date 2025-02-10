@@ -2,8 +2,9 @@
 extends Node
 class_name Battle
 
+var player: Player = null
+
 var current_patience = 10
-var current_report = 10
 var current_influence = 0
 var opponent_next_move = ""
 
@@ -92,6 +93,7 @@ func setup_deck(cards):
 
 
 func _ready():
+	self.player = get_tree().get_first_node_in_group("player") as Player
 	var card_instances = []
 	
 	for card_id in self.player_state['deck'].keys():
@@ -150,11 +152,10 @@ func apply_effect_dict(effects):
 	
 	if effects.has("report"):
 		add_chat_message("Applying effect: Reports" + str(effects.report), false)
-		self.current_report += effects.report
+		self.player.cpu += effects.report
 		
 	if effects.has("append_cards"):
-		#TODO
-		pass
+		upd_hand(effects.append_cards)
 		
 	update_stats()
 
@@ -174,6 +175,9 @@ func sync_deck_cards():
 		
 func fill_hand_cards():
 	var num_to_pick = self.hand_max_cards - len(self.in_hand)
+	upd_hand(num_to_pick)
+	
+func upd_hand(num_to_pick):
 	if len(self.deck_cards) < num_to_pick:
 		self.sync_deck_cards()
 	
@@ -182,7 +186,7 @@ func fill_hand_cards():
 	self.deck_cards = new_deck
 	self.in_hand += drawn_cards
 	draw_in_hand(drawn_cards)
-	
+
 #func setup_initial_hand():
 	#var card_data = {
 		#"effects": {
@@ -234,7 +238,7 @@ func update_stats():
 	#if (current_patience <=0):
 		#matchLeft.emit()
 	influence_label.resource_amount = current_influence
-	report_label.resource_amount = current_report
+	report_label.resource_amount = player.cpu
 	self.check_battle_state()
 
 func end_turn_handler():
@@ -242,7 +246,7 @@ func end_turn_handler():
 	current_turn += 1
 	turn_label.text = "[b]TURN " + str(current_turn)
 	current_patience -= current_turn
-	current_report-=2
+	player.cpu-=2
 
 	self.fill_hand_cards()
 	update_stats()
