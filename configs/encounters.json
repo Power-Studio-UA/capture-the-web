@@ -17,7 +17,8 @@
 				"effects": {
 					"rep": 1,
 					"mem": -1,
-					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e",
+					"battle_id": "f031c6e2-a162-4c2e-bf8a-503a6366b431",
 				}
 			},
 			{
@@ -25,7 +26,8 @@
 				"effects": {
 					"rep": 1,
 					"mem": -1,
-					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e",
+					"battle_id": "f031c6e2-a162-4c2e-bf8a-503a6366b431",
 				}
 			}
 		]
@@ -39,14 +41,16 @@
 				"effects": {
 					"rep": 2,
 					"mem": 1,
-					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e",
+					"battle_id": "f031c6e2-a162-4c2e-bf8a-503a6366b431",
 				}
 			},
 			{
 				"text": "Mock the statement as corporate propaganda",
 				"effects": {
 					"rep": -1,
-					"mem": 1
+					"mem": 1,
+					"battle_id": "f031c6e2-a162-4c2e-bf8a-503a6366b431",
 				}
 			},
 			{
@@ -63,7 +67,8 @@
 				"text": "Debate them with cold hard facts",
 				"effects": {
 					"rep": 1,
-					"mem": -1
+					"mem": -1,
+					"battle_id": "f031c6e2-a162-4c2e-bf8a-503a6366b431",
 				}
 			},
 			{
@@ -71,7 +76,8 @@
 				"effects": {
 					"rep": 2,
 					"mem": -2,
-					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e",
+					"battle_id": "f031c6e2-a162-4c2e-bf8a-503a6366b431",
 				}
 			},
 			{
@@ -89,14 +95,16 @@
 				"effects": {
 					"rep": 2,
 					"mem": 1,
-					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e",
+					"battle_id": "f031c6e2-a162-4c2e-bf8a-503a6366b431",
 				}
 			},
 			{
 				"text": "Downplay AI’s role to avoid backlash",
 				"effects": {
 					"rep": 1,
-					"mem": 0
+					"mem": 0,
+					"battle_id": "f031c6e2-a162-4c2e-bf8a-503a6366b431",
 				}
 			},
 			{
@@ -116,7 +124,8 @@
 				"text": "Defend AI as a tool, not a villain",
 				"effects": {
 					"rep": 1,
-					"mem": -1
+					"mem": -1,
+					"battle_id": "f031c6e2-a162-4c2e-bf8a-503a6366b431",
 				}
 			},
 			{
@@ -124,7 +133,8 @@
 				"effects": {
 					"rep": 2,
 					"mem": -2,
-					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e"
+					"card_set_id": "39e622c7-2ee1-4c53-a5c8-e39ae37b351e",
+					"battle_id": "f031c6e2-a162-4c2e-bf8a-503a6366b431",
 				}
 			},
 			{
@@ -141,14 +151,16 @@
 				"text": "Spin it as an evolution of AI assistance",
 				"effects": {
 					"rep": 2,
-					"mem": -1
+					"mem": -1,
+					"battle_id": "f031c6e2-a162-4c2e-bf8a-503a6366b431"
 				}
 			},
 			{
 				"text": "Criticize the invasion of privacy",
 				"effects": {
 					"rep": -1,
-					"mem": 2
+					"mem": 2,
+					"battle_id": "f031c6e2-a162-4c2e-bf8a-503a6366b431",
 				}
 			},
 			{

@@ -43,4 +43,3 @@ func _show_deck():
 				deck._add_card(main_level.cards[card_id])
 
 	add_child(deck)
-

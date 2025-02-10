@@ -32,7 +32,6 @@ const packedNode = preload("res://modules/Node.tscn")
 #const battles_json = preload("res://configs/battles.json")
 #const card_sets_json = preload("res://configs/card_sets.json")
 
-
 var encounters = {}
 var battles = {}
 var card_sets = {}
@@ -146,7 +145,6 @@ func load_graph(filename: String, descriptions_url: String):
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
 	var generator = GraphGenerator.new()
 	
 	# Generate a graph
@@ -154,6 +152,7 @@ func _ready() -> void:
 	load_game_data()
 	load_graph(urls[0], urls[1])
 	generation_finished.emit()
+	#upd_reps(5)
 	#var file = FileAccess.open(graph_url, FileAccess.READ)
 	#var data = JSON.parse_string(file.get_as_text())
 	#
@@ -164,4 +163,8 @@ func add_card_to_deck(card_id)	:
 		player_state.deck[card_id]+=1
 	else:
 		player_state.deck[card_id] = 1
+
+#func upd_reps(num_reps):
+	#rep_upd.emit(num_reps)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame

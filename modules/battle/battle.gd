@@ -34,6 +34,7 @@ var current_turn: int = 1
 
 # Signals
 signal matchLeft
+signal matchWon
 
 func setup(battle_info, player_state, card_data):
 	self.player_state = player_state
@@ -50,13 +51,15 @@ func card_callback(card_data, card_instance):
 	# print(card_data["id"])
 	var replicas = card_data["replicas"]
 	self.add_chat_message(replicas[randi() % replicas.size()], false)
+	self.apply_card_effect(card_data)
 	for i in range(self.in_hand.size()):
 		if self.in_hand[i]["id"] == card_data["id"]:
 			self.in_hand.remove_at(i)
 			break # Stop after removing the first match
 	
 	if len(self.in_hand) == 0:
-		self.fill_hand_cards()
+		self.end_turn_handler()
+	# 	self.fill_hand_cards()
 
 func handle_step_change():
 	if len(battle_info['steps']) - 1 == self.current_step:
@@ -96,6 +99,7 @@ func _ready():
 				result_card.merge({"id": card_id})
 				card_instances.append(result_card) # Deep copy to avoid reference issues
 
+	card_instances.shuffle()
 	self.setup_deck(card_instances)
 	setup_battle()
 	leave_button.pressed.connect(func() -> void: matchLeft.emit())
@@ -112,12 +116,11 @@ func check_battle_state():
 	if self.current_influence >= self.battle_info['ai_setup']['target_interest']:
 		self.win_fn()
 
-
 func lose_fn():
-	pass
+	matchLeft.emit()
 
 func win_fn():
-	pass
+	matchWon.emit()
 
 func show_opponent_move():
 	var ai_move = self.battle_info['steps'][self.current_step]['ai_move']
@@ -131,20 +134,22 @@ func show_opponent_move():
 	
 func apply_effect_dict(effects):
 	if effects.has("patience"):
-		add_chat_message("Applying effect: Patience" + str(effects.patience), false)
-		self.current_patience += effects.patience
+		add_chat_message("Applying effect: Patience" + str(-effects.patience), false)
+		self.current_patience -= effects.patience
 		
 	if effects.has("influence"):
 		add_chat_message("Applying effect: Influence" + str(effects.influence), false)
-		self.current_influence += effects.current_influence
+		self.current_influence += effects.influence
 	
 	if effects.has("report"):
 		add_chat_message("Applying effect: Reports" + str(effects.report), false)
-		self.current_report += effects.current_report
+		self.current_report += effects.report
 		
 	if effects.has("append_cards"):
 		#TODO
 		pass
+		
+	update_stats()
 
 func apply_card_effect(card_data):
 	var effects = card_data['effects']
@@ -219,21 +224,28 @@ func add_chat_message(text: String, isOpponent: bool):
 #
 func update_stats():
 	patience_label.resource_amount = current_patience
-	if (current_patience <=0):
-		matchLeft.emit()
+	#if (current_patience <=0):
+		#matchLeft.emit()
 	influence_label.resource_amount = current_influence
 	report_label.resource_amount = current_report
-#
-func _on_EndTurn_pressed():
+	self.check_battle_state()
+
+func end_turn_handler():
 	# Process opponent's move
 	current_turn += 1
 	turn_label.text = "[b]TURN " + str(current_turn)
 	current_patience -= current_turn
 	current_report-=2
+
+	self.fill_hand_cards()
 	update_stats()
 	# Show next opponent move
 	show_opponent_move()
 	fill_hand_cards()
+
+
+func _on_EndTurn_pressed():
+	self.end_turn_handler()
 
 #func _on_Leave_pressed():
 	## Return to previous scene

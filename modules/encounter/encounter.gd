@@ -42,7 +42,7 @@ func change_state(new_state):
 					battle_instance = null
 					was_battle = true
 			EncounterStates.SUCCESS:
-				result_screen.visible = false
+				if result_screen: result_screen.visible = false
 			EncounterStates.FAILURE:
 				$GameOverUI.visible = false
 
@@ -114,7 +114,9 @@ func start_battle():
 	#battle_instance.connect("battle_won", self, "_on_battle_won")
 	#battle_instance.connect("battle_lost", self, "_on_battle_lost")
 	add_child(battle_instance)
-	battle_instance.matchLeft.connect(show_failure_screen)
+	battle_instance.matchLeft.connect(_on_battle_lost)
+	battle_instance.matchWon.connect(_on_battle_won)
+
 
 func _on_battle_won():
 	change_state(EncounterStates.SUCCESS)
@@ -132,8 +134,10 @@ func show_reward():
 		_show_success_screen()
 
 func show_failure_screen():
+	self.change_state(EncounterStates.FAILURE)
+
 	if (result_screen == null):
-		battle_instance.call_deferred("queue_free")
+		if battle_instance: battle_instance.call_deferred("queue_free")
 		result_screen = ResultScreen._construct(encounter_data.name, rewards, false)
 		add_child(result_screen)
 	else:
@@ -141,6 +145,7 @@ func show_failure_screen():
 
 func _show_success_screen():
 	if (result_screen == null):
+		if battle_instance: battle_instance.call_deferred("queue_free")
 		result_screen = ResultScreen._construct(encounter_data.name, rewards, true)
 		add_child(result_screen)
 	else:

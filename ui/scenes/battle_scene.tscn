@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://4dccyyge55tv"]
+[gd_scene load_steps=14 format=3 uid="uid://cafxt8jfipbgx"]
 
 [ext_resource type="Theme" uid="uid://jnlipkyvtp4t" path="res://assets/ui_styles/general_ui.tres" id="1_vdsvs"]
 [ext_resource type="StyleBox" uid="uid://5nswnhrjvy6n" path="res://assets/ui_styles/res_backround.tres" id="2_0cihm"]
@@ -7,7 +7,7 @@
 [ext_resource type="LabelSettings" uid="uid://dqgs75nj4igj5" path="res://assets/ui_styles/header_text.tres" id="3_0usqy"]
 [ext_resource type="LabelSettings" uid="uid://bbcb4acm588nu" path="res://assets/ui_styles/common_text.tres" id="4_skhjj"]
 [ext_resource type="PackedScene" uid="uid://d33lhhp8xwik0" path="res://ui/scenes/resource_row.tscn" id="5_ulh3t"]
-[ext_resource type="PackedScene" uid="uid://cuu3m4n6svnt8" path="res://Dialogue_Box.tscn" id="7_cbcrq"]
+[ext_resource type="PackedScene" path="res://Dialogue_Box.tscn" id="7_cbcrq"]
 [ext_resource type="Texture2D" uid="uid://csi7vifoilfsp" path="res://assets/textures/deck.png" id="8_shara"]
 [ext_resource type="Script" path="res://ui/scripts/AutoScroll.gd" id="8_y72fr"]
 [ext_resource type="Texture2D" uid="uid://b2soydyaf327q" path="res://assets/textures/discard.png" id="9_jud2j"]
